@@ -1,21 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, MapPin, Clock, Instagram, Facebook, Youtube, Lock } from 'lucide-react';
+import { Phone, MapPin, Clock, Instagram, Facebook, Youtube, Lock, MessageCircle, Calendar } from 'lucide-react';
 import { PhoenixLogo } from './PhoenixLogo';
 import { STUDIO_INFO } from '../data/studioData';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#0B0B0B] text-zinc-300 border-t border-[#1F1F1F] relative overflow-hidden">
-      {/* Subtle background glow */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#FFD60A]/5 rounded-full blur-3xl pointer-events-none" />
-
+    <footer className="bg-[#07080A] text-zinc-300 border-t border-white/[0.08] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12">
-          {/* Col 1: Studio Identity */}
-          <div className="md:col-span-4 space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
+          
+          {/* Col 1: Studio Identity (4 cols) */}
+          <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
-              <PhoenixLogo size={60} />
+              <PhoenixLogo size={48} />
               <div>
                 <h3 className="font-serif text-lg font-bold text-white tracking-wide">
                   Phoenix Tattooz
@@ -27,148 +25,151 @@ export const Footer: React.FC = () => {
               </div>
             </div>
             
-            <p className="text-sm text-zinc-400 leading-relaxed max-w-sm pt-2">
-              Premier custom tattoo studio and training academy in Hisar. Where passion, hygiene, and timeless art unite to ink your personal story.
+            <p className="text-sm text-zinc-400 leading-relaxed max-w-sm">
+              Premier custom tattoo studio and professional training academy in Hisar. Dedicated to precision artistry, certified sterilization, and wearable stories that endure.
             </p>
 
-            <div className="pt-2 space-y-1">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#FFD60A] block">
-                Hisar's Best Tattoos
-              </span>
-              <p className="font-serif text-sm text-zinc-100 font-bold leading-snug">
+            <div className="pt-1">
+              <p className="text-xs text-zinc-400 font-medium">
                 “Wear Your Story, <span className="text-[#FFD60A]">Leave the Rest Behind.</span>”
               </p>
             </div>
           </div>
 
-          {/* Col 2: Navigation Links */}
-          <div className="md:col-span-3 space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-zinc-400">
-              Navigation
+          {/* Col 2: Navigation Links (3 cols) */}
+          <div className="lg:col-span-3 space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white">
+              Studio Guide
             </h4>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/" className="text-zinc-300 hover:text-[#FFD60A] transition-colors">
+                <Link to="/" className="text-zinc-400 hover:text-white transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-zinc-300 hover:text-[#FFD60A] transition-colors">
-                  About Us &amp; Services
+                <Link to="/about" className="text-zinc-400 hover:text-white transition-colors">
+                  About &amp; Studio Philosophy
                 </Link>
               </li>
               <li>
-                <Link to="/artists" className="text-zinc-300 hover:text-[#FFD60A] transition-colors">
-                  Meet Our Artists
+                <Link to="/artists" className="text-zinc-400 hover:text-white transition-colors">
+                  Resident Artists
                 </Link>
               </li>
               <li>
-                <Link to="/artists/rohit-sharma" className="text-zinc-300 hover:text-[#FFD60A] transition-colors">
-                  Rohit Sharma Profile
+                <Link to="/gallery?tab=photos" className="text-zinc-400 hover:text-white transition-colors">
+                  Photo Gallery
                 </Link>
               </li>
               <li>
-                <Link to="/experience" className="text-zinc-300 hover:text-[#FFD60A] transition-colors">
-                  Studio Experience &amp; Hygiene
+                <Link to="/gallery?tab=videos" className="text-zinc-400 hover:text-white transition-colors">
+                  Video Reels
                 </Link>
               </li>
               <li>
-                <Link to="/gallery?tab=photos" className="text-zinc-300 hover:text-[#FFD60A] transition-colors">
-                  Photo Gallery (Tattoos &amp; Piercing)
+                <Link to="/reviews" className="text-zinc-400 hover:text-white transition-colors">
+                  Client Reviews &amp; Stories
                 </Link>
               </li>
               <li>
-                <Link to="/gallery?tab=videos" className="text-zinc-300 hover:text-[#FFD60A] transition-colors flex items-center gap-1.5">
-                  <span>Video Gallery &amp; Reels</span>
-                  <span className="text-[9px] bg-[#FFD60A] text-black font-extrabold px-1.5 py-0.2 rounded">HD</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/reviews" className="text-zinc-300 hover:text-[#FFD60A] transition-colors flex items-center gap-1.5">
-                  <span>Client Reviews &amp; Studio Creed</span>
-                  <span className="text-[10px] bg-[#FFD60A]/20 text-[#FFD60A] px-1.5 py-0.2 rounded font-mono">5.0 ★</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-zinc-300 hover:text-[#FFD60A] transition-colors">
+                <Link to="/contact" className="text-zinc-400 hover:text-white transition-colors">
                   Contact &amp; Location
-                </Link>
-              </li>
-              {/* Admin Sign Up or Login Link strictly located in footer */}
-              <li className="pt-2 border-t border-zinc-800/80">
-                <Link
-                  to="/admin"
-                  className="inline-flex items-center gap-1.5 text-xs text-zinc-400 hover:text-[#FFD60A] transition-colors font-medium group"
-                >
-                  <Lock className="w-3.5 h-3.5 text-[#FFD60A] group-hover:scale-110 transition-transform" />
-                  <span>Admin Portal (Sign In)</span>
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 3: Contact Details & Hours */}
-          <div className="md:col-span-5 space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-zinc-400">
-              Studio Information
+          {/* Col 3: Studio Hours & Info (3 cols) */}
+          <div className="lg:col-span-3 space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white">
+              Studio Hours &amp; Visit
             </h4>
-            <ul className="space-y-3.5 text-sm">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-[#FFD60A] shrink-0 mt-0.5" />
-                <span className="text-zinc-300 leading-snug">
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-[#FFD60A] shrink-0 mt-0.5" />
+                <span className="text-zinc-400 text-xs leading-relaxed">
                   {STUDIO_INFO.address}
                 </span>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-[#FFD60A] shrink-0" />
                 <a
                   href={`tel:${STUDIO_INFO.phone}`}
-                  className="text-zinc-200 hover:text-[#FFD60A] font-medium tracking-wide transition-colors"
+                  className="text-zinc-300 hover:text-[#FFD60A] transition-colors text-xs font-medium"
                 >
                   {STUDIO_INFO.phone}
                 </a>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex items-center gap-2.5">
                 <Clock className="w-4 h-4 text-[#FFD60A] shrink-0" />
-                <span className="text-zinc-300">
+                <span className="text-zinc-400 text-xs">
                   {STUDIO_INFO.hours}
                 </span>
               </li>
             </ul>
 
             <div className="pt-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-xs text-zinc-300">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>Walk-ins welcome &bull; Prior booking recommended</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-xs text-zinc-300">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                <span>Walk-ins welcome &bull; Appointments prioritized</span>
               </div>
+            </div>
+          </div>
+
+          {/* Col 4: Quick Actions & Connect (2 cols) */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white">
+              Direct Channels
+            </h4>
+            <div className="space-y-2">
+              <a
+                href={`https://wa.me/919992969919?text=${encodeURIComponent('Hello Phoenix Tattooz! I would like to book a consultation.')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-2 bg-emerald-950/40 hover:bg-emerald-900/60 border border-emerald-500/30 text-emerald-300 px-3 py-2 rounded-xl text-xs font-medium transition-colors"
+              >
+                <MessageCircle className="w-3.5 h-3.5" />
+                <span>WhatsApp Studio</span>
+              </a>
+
+              <a
+                href={`https://maps.google.com/?q=${encodeURIComponent('Phoenix Tattooz Studio & Academy Hisar')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-2 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 hover:text-white px-3 py-2 rounded-xl text-xs font-medium transition-colors"
+              >
+                <MapPin className="w-3.5 h-3.5 text-[#FFD60A]" />
+                <span>Get Directions</span>
+              </a>
             </div>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 pt-8 border-t border-[#1C1C1C] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+        <div className="mt-12 pt-6 border-t border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
             <p className="text-xs text-zinc-500">
-              &copy; 2025 Phoenix Tattooz Studio &amp; Academy. All rights reserved.
+              &copy; {new Date().getFullYear()} Phoenix Tattooz Studio &amp; Academy.
             </p>
             <span className="hidden sm:inline text-zinc-700">&bull;</span>
             <Link
               to="/admin"
-              className="text-[11px] text-zinc-500 hover:text-zinc-300 transition-colors flex items-center gap-1"
+              className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors flex items-center gap-1.5"
             >
               <Lock className="w-3 h-3 text-[#FFD60A]" />
-              <span>Admin Access</span>
+              <span>Admin Portal</span>
             </Link>
           </div>
 
           {/* Social Icons */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3">
             <a
               href="https://instagram.com"
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
-              className="w-9 h-9 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 hover:text-[#FFD60A] hover:border-[#FFD60A] transition-colors"
+              className="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-[#FFD60A] hover:border-zinc-700 transition-colors"
             >
               <Instagram className="w-4 h-4" />
             </a>
@@ -177,7 +178,7 @@ export const Footer: React.FC = () => {
               target="_blank"
               rel="noreferrer"
               aria-label="Facebook"
-              className="w-9 h-9 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 hover:text-[#FFD60A] hover:border-[#FFD60A] transition-colors"
+              className="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-[#FFD60A] hover:border-zinc-700 transition-colors"
             >
               <Facebook className="w-4 h-4" />
             </a>
@@ -186,7 +187,7 @@ export const Footer: React.FC = () => {
               target="_blank"
               rel="noreferrer"
               aria-label="YouTube"
-              className="w-9 h-9 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 hover:text-[#FFD60A] hover:border-[#FFD60A] transition-colors"
+              className="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-[#FFD60A] hover:border-zinc-700 transition-colors"
             >
               <Youtube className="w-4 h-4" />
             </a>

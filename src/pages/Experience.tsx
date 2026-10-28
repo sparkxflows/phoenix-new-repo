@@ -69,7 +69,7 @@ export const Experience: React.FC<ExperienceProps> = ({ onOpenBooking }) => {
   ];
 
   return (
-    <div className="bg-white text-zinc-800 min-h-screen pb-16 md:pb-0">
+    <div className="bg-[#090A0D] text-zinc-100 min-h-screen pb-16 md:pb-0">
       {/* 1. DARK HERO */}
       <section className="relative overflow-hidden bg-[#0B0B0B] text-white py-20 sm:py-28 border-b border-[#222222]">
         <div 
@@ -135,7 +135,7 @@ export const Experience: React.FC<ExperienceProps> = ({ onOpenBooking }) => {
       </section>
 
       {/* 3. THE 5-STEP JOURNEY */}
-      <section className="py-20 sm:py-28 bg-white relative overflow-hidden">
+      <section className="py-20 sm:py-28 bg-[#0D0E12] border-t border-white/[0.06] relative overflow-hidden">
         <RoseOrnament className="absolute -left-12 top-20 w-80 h-80 text-zinc-200/40" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -146,10 +146,10 @@ export const Experience: React.FC<ExperienceProps> = ({ onOpenBooking }) => {
                 OUR PROCESS
               </span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-zinc-900">
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white">
               The Journey to Your Ink
             </h2>
-            <p className="text-sm text-zinc-600 mt-2">
+            <p className="text-sm text-zinc-300 mt-2">
               Crafted with intentional precision from initial spark to healed masterpiece.
             </p>
           </div>
@@ -158,16 +158,16 @@ export const Experience: React.FC<ExperienceProps> = ({ onOpenBooking }) => {
             {steps.map((step) => (
               <div
                 key={step.num}
-                className="bg-zinc-50 rounded-2xl p-6 border border-zinc-200 shadow-sm hover:shadow-md transition-shadow relative flex flex-col justify-between"
+                className="bg-[#13151A] rounded-2xl p-6 border border-white/[0.08] shadow-sm hover:shadow-md transition-shadow relative flex flex-col justify-between"
               >
                 <div>
                   <div className="text-3xl font-serif font-bold text-[#FFD60A] mb-3">
                     {step.num}
                   </div>
-                  <h3 className="font-serif font-bold text-base text-zinc-900 mb-2">
+                  <h3 className="font-serif font-bold text-base text-white mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-xs text-zinc-600 leading-relaxed">
+                  <p className="text-xs text-zinc-300 leading-relaxed">
                     {step.desc}
                   </p>
                 </div>
@@ -237,7 +237,7 @@ export const Experience: React.FC<ExperienceProps> = ({ onOpenBooking }) => {
       </section>
 
       {/* 5. CERTIFICATIONS & AMENITIES */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-[#090A0D] border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Certifications */}
@@ -249,17 +249,17 @@ export const Experience: React.FC<ExperienceProps> = ({ onOpenBooking }) => {
                     CREDENTIALS
                   </span>
                 </div>
-                <h2 className="font-serif text-3xl font-bold text-zinc-900">
+                <h2 className="font-serif text-3xl font-bold text-white">
                   Certified &amp; Accredited
                 </h2>
               </div>
 
               <div className="space-y-3">
                 {CERTIFICATIONS.map((cert, idx) => (
-                  <div key={idx} className="flex items-start gap-3 p-3 rounded-xl bg-zinc-50 border border-zinc-200">
+                  <div key={idx} className="flex items-start gap-3 p-3 rounded-xl bg-[#13151A] border border-white/[0.08]">
                     <CheckCircle2 className="w-5 h-5 text-[#FFD60A] shrink-0 mt-0.5" />
                     <div>
-                      <h4 className="text-xs font-bold text-zinc-900">{cert.title}</h4>
+                      <h4 className="text-xs font-bold text-white">{cert.title}</h4>
                       <p className="text-[11px] text-zinc-500">{cert.desc} ({cert.location})</p>
                     </div>
                   </div>
@@ -267,35 +267,35 @@ export const Experience: React.FC<ExperienceProps> = ({ onOpenBooking }) => {
               </div>
 
               <div>
-                <span className="font-script text-3xl text-zinc-900 font-bold">
+                <span className="font-script text-3xl text-white font-bold">
                   Skilled | Certified | Trusted
                 </span>
               </div>
             </div>
 
             {/* Studio Amenities */}
-            <div className="bg-zinc-50 rounded-2xl p-8 border border-zinc-200 space-y-6">
-              <h3 className="font-serif text-2xl font-bold text-zinc-900">
+            <div className="bg-[#13151A] rounded-2xl p-8 border border-white/[0.08] space-y-6">
+              <h3 className="font-serif text-2xl font-bold text-white">
                 Studio Amenities for Your Comfort
               </h3>
-              <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
+              <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
                 Tattooing can be an intense physical experience. We designed our studio space in Red Square Market to be as tranquil, relaxing, and welcoming as possible.
               </p>
 
               <div className="grid grid-cols-2 gap-4 pt-2 text-xs">
-                <div className="flex items-center gap-2 text-zinc-700">
+                <div className="flex items-center gap-2 text-zinc-300">
                   <Coffee className="w-4 h-4 text-[#FFD60A]" />
                   <span>Artisanal Coffee &amp; Water</span>
                 </div>
-                <div className="flex items-center gap-2 text-zinc-700">
+                <div className="flex items-center gap-2 text-zinc-300">
                   <Layers className="w-4 h-4 text-[#FFD60A]" />
                   <span>Ergonomic Hydraulic Chairs</span>
                 </div>
-                <div className="flex items-center gap-2 text-zinc-700">
+                <div className="flex items-center gap-2 text-zinc-300">
                   <Clock className="w-4 h-4 text-[#FFD60A]" />
                   <span>Private Consultation Booths</span>
                 </div>
-                <div className="flex items-center gap-2 text-zinc-700">
+                <div className="flex items-center gap-2 text-zinc-300">
                   <Smile className="w-4 h-4 text-[#FFD60A]" />
                   <span>Relaxing Ambient Soundscapes</span>
                 </div>

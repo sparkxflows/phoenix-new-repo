@@ -32,7 +32,7 @@ export const About: React.FC<AboutProps> = ({ onOpenBooking }) => {
   const rohit = artists.find((a) => a.id === 'rohit-sharma') || artists[0];
 
   return (
-    <div className="bg-white text-zinc-800 min-h-screen pb-16 md:pb-0">
+    <div className="bg-[#090A0D] text-zinc-100 min-h-screen pb-16 md:pb-0">
       {/* 1. DARK HERO SECTION */}
       <section className="relative overflow-hidden bg-[#0B0B0B] text-white py-20 sm:py-28 lg:py-32 border-b border-[#222222]">
         {/* Background photographic overlay */}
@@ -81,7 +81,7 @@ export const About: React.FC<AboutProps> = ({ onOpenBooking }) => {
       </section>
 
       {/* 2. HOW IT ALL BEGAN (OUR STORY) */}
-      <section className="py-20 sm:py-28 bg-white">
+      <section className="py-20 sm:py-28 bg-[#0D0E12] border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Left Narrative */}
@@ -93,12 +93,12 @@ export const About: React.FC<AboutProps> = ({ onOpenBooking }) => {
                     OUR STORY
                   </span>
                 </div>
-                <h2 className="font-serif text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
+                <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
                   {aboutSettings.aboutStoryHeading}
                 </h2>
               </div>
 
-              <div className="space-y-4 text-zinc-600 text-sm sm:text-base leading-relaxed">
+              <div className="space-y-4 text-zinc-300 text-sm sm:text-base leading-relaxed">
                 <p>
                   {aboutSettings.aboutStoryParagraph1}
                 </p>
@@ -108,7 +108,7 @@ export const About: React.FC<AboutProps> = ({ onOpenBooking }) => {
               </div>
 
               <div className="pt-2">
-                <div className="font-script text-3xl text-zinc-900 font-bold">
+                <div className="font-script text-3xl text-white font-bold">
                   {aboutSettings.aboutStoryTagline}
                 </div>
                 <div className="text-xs uppercase tracking-wider text-zinc-500 font-medium">
@@ -142,55 +142,55 @@ export const About: React.FC<AboutProps> = ({ onOpenBooking }) => {
             {/* Right: 4 Stat Cards */}
             <div className="lg:col-span-3 grid grid-cols-2 lg:grid-cols-1 gap-2.5 sm:gap-4">
               {/* Stat 1 */}
-              <div className="p-3 sm:p-4 rounded-xl bg-zinc-50 border border-zinc-200/90 shadow-sm flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2 sm:gap-4">
+              <div className="p-3 sm:p-4 rounded-xl bg-[#13151A] border border-white/[0.08]/90 shadow-sm flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2 sm:gap-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-[#FFD60A]/20 flex items-center justify-center shrink-0">
-                  <Award className="w-5 h-5 sm:w-6 sm:h-6 text-zinc-900" />
+                  <Award className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
                 <div>
-                  <div className="text-lg sm:text-xl font-bold font-serif text-zinc-900">8+</div>
-                  <div className="text-[11px] sm:text-xs font-semibold text-zinc-800">Years of Excellence</div>
+                  <div className="text-lg sm:text-xl font-bold font-serif text-white">8+</div>
+                  <div className="text-[11px] sm:text-xs font-semibold text-zinc-200">Years of Excellence</div>
                   <div className="text-[10px] sm:text-[11px] text-zinc-500">Since 2019</div>
                 </div>
               </div>
 
               {/* Stat 2 */}
-              <div className="p-3 sm:p-4 rounded-xl bg-zinc-50 border border-zinc-200/90 shadow-sm flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2 sm:gap-4">
+              <div className="p-3 sm:p-4 rounded-xl bg-[#13151A] border border-white/[0.08]/90 shadow-sm flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2 sm:gap-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-[#FFD60A]/20 flex items-center justify-center shrink-0">
-                  <Users className="w-5 h-5 sm:w-6 sm:h-6 text-zinc-900" />
+                  <Users className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
                 <div>
-                  <div className="text-lg sm:text-xl font-bold font-serif text-zinc-900">5000+</div>
-                  <div className="text-[11px] sm:text-xs font-semibold text-zinc-800">Happy Clients</div>
+                  <div className="text-lg sm:text-xl font-bold font-serif text-white">5000+</div>
+                  <div className="text-[11px] sm:text-xs font-semibold text-zinc-200">Happy Clients</div>
                   <div className="text-[10px] sm:text-[11px] text-zinc-500">And counting...</div>
                 </div>
               </div>
 
               {/* Stat 3 */}
-              <div className="p-3 sm:p-4 rounded-xl bg-zinc-50 border border-zinc-200/90 shadow-sm flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2 sm:gap-4">
+              <div className="p-3 sm:p-4 rounded-xl bg-[#13151A] border border-white/[0.08]/90 shadow-sm flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2 sm:gap-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-[#FFD60A]/20 flex items-center justify-center shrink-0">
                   <Star className="w-5 h-5 sm:w-6 sm:h-6 text-[#FFD60A] fill-[#FFD60A]" />
                 </div>
                 <div>
-                  <div className="text-lg sm:text-xl font-bold font-serif text-zinc-900">4.9</div>
-                  <div className="text-[11px] sm:text-xs font-semibold text-zinc-800">Client Rating</div>
+                  <div className="text-lg sm:text-xl font-bold font-serif text-white">4.9</div>
+                  <div className="text-[11px] sm:text-xs font-semibold text-zinc-200">Client Rating</div>
                   <div className="flex text-[#FFD60A] text-xs justify-center sm:justify-start">★★★★★</div>
                 </div>
               </div>
 
               {/* Stat 4 */}
-              <div className="p-3 sm:p-4 rounded-xl bg-zinc-50 border border-zinc-200/90 shadow-sm flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2 sm:gap-4">
+              <div className="p-3 sm:p-4 rounded-xl bg-[#13151A] border border-white/[0.08]/90 shadow-sm flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2 sm:gap-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-[#FFD60A]/20 flex items-center justify-center shrink-0">
-                  <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-zinc-900" />
+                  <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
                 <div>
-                  <div className="text-lg sm:text-xl font-bold font-serif text-zinc-900">100%</div>
-                  <div className="text-[11px] sm:text-xs font-semibold text-zinc-800">Hygiene &amp; Safety</div>
+                  <div className="text-lg sm:text-xl font-bold font-serif text-white">100%</div>
+                  <div className="text-[11px] sm:text-xs font-semibold text-zinc-200">Hygiene &amp; Safety</div>
                   <div className="text-[10px] sm:text-[11px] text-zinc-500">Sterilized &amp; Clean</div>
                 </div>
               </div>
 
               <div className="col-span-2 lg:col-span-1 pt-2 text-center lg:text-left">
-                <span className="font-script text-xl sm:text-2xl text-zinc-800 block">
+                <span className="font-script text-xl sm:text-2xl text-zinc-200 block">
                   {aboutSettings.aboutStorySlogan}
                 </span>
               </div>
@@ -280,7 +280,7 @@ export const About: React.FC<AboutProps> = ({ onOpenBooking }) => {
       </section>
 
       {/* 4. EXPERIENCE BUILDS TRUST + MEET ROHIT SHARMA + CERTIFICATIONS */}
-      <section className="py-20 sm:py-28 bg-white">
+      <section className="py-20 sm:py-28 bg-[#0D0E12] border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
             {/* Col 1: Experience That Builds Trust */}
@@ -292,29 +292,29 @@ export const About: React.FC<AboutProps> = ({ onOpenBooking }) => {
                     OUR EXPERIENCE
                   </span>
                 </div>
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight">
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white tracking-tight">
                   Experience That
                   <br />
                   Builds Trust
                 </h2>
               </div>
 
-              <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed">
+              <p className="text-zinc-300 text-xs sm:text-sm leading-relaxed">
                 With over 8+ years of experience, we have worked with 5000+ clients and completed thousands of tattoos, cosmetic procedures and training sessions. Our team follows international safety standards and the latest techniques to ensure the best results.
               </p>
 
               {/* 3 Stats Row */}
               <div className="grid grid-cols-3 gap-3 pt-2">
-                <div className="bg-zinc-50 p-3 rounded-lg border border-zinc-200 text-center">
-                  <div className="text-base font-bold text-zinc-900 font-serif">8+</div>
+                <div className="bg-[#13151A] p-3 rounded-lg border border-white/[0.08] text-center">
+                  <div className="text-base font-bold text-white font-serif">8+</div>
                   <div className="text-[10px] text-zinc-500 uppercase">Years</div>
                 </div>
-                <div className="bg-zinc-50 p-3 rounded-lg border border-zinc-200 text-center">
-                  <div className="text-base font-bold text-zinc-900 font-serif">5000+</div>
+                <div className="bg-[#13151A] p-3 rounded-lg border border-white/[0.08] text-center">
+                  <div className="text-base font-bold text-white font-serif">5000+</div>
                   <div className="text-[10px] text-zinc-500 uppercase">Clients</div>
                 </div>
-                <div className="bg-zinc-50 p-3 rounded-lg border border-zinc-200 text-center">
-                  <div className="text-base font-bold text-zinc-900 font-serif">4.9</div>
+                <div className="bg-[#13151A] p-3 rounded-lg border border-white/[0.08] text-center">
+                  <div className="text-base font-bold text-white font-serif">4.9</div>
                   <div className="text-[10px] text-zinc-500 uppercase">Rating</div>
                 </div>
               </div>
@@ -329,7 +329,7 @@ export const About: React.FC<AboutProps> = ({ onOpenBooking }) => {
                     MEET THE OWNER
                   </span>
                 </div>
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight">
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white tracking-tight">
                   Rohit Sharma
                 </h2>
                 <p className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">
@@ -337,7 +337,7 @@ export const About: React.FC<AboutProps> = ({ onOpenBooking }) => {
                 </p>
               </div>
 
-              <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed">
+              <p className="text-zinc-300 text-xs sm:text-sm leading-relaxed">
                 Rohit is a passionate tattoo artist with a unique style that blends creativity, precision and deep meaning. He specializes in custom tattoos, black &amp; grey realism, and intricate designs that tell a story. His vision and commitment to quality and detail have made Phoenix Tattooz a trusted name in Hisar.
               </p>
 
@@ -355,7 +355,7 @@ export const About: React.FC<AboutProps> = ({ onOpenBooking }) => {
                 </div>
 
                 <div className="space-y-2">
-                  <p className="font-script text-xl text-zinc-900 italic font-medium leading-snug">
+                  <p className="font-script text-xl text-white italic font-medium leading-snug">
                     “Art is not just what I do, it's who I am.”
                   </p>
                   <p className="text-xs text-zinc-500 font-medium">
@@ -363,7 +363,7 @@ export const About: React.FC<AboutProps> = ({ onOpenBooking }) => {
                   </p>
                   <Link
                     to="/artists/rohit-sharma"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-zinc-900 hover:text-black border-b border-[#FFD60A]"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-white hover:text-black border-b border-[#FFD60A]"
                   >
                     <span>View Full Profile</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -387,10 +387,10 @@ export const About: React.FC<AboutProps> = ({ onOpenBooking }) => {
                 {CERTIFICATIONS.map((cert, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <div className="w-8 h-8 rounded-lg bg-[#FFD60A]/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <CheckCircle2 className="w-4 h-4 text-zinc-900" />
+                      <CheckCircle2 className="w-4 h-4 text-white" />
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold text-zinc-900 leading-snug">
+                      <h4 className="text-xs font-bold text-white leading-snug">
                         {cert.title}
                       </h4>
                       <p className="text-[11px] text-zinc-500">
@@ -401,7 +401,7 @@ export const About: React.FC<AboutProps> = ({ onOpenBooking }) => {
                 ))}
               </div>
 
-              <div className="pt-4 border-t border-zinc-200">
+              <div className="pt-4 border-t border-white/[0.08]">
                 <span className="font-script text-2xl text-[#FFD60A] font-bold block drop-shadow-sm text-center">
                   Skilled | Certified | Trusted
                 </span>

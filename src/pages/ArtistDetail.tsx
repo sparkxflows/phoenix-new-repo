@@ -44,7 +44,7 @@ export const ArtistDetail: React.FC<ArtistDetailProps> = ({ onOpenBooking }) => 
   };
 
   return (
-    <div className="bg-white text-zinc-800 min-h-screen pb-16 md:pb-0">
+    <div className="bg-[#090A0D] text-zinc-100 min-h-screen pb-16 md:pb-0">
       {/* 1. DARK HERO SECTION */}
       <section className="relative overflow-hidden bg-[#0B0B0B] text-white py-16 sm:py-24 border-b border-[#222222]">
         {/* Background glow and subtle noise */}
@@ -202,7 +202,7 @@ export const ArtistDetail: React.FC<ArtistDetailProps> = ({ onOpenBooking }) => 
       </section>
 
       {/* 2. ABOUT ROHIT (More Than Just a Tattoo Artist) */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-[#0D0E12] border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Narrative */}
@@ -214,12 +214,12 @@ export const ArtistDetail: React.FC<ArtistDetailProps> = ({ onOpenBooking }) => 
                     ABOUT ROHIT
                   </span>
                 </div>
-                <h2 className="font-serif text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
+                <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
                   More Than Just a Tattoo Artist
                 </h2>
               </div>
 
-              <div className="space-y-4 text-zinc-600 text-sm sm:text-base leading-relaxed">
+              <div className="space-y-4 text-zinc-300 text-sm sm:text-base leading-relaxed">
                 <p>
                   Rohit started his journey in 2019 with a simple passion — art and self-expression. Over the years, he has developed his skills, style and a loyal client base. His work is known for clean lines, detailed shading and meaningful designs.
                 </p>
@@ -229,7 +229,7 @@ export const ArtistDetail: React.FC<ArtistDetailProps> = ({ onOpenBooking }) => 
               </div>
 
               <div className="pt-2">
-                <div className="font-script text-3xl text-zinc-900 font-bold">
+                <div className="font-script text-3xl text-white font-bold">
                   Rohit Sharma
                 </div>
                 <div className="text-xs uppercase tracking-wider text-zinc-500 font-medium">
@@ -255,7 +255,7 @@ export const ArtistDetail: React.FC<ArtistDetailProps> = ({ onOpenBooking }) => 
 
             {/* Right: Experience & Training Timeline */}
             <div className="lg:col-span-4 space-y-4 lg:pl-6">
-              <h3 className="font-bold text-xs uppercase tracking-wider text-zinc-900 mb-4">
+              <h3 className="font-bold text-xs uppercase tracking-wider text-white mb-4">
                 EXPERIENCE &amp; TRAINING
               </h3>
 
@@ -263,10 +263,10 @@ export const ArtistDetail: React.FC<ArtistDetailProps> = ({ onOpenBooking }) => 
                 {rohit.timeline.map((item, i) => (
                   <div key={i} className="relative">
                     <span className="absolute -left-6 top-1.5 w-3 h-3 rounded-full bg-[#FFD60A] ring-4 ring-white shadow-sm" />
-                    <div className="text-xs font-bold text-zinc-900">
+                    <div className="text-xs font-bold text-white">
                       {item.year}
                     </div>
-                    <div className="text-xs font-semibold text-zinc-800 leading-snug">
+                    <div className="text-xs font-semibold text-zinc-200 leading-snug">
                       {item.title}
                     </div>
                     <div className="text-[11px] text-zinc-500 mt-0.5">
@@ -352,7 +352,7 @@ export const ArtistDetail: React.FC<ArtistDetailProps> = ({ onOpenBooking }) => 
       </section>
 
       {/* 4. FEATURED WORK CAROUSEL */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-[#0D0E12] border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
             <div>
@@ -362,7 +362,7 @@ export const ArtistDetail: React.FC<ArtistDetailProps> = ({ onOpenBooking }) => 
                   ARTIST GALLERY
                 </span>
               </div>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-zinc-900">
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white">
                 Featured Work
               </h2>
             </div>
@@ -370,7 +370,7 @@ export const ArtistDetail: React.FC<ArtistDetailProps> = ({ onOpenBooking }) => 
             <div className="flex items-center gap-4">
               <Link
                 to="/gallery"
-                className="text-xs font-bold text-zinc-800 hover:text-black border-b border-[#FFD60A] pb-0.5 flex items-center gap-1"
+                className="text-xs font-bold text-zinc-200 hover:text-black border-b border-[#FFD60A] pb-0.5 flex items-center gap-1"
               >
                 <span>View All Works</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -379,14 +379,14 @@ export const ArtistDetail: React.FC<ArtistDetailProps> = ({ onOpenBooking }) => 
                 <button
                   onClick={prevCarousel}
                   aria-label="Previous portfolio"
-                  className="w-8 h-8 rounded-full border border-zinc-300 hover:border-zinc-500 flex items-center justify-center text-zinc-700 cursor-pointer"
+                  className="w-8 h-8 rounded-full border border-zinc-800 hover:border-zinc-500 flex items-center justify-center text-zinc-300 cursor-pointer"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
                 <button
                   onClick={nextCarousel}
                   aria-label="Next portfolio"
-                  className="w-8 h-8 rounded-full border border-zinc-300 hover:border-zinc-500 flex items-center justify-center text-zinc-700 cursor-pointer"
+                  className="w-8 h-8 rounded-full border border-zinc-800 hover:border-zinc-500 flex items-center justify-center text-zinc-300 cursor-pointer"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
@@ -426,7 +426,7 @@ export const ArtistDetail: React.FC<ArtistDetailProps> = ({ onOpenBooking }) => 
       </section>
 
       {/* 5. WHAT PEOPLE SAY (3 Reviews) */}
-      <section className="py-20 bg-zinc-50 border-t border-zinc-200">
+      <section className="py-20 bg-[#121418] border-t border-white/[0.08]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-12 gap-4">
             <div>
@@ -436,14 +436,14 @@ export const ArtistDetail: React.FC<ArtistDetailProps> = ({ onOpenBooking }) => 
                   CLIENT REVIEWS
                 </span>
               </div>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-zinc-900">
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white">
                 What People Say
               </h2>
             </div>
 
             <div className="text-right">
               <div className="flex items-center gap-2 justify-end">
-                <span className="text-2xl font-bold font-serif text-zinc-900">4.9/5</span>
+                <span className="text-2xl font-bold font-serif text-white">4.9/5</span>
                 <div className="flex text-[#FFD60A] text-sm">★★★★★</div>
               </div>
               <span className="text-xs text-zinc-500">
@@ -456,11 +456,11 @@ export const ArtistDetail: React.FC<ArtistDetailProps> = ({ onOpenBooking }) => 
             {CLIENT_REVIEWS.slice(0, 3).map((review) => (
               <div
                 key={review.id}
-                className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm flex flex-col justify-between space-y-4"
+                className="bg-[#13151A] p-6 rounded-2xl border border-white/[0.08] shadow-sm flex flex-col justify-between space-y-4"
               >
                 <div className="space-y-3">
                   <Quote className="w-6 h-6 text-zinc-300" />
-                  <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed italic">
+                  <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed italic">
                     &ldquo;{review.text}&rdquo;
                   </p>
                 </div>
@@ -471,7 +471,7 @@ export const ArtistDetail: React.FC<ArtistDetailProps> = ({ onOpenBooking }) => 
                       {review.name.charAt(0)}
                     </div>
                     <div>
-                      <div className="text-xs font-bold text-zinc-900">{review.name}</div>
+                      <div className="text-xs font-bold text-white">{review.name}</div>
                       <div className="text-[10px] text-zinc-500">{review.city}</div>
                     </div>
                   </div>
