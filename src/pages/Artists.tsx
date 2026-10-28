@@ -120,7 +120,7 @@ export const Artists: React.FC<ArtistsProps> = ({ onOpenBooking }) => {
               {/* Photo */}
               <div className="relative aspect-[4/5] bg-black overflow-hidden">
                 <img
-                  src={artist.image}
+                  src={artist.image || 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=800&q=80'}
                   alt={artist.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
@@ -141,7 +141,7 @@ export const Artists: React.FC<ArtistsProps> = ({ onOpenBooking }) => {
                     {artist.name}
                   </h3>
                   <p className="text-xs font-medium text-zinc-400 mt-0.5">
-                    {artist.specialties.slice(0, 2).join(' | ')}
+                    {(artist.specialties || ['Custom Design', 'Realism']).slice(0, 2).join(' | ')}
                   </p>
 
                   {/* Rating */}

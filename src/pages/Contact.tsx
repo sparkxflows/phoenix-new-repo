@@ -13,6 +13,7 @@ import {
 import { STUDIO_INFO } from '../data/studioData';
 import { DragonOrnament, RoseOrnament } from '../components/Ornaments';
 import { saveContactToSupabase } from '../lib/supabase';
+import { WhatsAppIcon } from '../components/WhatsAppIcon';
 
 interface ContactProps {
   onOpenBooking: () => void;
@@ -99,7 +100,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
           <div className="lg:col-span-5 space-y-8">
             <div className="space-y-6">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-[#FFD60A]/15 border border-[#FFD60A]/30 flex items-center justify-center shrink-0 text-white">
+                <div className="w-12 h-12 rounded-xl bg-[#FFD60A]/15 border border-[#FFD60A]/30 flex items-center justify-center shrink-0 text-[#FFD60A]">
                   <MapPin className="w-6 h-6" />
                 </div>
                 <div>
@@ -114,7 +115,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-[#FFD60A]/15 border border-[#FFD60A]/30 flex items-center justify-center shrink-0 text-white">
+                <div className="w-12 h-12 rounded-xl bg-[#FFD60A]/15 border border-[#FFD60A]/30 flex items-center justify-center shrink-0 text-[#FFD60A]">
                   <Phone className="w-6 h-6" />
                 </div>
                 <div>
@@ -124,7 +125,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
                   </p>
                   <a
                     href={`tel:${STUDIO_INFO.phone}`}
-                    className="text-base font-bold text-white hover:text-[#0B0B0B] underline tracking-wider block mt-0.5"
+                    className="text-base font-bold text-white hover:text-[#FFD60A] underline tracking-wider block mt-0.5 transition-colors"
                   >
                     {STUDIO_INFO.displayPhone}
                   </a>
@@ -132,7 +133,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-[#FFD60A]/15 border border-[#FFD60A]/30 flex items-center justify-center shrink-0 text-white">
+                <div className="w-12 h-12 rounded-xl bg-[#FFD60A]/15 border border-[#FFD60A]/30 flex items-center justify-center shrink-0 text-[#FFD60A]">
                   <Clock className="w-6 h-6" />
                 </div>
                 <div>
@@ -140,7 +141,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
                   <p className="text-sm text-zinc-300 mt-1">
                     {STUDIO_INFO.hours}
                   </p>
-                  <span className="inline-block mt-2 text-[11px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">
+                  <span className="inline-block mt-2 text-[11px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/50 border border-emerald-500/30 px-2.5 py-1 rounded-md">
                     Open All 7 Days
                   </span>
                 </div>
@@ -163,7 +164,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
                   onClick={openWhatsApp}
                   className="flex-1 flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs py-2.5 px-4 rounded-lg cursor-pointer transition-colors"
                 >
-                  <MessageSquare className="w-4 h-4" />
+                  <WhatsAppIcon className="w-4 h-4 text-black" />
                   <span>WhatsApp Chat</span>
                 </button>
                 <button
@@ -192,7 +193,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="text-xs font-bold text-[#0B0B0B] underline pt-2"
+                  className="text-xs font-bold text-[#FFD60A] hover:underline pt-2 cursor-pointer"
                 >
                   Send another message
                 </button>
@@ -309,31 +310,35 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
         </div>
       </section>
 
-      {/* 3. LARGE MAP SECTION */}
-      <section className="bg-[#121418] border-t border-white/[0.08]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Compass className="w-5 h-5 text-[#FFD60A]" />
-            <span className="font-serif font-bold text-base text-white">
-              Interactive Google Map &bull; Red Square Market Cue-1, Hisar
-            </span>
+      {/* 3. STUDIO MAP SECTION (Contained & Responsive) */}
+      <section className="bg-[#090A0D] border-t border-white/[0.08] py-12 sm:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div className="flex items-center gap-2.5">
+              <Compass className="w-5 h-5 text-[#FFD60A]" />
+              <span className="font-serif font-bold text-base sm:text-lg text-white">
+                Studio Location &bull; Red Square Market, Hisar
+              </span>
+            </div>
+            <a
+              href="https://maps.google.com/?q=Red+Square+Market+Hisar+Haryana"
+              target="_blank"
+              rel="noreferrer"
+              className="text-xs font-bold text-[#FFD60A] hover:underline inline-flex items-center gap-1"
+            >
+              <span>Open in Google Maps</span>
+              <span>&rarr;</span>
+            </a>
           </div>
-          <a
-            href="https://maps.google.com/?q=Red+Square+Market+Hisar+Haryana"
-            target="_blank"
-            rel="noreferrer"
-            className="text-xs font-bold text-[#0B0B0B] underline hover:text-black"
-          >
-            Open in Google Maps &rarr;
-          </a>
-        </div>
-        <div className="w-full h-[450px] bg-zinc-200 relative overflow-hidden border-b border-zinc-800">
-          <iframe
-            title="Phoenix Tattooz Studio Location Map in Hisar"
-            src="https://maps.google.com/maps?q=Red+Square+Market+Hisar+Haryana&t=&z=16&ie=UTF8&iwloc=&output=embed"
-            className="w-full h-full border-0"
-            loading="lazy"
-          />
+
+          <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-zinc-950 aspect-[16/9] max-h-[420px] w-full">
+            <iframe
+              title="Phoenix Tattooz Studio Location Map in Hisar"
+              src="https://maps.google.com/maps?q=Red+Square+Market+Hisar+Haryana&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              className="w-full h-full border-0"
+              loading="lazy"
+            />
+          </div>
         </div>
       </section>
     </div>

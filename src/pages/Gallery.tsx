@@ -109,10 +109,10 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
   }, [videoItems, selectedVideoFilter]);
 
   return (
-    <div className="bg-[#FAF9F6] text-zinc-200 min-h-screen pb-24">
+    <div className="bg-[#090A0D] text-zinc-100 min-h-screen pb-24">
       {/* 1. HERO SECTION */}
       <section className="relative overflow-hidden bg-[#090A0D] border-b border-white/[0.08]">
-        <DragonOrnament className="absolute -left-16 -top-12 w-96 h-96 text-zinc-200/50" />
+        <DragonOrnament className="absolute -left-16 -top-12 w-96 h-96 text-zinc-800/40 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -120,28 +120,28 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
             <div className="lg:col-span-6 space-y-4 relative z-10">
               <div className="flex items-center gap-2">
                 <span className="w-6 h-0.5 bg-[#FFD60A]" />
-                <span className="text-xs font-bold uppercase tracking-widest text-zinc-500">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#FFD60A]">
                   {activeView === 'videos' ? 'STUDIO VIDEO REELS & PROCESS' : 'TATTOO & PIERCING SHOWCASE'}
                 </span>
               </div>
 
-              <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B0B0B] tracking-tight leading-tight">
+              <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
                 {activeView === 'videos' ? (
                   <>
                     STUDIO VIDEOS
                     <br />
-                    &amp; ARTIST REELS
+                    <span className="text-[#FFD60A]">&amp; ARTIST REELS</span>
                   </>
                 ) : (
                   <>
                     TATTOO &amp; PIERCING
                     <br />
-                    GALLERY
+                    <span className="text-[#FFD60A]">GALLERY</span>
                   </>
                 )}
               </h1>
 
-              <p className="text-base sm:text-lg font-bold text-white font-serif">
+              <p className="text-base sm:text-lg font-bold text-zinc-200 font-serif">
                 {activeView === 'videos' 
                   ? 'Real Inking In Motion. Needle Craft. Fresh Reveals.'
                   : 'Real Art. Real Piercings. Real Stories.'}
@@ -157,10 +157,10 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
               <div className="pt-2 flex flex-wrap items-center gap-2.5">
                 <button
                   onClick={() => handleSwitchView('photos')}
-                  className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer shadow-sm ${
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-extrabold text-xs sm:text-sm transition-all cursor-pointer shadow-sm ${
                     activeView === 'photos'
-                      ? 'bg-[#FFD60A] text-black ring-2 ring-[#FFD60A]/50 shadow-md'
-                      : 'bg-[#121418] hover:bg-zinc-200 text-zinc-300'
+                      ? 'bg-[#FFD60A] text-black shadow-md shadow-amber-500/20 ring-2 ring-[#FFD60A]/60'
+                      : 'bg-[#14161C] hover:bg-[#1A1D24] text-zinc-300 border border-white/10'
                   }`}
                 >
                   <ImageIcon className="w-4 h-4" />
@@ -169,14 +169,14 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
 
                 <button
                   onClick={() => handleSwitchView('videos')}
-                  className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer shadow-sm ${
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-extrabold text-xs sm:text-sm transition-all cursor-pointer shadow-sm ${
                     activeView === 'videos'
-                      ? 'bg-[#0B0B0B] text-[#FFD60A] ring-2 ring-[#0B0B0B]/50 shadow-md'
-                      : 'bg-[#121418] hover:bg-zinc-200 text-zinc-300'
+                      ? 'bg-[#FFD60A] text-black shadow-md shadow-amber-500/20 ring-2 ring-[#FFD60A]/60'
+                      : 'bg-[#14161C] hover:bg-[#1A1D24] text-zinc-300 border border-white/10'
                   }`}
                 >
-                  <Film className="w-4 h-4 text-[#FFD60A]" />
-                  <span>Video Gallery ({videoItems.length})</span>
+                  <Film className="w-4 h-4" />
+                  <span>Video Reels ({videoItems.length})</span>
                 </button>
               </div>
             </div>
@@ -230,10 +230,10 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left Sidebar Filter (Desktop) */}
             <div className="hidden lg:block lg:col-span-3 space-y-6 sticky top-24">
-              <div className="bg-[#13151A] rounded-2xl border border-white/[0.08] p-3 shadow-sm space-y-1">
-                <div className="px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-zinc-400 border-b border-zinc-100 flex items-center justify-between">
+              <div className="bg-[#121418] rounded-2xl border border-white/[0.08] p-3 shadow-sm space-y-1">
+                <div className="px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-zinc-400 border-b border-zinc-800 flex items-center justify-between">
                   <span>Photo Categories</span>
-                  <span className="text-[10px] text-zinc-500 font-mono">{filteredPhotoItems.length} photos</span>
+                  <span className="text-[10px] text-[#FFD60A] font-mono font-bold">{filteredPhotoItems.length} photos</span>
                 </div>
                 {photoFilterOptions.map((f) => {
                   const IconComponent = f.icon;
@@ -245,10 +245,10 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
                       className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                         isActive
                           ? 'bg-[#FFD60A] text-black shadow-md font-bold'
-                          : 'text-zinc-300 hover:text-white hover:bg-[#121418]'
+                          : 'text-zinc-300 hover:text-white hover:bg-[#1A1D24]'
                       }`}
                     >
-                      <IconComponent className={`w-4 h-4 ${isActive ? 'text-black' : 'text-zinc-500'}`} />
+                      <IconComponent className={`w-4 h-4 ${isActive ? 'text-black' : 'text-zinc-400'}`} />
                       <span>{f.label}</span>
                     </button>
                   );
@@ -258,11 +258,11 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
               {/* Video Shortcut Card inside Sidebar */}
               <div 
                 onClick={() => handleSwitchView('videos')}
-                className="bg-black text-white p-5 rounded-2xl border border-zinc-800 shadow-md space-y-2 cursor-pointer hover:border-amber-400 transition-all group"
+                className="bg-[#14161C] text-white p-5 rounded-2xl border border-white/10 shadow-md space-y-2 cursor-pointer hover:border-amber-400/50 transition-all group"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#FFD60A] bg-[#FFD60A]/10 px-2 py-0.5 rounded">
-                    Featured Videos
+                    Featured Reels
                   </span>
                   <Film className="w-4 h-4 text-[#FFD60A] group-hover:scale-110 transition-transform" />
                 </div>
@@ -270,7 +270,7 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
                   Watch Inking Videos &amp; Reels
                 </h4>
                 <p className="text-[11px] text-zinc-400 leading-snug">
-                  See how Rohit and the team create precision line art in high-definition video.
+                  See how Rohit and the master team create precision line art in high-definition video.
                 </p>
                 <div className="pt-1">
                   <span className="text-xs text-[#FFD60A] font-bold group-hover:underline inline-flex items-center gap-1">
@@ -281,7 +281,7 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
               </div>
 
               {/* Piercing Studio & Jewelry Highlight Card */}
-              <div className="bg-zinc-900 text-white p-5 rounded-2xl border border-zinc-800 shadow-md space-y-2.5">
+              <div className="bg-[#121418] text-white p-5 rounded-2xl border border-white/[0.08] shadow-md space-y-2.5">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#FFD60A] bg-[#FFD60A]/10 px-2 py-0.5 rounded">
                     Studio Piercing
@@ -292,7 +292,7 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
                   Medical-Grade Titanium &amp; Solid Gold
                 </h4>
                 <p className="text-[11px] text-zinc-400 leading-snug">
-                  Autoclave sterilized, needle only — zero piercing guns. Safe healing guaranteed.
+                  Autoclave sterilized, needle only &mdash; zero piercing guns. Safe healing guaranteed.
                 </p>
                 <div className="pt-1 flex gap-2">
                   <button
@@ -303,7 +303,7 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
                   </button>
                   <button
                     onClick={() => onOpenBooking(undefined, 'piercing')}
-                    className="flex-1 bg-[#13151A]/10 hover:bg-[#13151A]/20 text-white font-medium text-xs py-2 rounded-lg cursor-pointer transition-colors text-center"
+                    className="flex-1 bg-[#1A1D24] hover:bg-[#222730] border border-white/10 text-white font-medium text-xs py-2 rounded-lg cursor-pointer transition-colors text-center"
                   >
                     Book Slot
                   </button>
@@ -324,7 +324,7 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
                       className={`px-4 py-2 rounded-lg text-xs whitespace-nowrap transition-all cursor-pointer ${
                         isActive
                           ? 'bg-[#FFD60A] text-black font-bold shadow'
-                          : 'bg-[#13151A] border border-white/[0.08] text-zinc-300 hover:text-black hover:bg-[#121418]'
+                          : 'bg-[#14161C] border border-white/10 text-zinc-300 hover:text-white hover:bg-[#1A1D24]'
                       }`}
                     >
                       {f.label}
@@ -390,8 +390,8 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
                     className="group relative rounded-xl sm:rounded-2xl overflow-hidden bg-black aspect-[3/4] cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300"
                   >
                     <img
-                      src={item.image}
-                      alt={item.title}
+                      src={item.image || 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=900&q=80'}
+                      alt={item.title || 'Studio Tattoo'}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
 
@@ -402,10 +402,10 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
                     <div className="absolute bottom-2.5 sm:bottom-4 left-2.5 sm:left-4 right-2.5 sm:right-4 flex items-end justify-between gap-1">
                       <div className="min-w-0">
                         <h3 className="font-serif font-bold text-white text-xs sm:text-base leading-snug drop-shadow-sm truncate">
-                          {item.title}
+                          {item.title || 'Custom Tattoo'}
                         </h3>
                         <p className="text-[9px] sm:text-[11px] text-[#FFD60A] font-medium uppercase tracking-wider mt-0.5 truncate">
-                          {item.category}
+                          {item.category || 'Tattoo'}
                         </p>
                       </div>
 
@@ -425,13 +425,13 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
               </div>
 
               {filteredPhotoItems.length === 0 && (
-                <div className="py-16 text-center space-y-3 bg-[#13151A] rounded-2xl border border-white/[0.08] p-8">
+                <div className="py-16 text-center space-y-3 bg-[#121418] rounded-2xl border border-white/[0.08] p-8">
                   <p className="text-zinc-300 text-sm">
                     No works found under "{selectedPhotoFilter}".
                   </p>
                   <button
                     onClick={() => setSelectedPhotoFilter('All')}
-                    className="text-xs font-bold text-[#0B0B0B] underline cursor-pointer"
+                    className="text-xs font-bold text-[#FFD60A] hover:underline cursor-pointer"
                   >
                     View All Works &amp; Piercings
                   </button>
@@ -442,16 +442,16 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
         )}
 
         {/* ========================================================= */}
-        {/* VIEW B: VIDEO GALLERY (MATCHING LAYOUT & SIDEBAR FILTER) */}
+        {/* VIEW B: VIDEO GALLERY (MATCHING SLEEK DARK THEME) */}
         {/* ========================================================= */}
         {activeView === 'videos' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left Sidebar Filter (Desktop) */}
             <div className="hidden lg:block lg:col-span-3 space-y-6 sticky top-24">
-              <div className="bg-[#13151A] rounded-2xl border border-white/[0.08] p-3 shadow-sm space-y-1">
-                <div className="px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-zinc-400 border-b border-zinc-100 flex items-center justify-between">
+              <div className="bg-[#121418] rounded-2xl border border-white/[0.08] p-3 shadow-sm space-y-1">
+                <div className="px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-zinc-400 border-b border-zinc-800 flex items-center justify-between">
                   <span>Video Categories</span>
-                  <span className="text-[10px] text-amber-500 font-mono font-bold">{filteredVideoItems.length} reels</span>
+                  <span className="text-[10px] text-[#FFD60A] font-mono font-bold">{filteredVideoItems.length} reels</span>
                 </div>
                 {videoFilterOptions.map((f) => {
                   const IconComponent = f.icon;
@@ -462,11 +462,11 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
                       onClick={() => setSelectedVideoFilter(f.label)}
                       className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                         isActive
-                          ? 'bg-[#0B0B0B] text-[#FFD60A] shadow-md font-bold'
-                          : 'text-zinc-300 hover:text-white hover:bg-[#121418]'
+                          ? 'bg-[#FFD60A] text-black shadow-md font-bold'
+                          : 'text-zinc-300 hover:text-white hover:bg-[#1A1D24]'
                       }`}
                     >
-                      <IconComponent className={`w-4 h-4 ${isActive ? 'text-[#FFD60A]' : 'text-zinc-500'}`} />
+                      <IconComponent className={`w-4 h-4 ${isActive ? 'text-black' : 'text-zinc-400'}`} />
                       <span>{f.label}</span>
                     </button>
                   );
@@ -476,22 +476,22 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
               {/* Photo Gallery Shortcut Card */}
               <div 
                 onClick={() => handleSwitchView('photos')}
-                className="bg-[#13151A] border border-white/[0.08] p-5 rounded-2xl shadow-sm space-y-2 cursor-pointer hover:border-zinc-400 transition-all group"
+                className="bg-[#14161C] border border-white/10 p-5 rounded-2xl shadow-sm space-y-2 cursor-pointer hover:border-amber-400/50 transition-all group"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-zinc-300 bg-[#121418] px-2 py-0.5 rounded">
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#FFD60A] bg-[#FFD60A]/10 px-2 py-0.5 rounded">
                     Photo Stills
                   </span>
-                  <ImageIcon className="w-4 h-4 text-zinc-300 group-hover:scale-110 transition-transform" />
+                  <ImageIcon className="w-4 h-4 text-[#FFD60A] group-hover:scale-110 transition-transform" />
                 </div>
-                <h4 className="font-serif font-bold text-sm text-[#0B0B0B] leading-snug">
+                <h4 className="font-serif font-bold text-sm text-white leading-snug">
                   High-Resolution Photo Gallery
                 </h4>
-                <p className="text-[11px] text-zinc-500 leading-snug">
+                <p className="text-[11px] text-zinc-400 leading-snug">
                   Browse over {galleryItems.length} curated tattoo and body piercing photographs.
                 </p>
                 <div className="pt-1">
-                  <span className="text-xs text-[#0B0B0B] font-bold group-hover:underline inline-flex items-center gap-1">
+                  <span className="text-xs text-[#FFD60A] font-bold group-hover:underline inline-flex items-center gap-1">
                     <span>Switch to Photo Gallery</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
@@ -499,16 +499,16 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
               </div>
 
               {/* Booking CTA card */}
-              <div className="bg-[#FFD60A] text-black p-5 rounded-2xl shadow-md space-y-2 text-center">
+              <div className="bg-gradient-to-br from-amber-400 to-[#FFD60A] text-black p-5 rounded-2xl shadow-lg space-y-2 text-center">
                 <span className="font-script text-2xl font-bold block leading-tight">
                   Inspired By A Video? 🎬
                 </span>
-                <p className="text-[11px] font-medium leading-snug">
+                <p className="text-[11px] font-semibold leading-snug text-black/85">
                   Show us any video from our collection during consultation to get a tailored sketch.
                 </p>
                 <button
                   onClick={() => onOpenBooking()}
-                  className="w-full bg-black hover:bg-zinc-800 text-white font-bold text-xs py-2 rounded-lg mt-2 cursor-pointer transition-colors"
+                  className="w-full bg-black hover:bg-zinc-900 active:scale-95 text-white font-bold text-xs py-2.5 rounded-xl mt-2 cursor-pointer transition-all shadow-md"
                 >
                   Book Consultation Now
                 </button>
@@ -527,8 +527,8 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
                       onClick={() => setSelectedVideoFilter(f.label)}
                       className={`px-4 py-2 rounded-lg text-xs whitespace-nowrap transition-all cursor-pointer ${
                         isActive
-                          ? 'bg-[#0B0B0B] text-[#FFD60A] font-bold shadow'
-                          : 'bg-[#13151A] border border-white/[0.08] text-zinc-300 hover:text-black hover:bg-[#121418]'
+                          ? 'bg-[#FFD60A] text-black font-bold shadow'
+                          : 'bg-[#14161C] border border-white/10 text-zinc-300 hover:text-white hover:bg-[#1A1D24]'
                       }`}
                     >
                       {f.label}
@@ -596,9 +596,9 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
               </div>
 
               {filteredVideoItems.length === 0 && (
-                <div className="py-16 text-center space-y-3 bg-[#13151A] rounded-2xl border border-white/[0.08] p-8">
-                  <Film className="w-10 h-10 text-zinc-400 mx-auto" />
-                  <h4 className="font-serif font-bold text-base text-zinc-200">
+                <div className="py-16 text-center space-y-3 bg-[#121418] rounded-2xl border border-white/[0.08] p-8">
+                  <Film className="w-10 h-10 text-[#FFD60A] mx-auto" />
+                  <h4 className="font-serif font-bold text-base text-white">
                     No Videos Found
                   </h4>
                   <p className="text-zinc-300 text-xs max-w-sm mx-auto">
@@ -606,7 +606,7 @@ export const Gallery: React.FC<GalleryProps> = ({ onOpenBooking }) => {
                   </p>
                   <button
                     onClick={() => setSelectedVideoFilter('All')}
-                    className="text-xs font-bold text-[#0B0B0B] underline cursor-pointer"
+                    className="text-xs font-bold text-[#FFD60A] hover:underline cursor-pointer"
                   >
                     View All Videos
                   </button>

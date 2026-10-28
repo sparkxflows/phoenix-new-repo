@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, MapPin, Clock, Instagram, Facebook, Youtube, Lock, MessageCircle, Calendar } from 'lucide-react';
+import { Phone, MapPin, Clock, Instagram, Facebook, Youtube, Calendar } from 'lucide-react';
 import { PhoenixLogo } from './PhoenixLogo';
 import { STUDIO_INFO } from '../data/studioData';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 export const Footer: React.FC = () => {
   return (
@@ -129,7 +130,7 @@ export const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 className="w-full flex items-center justify-center gap-2 bg-emerald-950/40 hover:bg-emerald-900/60 border border-emerald-500/30 text-emerald-300 px-3 py-2 rounded-xl text-xs font-medium transition-colors"
               >
-                <MessageCircle className="w-3.5 h-3.5" />
+                <WhatsAppIcon className="w-3.5 h-3.5 text-emerald-400" />
                 <span>WhatsApp Studio</span>
               </a>
 
@@ -148,18 +149,10 @@ export const Footer: React.FC = () => {
 
         {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
+          <div className="text-center sm:text-left">
             <p className="text-xs text-zinc-500">
-              &copy; {new Date().getFullYear()} Phoenix Tattooz Studio &amp; Academy.
+              &copy; {new Date().getFullYear()} Phoenix Tattooz Studio &amp; Academy. All rights reserved.
             </p>
-            <span className="hidden sm:inline text-zinc-700">&bull;</span>
-            <Link
-              to="/admin"
-              className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors flex items-center gap-1.5"
-            >
-              <Lock className="w-3 h-3 text-[#FFD60A]" />
-              <span>Admin Portal</span>
-            </Link>
           </div>
 
           {/* Social Icons */}

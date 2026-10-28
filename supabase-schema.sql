@@ -217,9 +217,22 @@ create policy "settings public write"
 -- ADMIN USERS: no anon access at all (login happens server-side).
 drop policy if exists "admin users server only" on public.admin_users;
 
--- MEMBER CLUB: only the API layer / service role touches these tables.
+-- MEMBER CLUB: Allow public member registration, login verification, and 15% reward voucher claims.
 drop policy if exists "members server only"        on public.member_users;
 drop policy if exists "member activity server only" on public.member_activity_log;
+drop policy if exists "member_users public insert" on public.member_users;
+drop policy if exists "member_users public read"   on public.member_users;
+drop policy if exists "member_users public update" on public.member_users;
+
+create policy "member_users public insert" on public.member_users for insert with check (true);
+create policy "member_users public read"   on public.member_users for select using (true);
+create policy "member_users public update" on public.member_users for update using (true) with check (true);
+
+drop policy if exists "member_activity public insert" on public.member_activity_log;
+drop policy if exists "member_activity public read"   on public.member_activity_log;
+
+create policy "member_activity public insert" on public.member_activity_log for insert with check (true);
+create policy "member_activity public read"   on public.member_activity_log for select using (true);
 
 
 -- ---------------------------------------------------------------------------
@@ -237,6 +250,10 @@ begin
   end;
   begin
     alter publication supabase_realtime add table public.site_settings;
+  exception when duplicate_object then null;
+  end;
+  begin
+    alter publication supabase_realtime add table public.member_users;
   exception when duplicate_object then null;
   end;
 end;

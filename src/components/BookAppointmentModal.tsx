@@ -174,7 +174,7 @@ export const BookAppointmentModal: React.FC<BookAppointmentModalProps> = ({
       case 'tattoo':
         return {
           serviceTitle: `Tattoo — ${curTattooService.name}`,
-          assignedTo: curArtist.name,
+          assignedTo: 'Phoenix Resident Master Team',
           locationOrPlacement: placement,
           specification: size,
           priceQuote: 'Consultation & Custom Quote',
@@ -629,44 +629,7 @@ export const BookAppointmentModal: React.FC<BookAppointmentModalProps> = ({
                   </div>
                 </div>
 
-                {/* 1.2 Select Artist */}
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <label className="text-xs font-semibold uppercase tracking-wider text-zinc-300">
-                      Select Artist
-                    </label>
-                    <span className="text-[11px] text-zinc-400">Award-winning resident team</span>
-                  </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                    {artists.map((artist) => {
-                      const isSelected = selectedArtist === artist.id;
-                      return (
-                        <button
-                          type="button"
-                          key={artist.id}
-                          onClick={() => setSelectedArtist(artist.id)}
-                          className={`p-2.5 rounded-xl border text-center transition-all cursor-pointer flex flex-col items-center gap-1.5 ${
-                            isSelected
-                              ? 'bg-zinc-800/90 border-[#FFD60A] ring-1 ring-[#FFD60A] shadow-md shadow-amber-500/10'
-                              : 'bg-zinc-900/60 border-zinc-800 hover:border-zinc-700 hover:bg-zinc-850'
-                          }`}
-                        >
-                          <img
-                            src={artist.image}
-                            alt={artist.name}
-                            className={`w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border transition-all ${
-                              isSelected ? 'border-[#FFD60A] scale-105' : 'border-zinc-700'
-                            }`}
-                          />
-                          <div className="text-xs font-bold text-white truncate w-full">{artist.name}</div>
-                          <div className="text-[10px] text-[#FFD60A] font-semibold">★ {artist.rating} ({artist.reviewCount})</div>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* 1.3 Body Placement & Approximate Size */}
+                {/* 1.2 Body Placement & Approximate Size */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   <div>
                     <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-1.5">

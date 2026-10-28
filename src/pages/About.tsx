@@ -411,7 +411,101 @@ export const About: React.FC<AboutProps> = ({ onOpenBooking }) => {
         </div>
       </section>
 
-      {/* 5. BOTTOM CTA BANNER: "Ink It Your Way" */}
+      {/* 5. MEET OUR RESIDENT ARTISTS */}
+      <section id="artists" className="py-20 sm:py-28 bg-[#090A0D] border-t border-white/[0.08]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <span className="w-6 h-0.5 bg-[#FFD60A]" />
+              <span className="text-xs font-bold uppercase tracking-widest text-[#FFD60A]">
+                STUDIO ARTISTS
+              </span>
+              <span className="w-6 h-0.5 bg-[#FFD60A]" />
+            </div>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+              Meet Our Artists
+            </h2>
+            <p className="text-sm text-zinc-400 mt-2 max-w-xl mx-auto leading-relaxed">
+              Award-winning resident tattooists and educators. Each brings decades of dedication, anatomical intuition, and international hygiene ethics.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {artists.map((artist) => (
+              <div
+                key={artist.id}
+                className="bg-[#121418] rounded-2xl border border-white/[0.08] hover:border-amber-400/40 overflow-hidden shadow-xl transition-all duration-300 flex flex-col group"
+              >
+                {/* Photo */}
+                <div className="relative aspect-[4/5] bg-black overflow-hidden">
+                  <img
+                    src={artist.image || 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=800&q=80'}
+                    alt={artist.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#121418] via-transparent to-transparent opacity-90" />
+                  
+                  {artist.id === 'rohit-sharma' && (
+                    <div className="absolute top-3 left-3 bg-[#FFD60A] text-black text-[10px] font-extrabold px-2.5 py-1 rounded shadow uppercase tracking-wider">
+                      Lead Artist
+                    </div>
+                  )}
+
+                  <div className="absolute top-3 right-3 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded text-[11px] font-bold text-[#FFD60A] flex items-center gap-1 border border-white/10">
+                    <Star className="w-3 h-3 fill-[#FFD60A]" />
+                    <span>{artist.rating || 4.9}</span>
+                  </div>
+                </div>
+
+                {/* Info */}
+                <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                  <div>
+                    <h3 className="font-serif font-bold text-lg text-white">
+                      {artist.name}
+                    </h3>
+                    <p className="text-xs font-medium text-amber-300/80 mt-0.5">
+                      {artist.role || 'Resident Artist'}
+                    </p>
+                    <p className="text-xs text-zinc-400 mt-2 line-clamp-2 leading-relaxed">
+                      {artist.bio || 'Premier tattoo specialist in Hisar.'}
+                    </p>
+
+                    <div className="flex flex-wrap gap-1.5 mt-3">
+                      {(artist.specialties || ['Custom Inks', 'Realism']).slice(0, 2).map((spec) => (
+                        <span
+                          key={spec}
+                          className="bg-zinc-800/80 border border-zinc-700/60 text-zinc-300 text-[10px] font-medium px-2 py-0.5 rounded"
+                        >
+                          {spec}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="pt-3 border-t border-zinc-800/80 flex items-center gap-2">
+                    <Link
+                      to={artist.id === 'rohit-sharma' ? '/artists/rohit-sharma' : '/artists'}
+                      className="flex-1 py-2 px-3 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold text-center transition-colors"
+                    >
+                      Portfolio
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => onOpenBooking(artist.id)}
+                      className="flex-1 py-2 px-3 rounded-xl bg-[#FFD60A] hover:bg-[#ffe033] text-black text-xs font-bold text-center transition-colors cursor-pointer"
+                    >
+                      Book Artist
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. BOTTOM CTA BANNER: "Ink It Your Way" */}
       <section className="bg-[#0B0B0B] text-white py-12 border-t border-[#1F1F1F]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8">

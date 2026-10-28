@@ -973,51 +973,73 @@ export const AdminPanel: React.FC = () => {
         {/* ============================================================== */}
         {activeTab === 'database' && (
           <div className="space-y-5">
-            <div className="bg-[#161616] border border-zinc-800 p-6 rounded-2xl space-y-4">
+            <div className="bg-[#161616] border border-zinc-800 p-6 rounded-2xl space-y-5">
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
-                  <h3 className="font-serif font-bold text-lg text-white flex items-center gap-2">
+                  <h3 className="font-serif font-bold text-xl text-white flex items-center gap-2">
                     <Database className="w-5 h-5 text-[#FFD60A]" />
-                    <span>Supabase Backend Details</span>
+                    <span>Supabase Database &amp; SQL Query Setup</span>
                   </h3>
                   <p className="text-xs text-zinc-400 mt-1">
-                    Connected to your Supabase project with project ID: <strong className="text-white">{getSupabaseProjectRef() || 'not configured'}</strong>
+                    Direct integration for Appointments, Inquiries, Dynamic Artists, Gallery, and 15% Rewards Club.
                   </p>
                 </div>
 
                 <div className="flex items-center gap-3">
                   <button
                     onClick={copySQL}
-                    className="bg-[#FFD60A] hover:bg-yellow-400 text-black font-bold text-xs px-4 py-2 rounded-lg flex items-center gap-1.5 transition-colors cursor-pointer"
+                    className="bg-[#FFD60A] hover:bg-yellow-400 text-black font-extrabold text-xs px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition-all shadow-md shadow-amber-500/10 cursor-pointer active:scale-95"
                   >
                     <Copy className="w-4 h-4" />
-                    <span>{copiedSQL ? 'Copied Full SQL!' : 'Copy SQL Script'}</span>
+                    <span>{copiedSQL ? 'Copied to Clipboard! ✓' : 'Copy All SQL Queries'}</span>
                   </button>
                   <a
                     href={supabaseDashboardUrl('/sql/new')}
                     target="_blank"
                     rel="noreferrer"
-                    className="bg-zinc-800 hover:bg-zinc-700 text-white font-medium text-xs px-4 py-2 rounded-lg flex items-center gap-1.5 transition-colors"
+                    className="bg-zinc-800 hover:bg-zinc-700 text-white font-semibold text-xs px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition-colors border border-zinc-700"
                   >
                     <span>Open Supabase SQL Editor</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
+                    <ExternalLink className="w-3.5 h-3.5 text-[#FFD60A]" />
                   </a>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-zinc-900 p-4 rounded-xl border border-zinc-800">
+              {/* Instructions banner */}
+              <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-4 text-xs text-amber-200/90 space-y-1.5">
+                <span className="font-bold text-[#FFD60A] text-sm block">
+                  Quick Supabase Setup Guide (3 Steps):
+                </span>
+                <ol className="list-decimal list-inside space-y-1 text-zinc-300">
+                  <li>Click <strong>"Copy All SQL Queries"</strong> button above.</li>
+                  <li>Go to your Supabase Dashboard &rarr; <strong>SQL Editor</strong> &rarr; <strong>New query</strong>.</li>
+                  <li>Paste and click <strong>Run</strong>. All tables (<code className="text-[#FFD60A]">appointments</code>, <code className="text-[#FFD60A]">contact_inquiries</code>, <code className="text-[#FFD60A]">site_settings</code>, <code className="text-[#FFD60A]">member_users</code>, <code className="text-[#FFD60A]">admin_users</code>) will be created immediately with safe RLS permissions and realtime updates!</li>
+                </ol>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-zinc-900/90 p-4 rounded-xl border border-zinc-800">
                 <div>
-                  <span className="text-zinc-500 block text-[10px] uppercase">Supabase REST Endpoint</span>
-                  <span className="font-mono text-zinc-300 text-[11px]">{SUPABASE_URL}</span>
+                  <span className="text-zinc-500 block text-[10px] uppercase font-bold">Supabase REST Endpoint</span>
+                  <span className="font-mono text-zinc-300 text-[11px] truncate block mt-0.5">{SUPABASE_URL || 'Using Local/API Store (Configure in .env for Remote)'}</span>
                 </div>
                 <div>
-                  <span className="text-zinc-500 block text-[10px] uppercase">Security Rule</span>
-                  <span className="font-semibold text-emerald-400">Single Master Admin Enforced</span>
+                  <span className="text-zinc-500 block text-[10px] uppercase font-bold">Realtime Live Sync</span>
+                  <span className="font-semibold text-emerald-400 mt-0.5 block">Active for Bookings, Artists &amp; Gallery</span>
                 </div>
               </div>
 
               <div className="relative rounded-xl overflow-hidden border border-zinc-800 bg-black">
-                <pre className="p-4 text-xs font-mono text-zinc-300 overflow-x-auto leading-relaxed">
+                <div className="p-3 bg-zinc-900 border-b border-zinc-800 flex items-center justify-between text-xs text-zinc-400">
+                  <span className="font-mono">supabase-schema.sql</span>
+                  <button
+                    onClick={copySQL}
+                    className="text-[#FFD60A] font-bold hover:underline cursor-pointer flex items-center gap-1"
+                  >
+                    <Copy className="w-3.5 h-3.5" />
+                    <span>Copy</span>
+                  </button>
+                </div>
+                <pre className="p-4 text-xs font-mono text-zinc-300 overflow-x-auto leading-relaxed max-h-[380px] scrollbar-thin">
                   {SUPABASE_SQL_SCHEMA}
                   {'\n\n'}
                   {ADMIN_SETUP_SQL}

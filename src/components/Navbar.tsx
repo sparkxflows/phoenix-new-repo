@@ -14,7 +14,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [galleryDropdownOpen, setGalleryDropdownOpen] = useState(false);
   const [memberDropdownOpen, setMemberDropdownOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
   const [hoveredNav, setHoveredNav] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const memberDropdownRef = useRef<HTMLDivElement>(null);
@@ -24,29 +23,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
 
   const isHome = location.pathname === '/';
 
-  // Scroll listener for sticky header & scroll-spy on Home page
+  // Sticky header listener
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 15);
-
-      if (isHome) {
-        const sections = ['hero', 'experience', 'rewards', 'about', 'artists', 'reviews', 'contact'];
-        const scrollPosition = window.scrollY + 220;
-
-        for (let i = sections.length - 1; i >= 0; i--) {
-          const el = document.getElementById(sections[i]);
-          if (el && el.offsetTop <= scrollPosition) {
-            setActiveSection(sections[i]);
-            break;
-          }
-        }
-      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isHome]);
+  }, []);
 
   // Close dropdown on route change or outside click
   useEffect(() => {
@@ -74,41 +60,31 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { name: 'Home', sectionId: 'hero', pagePath: '/' },
-    { name: 'About', sectionId: 'about', pagePath: '/about' },
-    { name: 'Artists', sectionId: 'artists', pagePath: '/artists' },
-    { name: 'Gallery', sectionId: 'gallery', pagePath: '/gallery', isDropdown: true },
-    { name: 'Reviews', sectionId: 'reviews', pagePath: '/reviews' },
-    { name: 'Rewards', sectionId: 'rewards', pagePath: '/#rewards' },
-    { name: 'Contact', sectionId: 'contact', pagePath: '/contact' },
+    { name: 'Home', pagePath: '/' },
+    { name: 'About', pagePath: '/about' },
+    { name: 'Gallery', pagePath: '/gallery', isDropdown: true },
+    { name: 'Reviews', pagePath: '/reviews' },
+    { name: 'Contact', pagePath: '/contact' },
   ];
 
   const handleNavClick = (link: typeof navLinks[0], e: React.MouseEvent) => {
     if (link.isDropdown) return;
     
-    if (isHome) {
+    if (link.pagePath === '/' && isHome) {
       e.preventDefault();
-      const el = document.getElementById(link.sectionId);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-        setActiveSection(link.sectionId);
-      } else if (link.sectionId === 'hero') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        setActiveSection('hero');
-      }
-    } else {
-      if (link.pagePath.startsWith('/#')) {
-        navigate(link.pagePath);
-      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
   const isLinkActive = (link: typeof navLinks[0]) => {
-    if (isHome) {
-      return activeSection === link.sectionId;
+    if (link.pagePath === '/') {
+      return location.pathname === '/';
     }
     if (link.isDropdown) {
       return location.pathname.startsWith('/gallery');
+    }
+    if (link.pagePath === '/about') {
+      return location.pathname === '/about' || location.pathname.startsWith('/artists');
     }
     return location.pathname === link.pagePath;
   };
@@ -234,24 +210,33 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
           })}
         </nav>
 
-        {/* Right: Both CTAs exactly same size, with Primary having higher visual hierarchy */}
+        {/* Right: Book Appointment (Left) & Login CTA with 15% Reward badge at corner (Right) */}
         <div className="hidden sm:flex items-center gap-3 shrink-0">
-          {/* Secondary CTA: Studio Club (Identical Height & Padding) */}
+          {/* 1. Primary CTA: Book Appointment (Left) */}
+          <button
+            onClick={() => onOpenBooking()}
+            className="h-10 px-5 sm:px-6 rounded-xl bg-[#FFD60A] hover:bg-[#ffe033] active:scale-[0.98] text-black font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md shadow-amber-500/20 transition-all cursor-pointer shrink-0"
+          >
+            <Calendar className="w-4 h-4 text-black stroke-[2.5]" />
+            <span>Book Appointment</span>
+          </button>
+
+          {/* 2. Login CTA (Always at the far right corner) */}
           {isAuthenticated && user ? (
             <div className="relative" ref={memberDropdownRef}>
               <button
                 onClick={() => setMemberDropdownOpen(!memberDropdownOpen)}
-                className="h-10 px-4 rounded-xl bg-[#14161C] hover:bg-[#1A1D24] border border-white/10 hover:border-amber-400/40 text-white text-xs sm:text-sm font-medium flex items-center justify-center gap-2 transition-all cursor-pointer"
+                className="h-10 px-3.5 sm:px-4 rounded-xl bg-[#14161C] hover:bg-[#1A1D24] border border-white/10 hover:border-amber-400/40 text-white text-xs sm:text-sm font-medium flex items-center justify-center gap-2 transition-all cursor-pointer"
               >
                 <div className="w-5 h-5 rounded-full bg-[#FFD60A] text-black font-bold flex items-center justify-center text-[10px]">
-                  {user.name ? user.name.charAt(0).toUpperCase() : 'M'}
+                  {user.name ? user.name.charAt(0).toUpperCase() : 'U'}
                 </div>
-                <span className="truncate max-w-[90px]">{user.name}</span>
+                <span className="truncate max-w-[85px]">{user.name}</span>
                 <ChevronDown className="w-3.5 h-3.5 text-zinc-400" />
               </button>
 
               {memberDropdownOpen && (
-                <div className="absolute right-0 top-full mt-2 w-56 bg-[#121418] border border-zinc-800 rounded-xl p-2 shadow-xl z-50">
+                <div className="absolute right-0 top-full mt-2 w-56 bg-[#121418] border border-zinc-800 rounded-xl p-2 shadow-xl z-50 animate-in fade-in slide-in-from-top-1 duration-150">
                   <div className="px-3 py-2 border-b border-zinc-800 text-xs">
                     <div className="font-semibold text-white truncate">{user.name}</div>
                     <div className="text-zinc-400 truncate text-[11px]">{user.email}</div>
@@ -269,7 +254,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
                       className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors cursor-pointer text-left"
                     >
                       <Gift className="w-4 h-4 text-[#FFD60A]" />
-                      <span>My Rewards &amp; Codes</span>
+                      <span>My 15% Rewards &amp; Codes</span>
                     </button>
                     <button
                       onClick={() => {
@@ -286,35 +271,68 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
               )}
             </div>
           ) : (
-            <button
-              onClick={() => triggerAuthModal({ mode: 'signin', title: 'Member Sign In', subtitle: 'Access your studio perks and discount vouchers.' })}
-              className="h-10 px-4 sm:px-5 rounded-xl bg-[#14161C] hover:bg-[#1A1D24] border border-white/10 hover:border-amber-400/40 text-zinc-200 hover:text-white text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
-            >
-              <User className="w-4 h-4 text-[#FFD60A]" />
-              <span>Studio Club</span>
-            </button>
-          )}
+            <div className="relative">
+              {/* 15% Reward Badge */}
+              <span className="absolute -top-2.5 -right-1 z-10 bg-gradient-to-r from-amber-400 to-[#FFD60A] text-black text-[9px] font-black px-1.5 py-0.5 rounded-full shadow-md uppercase tracking-wider animate-pulse flex items-center gap-0.5 pointer-events-none">
+                <Sparkles className="w-2.5 h-2.5 fill-black" />
+                15% Reward
+              </span>
 
-          {/* Primary CTA: Book Appointment (Identical Height & Padding, High Visual Hierarchy) */}
-          <button
-            onClick={() => onOpenBooking()}
-            className="h-10 px-5 sm:px-6 rounded-xl bg-[#FFD60A] hover:bg-[#ffe033] active:scale-[0.98] text-black font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md shadow-amber-500/20 transition-all cursor-pointer shrink-0"
-          >
-            <Calendar className="w-4 h-4 text-black" />
-            <span>Book Appointment</span>
-          </button>
+              <button
+                onClick={() => triggerAuthModal({ mode: 'signin', title: 'Member Login', subtitle: 'Sign in to unlock your 15% instant reward voucher.' })}
+                className="h-10 px-4 sm:px-5 rounded-xl bg-[#14161C] hover:bg-[#1A1D24] border border-white/10 hover:border-amber-400/50 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer shrink-0"
+              >
+                <User className="w-4 h-4 text-[#FFD60A]" />
+                <span>Login</span>
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Mobile Header Controls */}
         <div className="flex items-center gap-2 lg:hidden">
+          {/* Quick Book Button */}
           <button
             onClick={() => onOpenBooking()}
-            className="h-9 px-3.5 rounded-lg bg-[#FFD60A] text-black font-bold text-xs flex items-center gap-1.5"
+            className="h-9 px-3 rounded-lg bg-[#FFD60A] text-black font-extrabold text-xs flex items-center gap-1.5 shadow-sm active:scale-95"
           >
-            <Calendar className="w-3.5 h-3.5" />
+            <Calendar className="w-3.5 h-3.5 stroke-[2.5]" />
             <span>Book</span>
           </button>
 
+          {/* Quick Mobile Login Button with 15% badge */}
+          {isAuthenticated && user ? (
+            <button
+              onClick={() => {
+                if (onOpenRewards) onOpenRewards('birthday');
+                else {
+                  const elem = document.getElementById('rewards');
+                  if (elem) elem.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              className="h-9 px-2.5 rounded-lg bg-[#14161C] border border-white/10 text-white text-xs flex items-center gap-1.5"
+            >
+              <div className="w-4 h-4 rounded-full bg-[#FFD60A] text-black font-bold flex items-center justify-center text-[9px]">
+                {user.name ? user.name.charAt(0).toUpperCase() : 'U'}
+              </div>
+              <span className="text-[11px] truncate max-w-[60px]">{user.name.split(' ')[0]}</span>
+            </button>
+          ) : (
+            <div className="relative">
+              <span className="absolute -top-2 -right-1 bg-amber-400 text-black text-[8px] font-black px-1 rounded-full pointer-events-none">
+                15%
+              </span>
+              <button
+                onClick={() => triggerAuthModal({ mode: 'signin', title: 'Member Login', subtitle: 'Sign in to unlock your 15% reward voucher.' })}
+                className="h-9 px-2.5 rounded-lg bg-[#14161C] border border-white/10 text-white text-xs font-semibold flex items-center gap-1"
+              >
+                <User className="w-3.5 h-3.5 text-[#FFD60A]" />
+                <span>Login</span>
+              </button>
+            </div>
+          )}
+
+          {/* Hamburger Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white transition-colors"
@@ -401,12 +419,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  triggerAuthModal({ mode: 'signin', title: 'Studio Club', subtitle: 'Sign in for gifts & discount vouchers' });
+                  triggerAuthModal({ mode: 'signin', title: 'Member Login', subtitle: 'Sign in for your 15% instant discount voucher' });
                 }}
-                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-xs font-medium text-zinc-300 hover:text-white"
+                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#14161C] border border-amber-500/30 text-xs font-semibold text-white hover:bg-zinc-800"
               >
                 <User className="w-4 h-4 text-[#FFD60A]" />
-                <span>Join / Sign In to Studio Club</span>
+                <span>Login / Sign Up &bull; <strong className="text-[#FFD60A]">15% Off</strong></span>
               </button>
             )}
           </div>
