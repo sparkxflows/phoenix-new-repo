@@ -110,6 +110,41 @@ function MainLayout({ onOpenBooking, onOpenRewards }: MainLayoutProps) {
   );
 }
 
+class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean; error?: Error }> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error('App ErrorBoundary caught error:', error, errorInfo);
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen bg-[#0B0B0B] text-white flex flex-col items-center justify-center p-6 text-center">
+          <div className="max-w-md space-y-4">
+            <h2 className="text-2xl font-serif font-bold text-[#FFD60A]">Phoenix Tattooz</h2>
+            <p className="text-sm text-zinc-300">An unexpected glitch occurred while loading. Please refresh to continue.</p>
+            <button 
+              onClick={() => {
+                this.setState({ hasError: false });
+                window.location.reload();
+              }}
+              className="px-6 py-2.5 bg-[#FFD60A] text-black font-bold rounded-xl text-xs hover:bg-[#ffe033] transition-colors cursor-pointer"
+            >
+              Reload Page
+            </button>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 export default function App() {
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const [bookingArtistId, setBookingArtistId] = useState<string | undefined>(undefined);
@@ -159,56 +194,58 @@ export default function App() {
   };
 
   return (
-    <BrowserRouter basename={getAppBasename()}>
-      <ScrollToTop />
-      <MainLayout 
-        onOpenBooking={handleOpenBooking} 
-        onOpenRewards={handleOpenRewards} 
-      />
+    <ErrorBoundary>
+      <BrowserRouter basename={getAppBasename()}>
+        <ScrollToTop />
+        <MainLayout 
+          onOpenBooking={handleOpenBooking} 
+          onOpenRewards={handleOpenRewards} 
+        />
 
-      {/* Global Appointment Booking Modal (Saves to Supabase) */}
-      <BookAppointmentModal
-        isOpen={bookingModalOpen}
-        onClose={handleCloseBooking}
-        preselectedArtistId={bookingArtistId}
-        preselectedServiceId={bookingServiceId}
-        initialCategory={bookingCategoryId}
-      />
+        {/* Global Appointment Booking Modal (Saves to Supabase) */}
+        <BookAppointmentModal
+          isOpen={bookingModalOpen}
+          onClose={handleCloseBooking}
+          preselectedArtistId={bookingArtistId}
+          preselectedServiceId={bookingServiceId}
+          initialCategory={bookingCategoryId}
+        />
 
-      {/* Global Professional Member Sign Up & Sign In Modal */}
-      <AuthModal
-        isOpen={authModalOpen}
-        onClose={() => setAuthModalOpen(false)}
-        initialMode={authModalMode}
-        customTitle={authCustomTitle}
-        customSubtitle={authCustomSubtitle}
-        onSuccess={() => {
-          setAuthModalOpen(false);
-          if (afterAuthTab) {
-            setGlobalRewardsTab(afterAuthTab);
-            setGlobalRewardsOpen(true);
-            setAfterAuthTab(null);
-          }
-        }}
-      />
+        {/* Global Professional Member Sign Up & Sign In Modal */}
+        <AuthModal
+          isOpen={authModalOpen}
+          onClose={() => setAuthModalOpen(false)}
+          initialMode={authModalMode}
+          customTitle={authCustomTitle}
+          customSubtitle={authCustomSubtitle}
+          onSuccess={() => {
+            setAuthModalOpen(false);
+            if (afterAuthTab) {
+              setGlobalRewardsTab(afterAuthTab);
+              setGlobalRewardsOpen(true);
+              setAfterAuthTab(null);
+            }
+          }}
+        />
 
-      {/* Global Rewards & Gifts Modal */}
-      <GiftRewardModal
-        isOpen={globalRewardsOpen}
-        onClose={() => setGlobalRewardsOpen(false)}
-        initialTab={globalRewardsTab}
-        onOpenBooking={() => handleOpenBooking()}
-        onRequestAuth={(mode, title, subtitle) => {
-          setGlobalRewardsOpen(false);
-          triggerAuthModal({
-            mode,
-            title,
-            subtitle,
-            afterTab: globalRewardsTab,
-          });
-        }}
-      />
-    </BrowserRouter>
+        {/* Global Rewards & Gifts Modal */}
+        <GiftRewardModal
+          isOpen={globalRewardsOpen}
+          onClose={() => setGlobalRewardsOpen(false)}
+          initialTab={globalRewardsTab}
+          onOpenBooking={() => handleOpenBooking()}
+          onRequestAuth={(mode, title, subtitle) => {
+            setGlobalRewardsOpen(false);
+            triggerAuthModal({
+              mode,
+              title,
+              subtitle,
+              afterTab: globalRewardsTab,
+            });
+          }}
+        />
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }
 

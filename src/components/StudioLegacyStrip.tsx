@@ -5,7 +5,8 @@ import {
   CheckCircle2,
   Calendar,
   Maximize2,
-  Flame
+  Flame,
+  Eye
 } from 'lucide-react';
 import { GALLERY_ITEMS } from '../data/studioData';
 import { useGallery } from '../lib/studioContent';
