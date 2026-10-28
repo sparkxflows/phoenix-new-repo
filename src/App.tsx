@@ -25,6 +25,15 @@ import { Contact } from './pages/Contact';
 import { Reviews } from './pages/Reviews';
 import { AdminPanel } from './pages/AdminPanel';
 
+const getAppBasename = () => {
+  if (typeof window !== 'undefined') {
+    const path = window.location.pathname;
+    if (path.includes('/phoenix_tattoz_github')) return '/phoenix_tattoz_github';
+    if (path.includes('/phoenix-tattoz-github')) return '/phoenix-tattoz-github';
+  }
+  return '';
+};
+
 // Scroll to top automatically on route changes, or scroll to hash anchor if provided
 const ScrollToTop: React.FC = () => {
   const { pathname, hash } = useLocation();
@@ -147,7 +156,7 @@ export default function App() {
   };
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={getAppBasename()}>
       <ScrollToTop />
       <MainLayout 
         onOpenBooking={handleOpenBooking} 
