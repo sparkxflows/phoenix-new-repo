@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node ./node_modules/tsx/dist/cli.mjs server.ts",
+    "dev": "vite",
     "start": "node ./node_modules/tsx/dist/cli.mjs server.ts",
     "build": "vite build",
     "preview": "vite preview",

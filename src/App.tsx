@@ -27,8 +27,15 @@ import { AdminPanel } from './pages/AdminPanel';
 const getAppBasename = () => {
   if (typeof window !== 'undefined') {
     const path = window.location.pathname;
+    if (path.includes('/phoenix-new-repo')) return '/phoenix-new-repo';
     if (path.includes('/phoenix_tattoz_github')) return '/phoenix_tattoz_github';
     if (path.includes('/phoenix-tattoz-github')) return '/phoenix-tattoz-github';
+    if (window.location.hostname.endsWith('github.io')) {
+      const segments = path.split('/').filter(Boolean);
+      if (segments.length > 0) {
+        return '/' + segments[0];
+      }
+    }
   }
   return '';
 };
