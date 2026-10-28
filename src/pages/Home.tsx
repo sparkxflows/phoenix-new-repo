@@ -150,58 +150,30 @@ export const Home: React.FC<HomeProps> = ({ onOpenBooking }) => {
             </a>
           </div>
 
-          {/* Translucent Frosted Glass Badges: Google Reviews & Hygiene Safety */}
-          <div className="mt-10 sm:mt-12 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-            {/* Card 1: Google Reviews (Translucent frosted glass) */}
-            <a
-              href={`https://www.google.com/search?q=${encodeURIComponent('Phoenix Tattooz Studio & Academy Hisar')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-40 sm:w-44 p-4 rounded-2xl bg-black/40 hover:bg-black/55 backdrop-blur-md border border-white/10 hover:border-amber-400/40 transition-all duration-200 flex flex-col items-center text-center shadow-lg hover:scale-[1.02] group"
-            >
-              {/* Google Icon Circle */}
-              <div className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center mb-2 shadow-sm group-hover:scale-105 transition-transform">
-                <svg viewBox="0 0 24 24" className="w-5 h-5">
+          {/* Clean Google Rating & 100% Sterile Verification Strip */}
+          <div className="mt-10 max-w-2xl mx-auto">
+            <div className="flex flex-wrap items-center justify-center gap-3 text-xs">
+              <a
+                href={`https://www.google.com/search?q=${encodeURIComponent('Phoenix Tattooz Studio & Academy Hisar')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#121418] border border-white/10 hover:border-amber-400/40 transition-colors text-zinc-300 hover:text-white"
+              >
+                <svg viewBox="0 0 24 24" className="w-4 h-4">
                   <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17Z" />
                   <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24Z" />
                   <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.16 0 9.94 0 12s.45 3.84 1.25 5.42l4.03-3.15Z" />
                   <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98Z" />
                 </svg>
+                <span className="font-bold text-white">4.9 ★</span>
+                <span className="text-zinc-400">Google Rating (500+ Reviews)</span>
+              </a>
+
+              <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#121418] border border-white/10 text-zinc-300">
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                <span className="font-bold text-emerald-400">100% Sterile</span>
+                <span className="text-zinc-400">Single-Use Needles</span>
               </div>
-
-              <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-300 block">
-                GOOGLE REVIEWS
-              </span>
-
-              <div className="flex items-center gap-0.5 text-amber-400 my-1 text-xs">
-                {'★★★★★'.split('').map((_, i) => (
-                  <span key={i} className="text-amber-400">★</span>
-                ))}
-              </div>
-
-              <span className="text-xl sm:text-2xl font-black text-white leading-tight">
-                4.9
-              </span>
-            </a>
-
-            {/* Card 2: Hygiene & Safety (Translucent frosted glass) */}
-            <div className="w-40 sm:w-44 p-4 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 transition-all duration-200 flex flex-col items-center text-center shadow-lg hover:scale-[1.02]">
-              {/* Gold Plus Circle */}
-              <div className="w-10 h-10 rounded-full bg-amber-500/15 border border-amber-500/40 flex items-center justify-center mb-2 shadow-sm">
-                <span className="text-[#FFD60A] text-lg font-black leading-none">+</span>
-              </div>
-
-              <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-300 block">
-                HYGIENE &amp; SAFETY
-              </span>
-
-              <span className="text-[11px] font-black uppercase tracking-wider text-emerald-400 my-1">
-                STERILIZED
-              </span>
-
-              <span className="text-xl sm:text-2xl font-black text-[#FFD60A] leading-tight">
-                100%
-              </span>
             </div>
           </div>
         </div>
