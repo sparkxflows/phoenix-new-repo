@@ -8,7 +8,6 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { MobileBottomBar } from './components/MobileBottomBar';
-import { StudioChatbot } from './components/StudioChatbot';
 import { LeftBookingLauncher } from './components/LeftBookingLauncher';
 import { ModernCtaEffects } from './components/ModernCtaEffects';
 import { BookAppointmentModal, BookingCategory } from './components/BookAppointmentModal';
@@ -97,9 +96,6 @@ function MainLayout({ onOpenBooking, onOpenRewards }: MainLayoutProps) {
 
       {/* Adaptive Mobile Bottom Quick Bar */}
       {!isAdminRoute && <MobileBottomBar onOpenBooking={() => onOpenBooking()} />}
-
-      {/* AI Studio Chatbot */}
-      {!isAdminRoute && <StudioChatbot onOpenBooking={onOpenBooking} />}
 
       {/* Left Corner Floating Booking & Direct Contact Pop-up */}
       {!isAdminRoute && <LeftBookingLauncher onOpenBooking={() => onOpenBooking()} />}
