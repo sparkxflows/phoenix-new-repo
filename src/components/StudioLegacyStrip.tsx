@@ -10,7 +10,8 @@ import {
   Search,
   Maximize2,
   Eye,
-  Flame
+  Flame,
+  Award
 } from 'lucide-react';
 import { STUDIO_INFO, GALLERY_ITEMS } from '../data/studioData';
 import { useGallery } from '../lib/studioContent';
@@ -44,10 +45,9 @@ export const StudioLegacyStrip: React.FC<StudioLegacyStripProps> = ({ onOpenBook
         }}
       />
 
-      {/* Atmospheric Golden Plumes */}
-      <div className="absolute -top-24 left-1/4 w-[460px] h-[340px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/2 right-1/6 w-[400px] h-[300px] bg-yellow-500/10 rounded-full blur-[110px] pointer-events-none" />
-      <div className="absolute -bottom-24 left-1/3 w-[380px] h-[280px] bg-amber-600/10 rounded-full blur-[100px] pointer-events-none" />
+      {/* Subtle Atmospheric Lighting (Minimal, Zero Overglow) */}
+      <div className="absolute top-0 left-1/4 w-[300px] h-[200px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[300px] h-[200px] bg-yellow-500/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16 sm:space-y-20">
         
@@ -98,7 +98,7 @@ export const StudioLegacyStrip: React.FC<StudioLegacyStripProps> = ({ onOpenBook
             <div className="p-5 sm:p-6 rounded-2xl bg-[#0D0F12]/80 border border-zinc-800/90 hover:border-amber-400/40 transition-all group">
               <div className="flex items-center justify-between mb-4">
                 <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-[#FFD60A] group-hover:scale-105 transition-transform">
-                  <Calendar className="w-5 h-5" />
+                  <Award className="w-5 h-5 text-[#FFD60A]" />
                 </div>
                 <span className="text-[10px] font-extrabold uppercase tracking-widest text-zinc-500 bg-zinc-900 px-2 py-0.5 rounded">
                   Estd. 2019
@@ -112,21 +112,21 @@ export const StudioLegacyStrip: React.FC<StudioLegacyStripProps> = ({ onOpenBook
               </p>
             </div>
 
-            {/* Pillar 2: Custom Tattoos Completed */}
+            {/* Pillar 2: 5000+ Custom Tattoos Completed */}
             <div className="p-5 sm:p-6 rounded-2xl bg-[#0D0F12]/80 border border-zinc-800/90 hover:border-amber-400/40 transition-all group">
               <div className="flex items-center justify-between mb-4">
                 <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-[#FFD60A] group-hover:scale-105 transition-transform">
-                  <Sparkles className="w-5 h-5" />
+                  <Flame className="w-5 h-5 text-[#FFD60A]" />
                 </div>
                 <span className="text-[10px] font-extrabold uppercase tracking-widest text-amber-400/90 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
-                  ORIGINAL ART
+                  5000+ INKED
                 </span>
               </div>
               <div className="font-highlight text-3xl sm:text-4xl font-black text-white tracking-tight">
-                5,000+
+                5000+
               </div>
               <p className="text-xs sm:text-sm text-zinc-400 mt-2 font-medium">
-                Custom tattoos inked, from micro-fineline to full backpieces &amp; sleeves.
+                Custom masterpieces inked, from micro-fineline to full backpieces &amp; sleeves.
               </p>
             </div>
 

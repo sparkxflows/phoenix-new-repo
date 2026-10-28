@@ -67,8 +67,8 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ onOpenBooking, s
 
   return (
     <section id="reviews" className="py-20 sm:py-28 bg-[#0D0D0D] text-zinc-100 relative overflow-hidden border-t border-[#1C1C1C]">
-      {/* Background ambient gold aura */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#FFD60A]/5 rounded-full blur-[140px] pointer-events-none" />
+      {/* Background ambient gold aura (Subtle, No Overglow) */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-amber-500/[0.03] rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
         

@@ -436,7 +436,7 @@ export const StudioChatbot: React.FC<StudioChatbotProps> = ({ onOpenBooking }) =
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Ask about tattoo pricing, aftercare, designs..."
+                placeholder="Placeholder for Studio AI Question (Pricing, Aftercare, Booking)..."
                 disabled={isLoading}
                 className="flex-1 bg-zinc-900/90 border border-zinc-700/80 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-[#FFD60A] focus:ring-1 focus:ring-[#FFD60A] transition-all"
               />

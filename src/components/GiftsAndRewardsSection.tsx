@@ -60,9 +60,9 @@ export const GiftsAndRewardsSection: React.FC<GiftsAndRewardsSectionProps> = ({
           }}
         />
 
-        {/* Ambient Golden Backlights */}
-        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-amber-600/20 via-yellow-500/10 to-transparent rounded-full blur-2xl pointer-events-none" />
-        <div className="absolute -bottom-20 left-10 w-[380px] h-[380px] bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
+        {/* Ambient Subtle Golden Backlights (Non-intrusive) */}
+        <div className="absolute top-1/4 right-1/4 w-[350px] h-[350px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-20 left-10 w-[250px] h-[250px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">

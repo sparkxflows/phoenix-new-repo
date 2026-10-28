@@ -102,6 +102,8 @@ export const BookAppointmentModal: React.FC<BookAppointmentModalProps> = ({
   const [clientName, setClientName] = useState<string>('');
   const [clientPhone, setClientPhone] = useState<string>('');
   const [clientNotes, setClientNotes] = useState<string>('');
+  const [referenceImageCategory, setReferenceImageCategory] = useState<string>('Custom Reference / Client Idea');
+  const [imageDescription, setImageDescription] = useState<string>('');
 
   // Submission & Supabase state
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -233,6 +235,9 @@ export const BookAppointmentModal: React.FC<BookAppointmentModalProps> = ({
 
     // Build category-specific detailed notes
     let fullNotes = clientNotes.trim();
+    if (referenceImageCategory || imageDescription.trim()) {
+      fullNotes = `${fullNotes} [Ref: ${referenceImageCategory}${imageDescription.trim() ? ` - ${imageDescription.trim()}` : ''}]`;
+    }
     if (activeCategory === 'tattoo') {
       fullNotes = `[Category: Tattoo | Sub-service: ${curTattooService.name}] ${fullNotes}`;
     } else if (activeCategory === 'removal') {
@@ -878,45 +883,14 @@ export const BookAppointmentModal: React.FC<BookAppointmentModalProps> = ({
                   </span>
                 </div>
 
-                {/* Section A: What We Train & What We Do in Tattoo Training */}
+                {/* Academy Program Selection (Clean, Transparent, Direct) */}
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <label className="text-xs font-semibold uppercase tracking-wider text-zinc-300 flex items-center gap-1.5">
-                      <BookOpen className="w-4 h-4 text-[#FFD60A]" />
-                      <span>What We Train In Tattoo Training (Core Curriculum)</span>
+                      <GraduationCap className="w-4 h-4 text-[#FFD60A]" />
+                      <span>Select Training Course</span>
                     </label>
-                    <span className="text-[11px] text-zinc-400">6 Pillars of Mastery</span>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
-                    {TRAINING_SYLLABUS.map((item) => (
-                      <div 
-                        key={item.step} 
-                        className="bg-zinc-900/80 border border-zinc-800 rounded-xl p-3 space-y-1 hover:border-zinc-700 transition-colors"
-                      >
-                        <div className="flex items-center gap-2">
-                          <span className="text-[10px] font-mono font-bold text-[#FFD60A] bg-zinc-800 px-1.5 py-0.5 rounded">
-                            {item.step}
-                          </span>
-                          <span className="text-xs font-bold text-white truncate">
-                            {item.topic}
-                          </span>
-                        </div>
-                        <p className="text-[10px] text-zinc-400 leading-relaxed">
-                          {item.desc}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Section B: What Should I Charge / Course Options & Fees */}
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <label className="text-xs font-semibold uppercase tracking-wider text-zinc-300 flex items-center gap-1.5">
-                      <DollarSign className="w-4 h-4 text-[#FFD60A]" />
-                      <span>Academy Courses &amp; Transparent Fees (What We Charge)</span>
-                    </label>
+                    <span className="text-[11px] text-zinc-400">Certified by Master Rohit Sharma</span>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -927,16 +901,16 @@ export const BookAppointmentModal: React.FC<BookAppointmentModalProps> = ({
                           type="button"
                           key={course.id}
                           onClick={() => setSelectedCourseId(course.id)}
-                          className={`p-4 rounded-xl text-left border transition-all cursor-pointer flex flex-col justify-between relative ${
+                          className={`p-3.5 rounded-xl text-left border transition-all cursor-pointer flex flex-col justify-between ${
                             isSelected
-                              ? 'bg-zinc-800/90 border-[#FFD60A] ring-1 ring-[#FFD60A] shadow-md'
-                              : 'bg-zinc-900/80 border-zinc-800 hover:border-zinc-700'
+                              ? 'bg-zinc-850 border-[#FFD60A] ring-1 ring-[#FFD60A] shadow-md shadow-amber-500/10'
+                              : 'bg-zinc-900/70 border-zinc-800 hover:border-zinc-700'
                           }`}
                         >
                           <div>
                             {course.popular && (
-                              <span className="text-[9px] bg-[#FFD60A] text-black font-extrabold px-2 py-0.5 rounded uppercase tracking-wider inline-block mb-2">
-                                Recommended Career Path
+                              <span className="text-[9px] bg-[#FFD60A] text-black font-extrabold px-2 py-0.5 rounded uppercase tracking-wider inline-block mb-1.5">
+                                Recommended
                               </span>
                             )}
                             <h4 className="text-xs font-bold text-white leading-tight">
@@ -945,12 +919,12 @@ export const BookAppointmentModal: React.FC<BookAppointmentModalProps> = ({
                             <div className="text-[11px] text-zinc-400 mt-1">
                               {course.duration}
                             </div>
-                            <div className="text-base font-serif font-bold text-[#FFD60A] mt-2 font-mono">
+                            <div className="text-sm font-bold text-[#FFD60A] mt-2 font-mono">
                               {course.fee}
                             </div>
 
-                            <ul className="mt-3 space-y-1.5 text-[10px] text-zinc-300 border-t border-zinc-800/80 pt-2.5">
-                              {course.whatYouLearn.map((feat, i) => (
+                            <ul className="mt-2.5 space-y-1 text-[10px] text-zinc-300 border-t border-zinc-800/80 pt-2">
+                              {course.whatYouLearn.slice(0, 3).map((feat, i) => (
                                 <li key={i} className="flex items-start gap-1.5">
                                   <Check className="w-3 h-3 text-[#FFD60A] shrink-0 mt-0.5" />
                                   <span className="leading-snug">{feat}</span>
@@ -959,7 +933,7 @@ export const BookAppointmentModal: React.FC<BookAppointmentModalProps> = ({
                             </ul>
                           </div>
 
-                          <div className="mt-4 pt-2 border-t border-zinc-800/60 text-[10px] font-mono text-zinc-400">
+                          <div className="mt-3 pt-1.5 border-t border-zinc-800/60 text-[10px] font-mono text-zinc-400">
                             {course.certificateType}
                           </div>
                         </button>
@@ -1213,72 +1187,110 @@ export const BookAppointmentModal: React.FC<BookAppointmentModalProps> = ({
             </div>
 
             {/* ------------------------------------------------------------ */}
-            {/* COMMON STEP: CLIENT DETAILS & SPECIAL NOTES */}
+            {/* COMMON STEP: CLIENT DETAILS & DESIGN SPECIFICATIONS */}
+            {/* (Single section per line: Name, Mobile below, Notes, Image Dropdown, Image Desc) */}
             {/* ------------------------------------------------------------ */}
-            <div className="pt-2 border-t border-zinc-800 space-y-3.5">
+            <div className="pt-2 border-t border-zinc-800 space-y-4">
               <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-300 flex items-center gap-1.5">
                 <User className="w-4 h-4 text-[#FFD60A]" />
-                <span>Your Contact Information</span>
+                <span>Your Contact Information &amp; Tattoo Details</span>
               </label>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                <div>
-                  <label className="block text-[11px] font-semibold text-zinc-400 mb-1">
-                    Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Placeholder for Your Full Name"
-                    value={clientName}
-                    onChange={(e) => {
-                      setClientName(e.target.value);
-                      if (formErrors.name) setFormErrors({ ...formErrors, name: undefined });
-                    }}
-                    className={`w-full bg-zinc-900 border rounded-xl px-3.5 py-2.5 text-sm sm:text-xs text-white focus:outline-none min-h-[44px] ${
-                      formErrors.name ? 'border-rose-500' : 'border-zinc-800 focus:border-[#FFD60A]'
-                    }`}
-                  />
-                  {formErrors.name && (
-                    <p className="text-[11px] text-rose-400 mt-1">{formErrors.name}</p>
-                  )}
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-semibold text-zinc-400 mb-1">
-                    Mobile Number (for WhatsApp Confirmation) *
-                  </label>
-                  <input
-                    type="tel"
-                    placeholder="Placeholder for WhatsApp Mobile Number"
-                    value={clientPhone}
-                    onChange={(e) => {
-                      setClientPhone(e.target.value);
-                      if (formErrors.phone) setFormErrors({ ...formErrors, phone: undefined });
-                    }}
-                    className={`w-full bg-zinc-900 border rounded-xl px-3.5 py-2.5 text-sm sm:text-xs text-white focus:outline-none min-h-[44px] ${
-                      formErrors.phone ? 'border-rose-500' : 'border-zinc-800 focus:border-[#FFD60A]'
-                    }`}
-                  />
-                  {formErrors.phone && (
-                    <p className="text-[11px] text-rose-400 mt-1">{formErrors.phone}</p>
-                  )}
-                </div>
+              {/* Line 1: Full Name */}
+              <div className="w-full">
+                <label className="block text-[11px] font-semibold text-zinc-400 mb-1">
+                  Full Name *
+                </label>
+                <input
+                  type="text"
+                  placeholder="Placeholder for Full Name"
+                  value={clientName}
+                  onChange={(e) => {
+                    setClientName(e.target.value);
+                    if (formErrors.name) setFormErrors({ ...formErrors, name: undefined });
+                  }}
+                  className={`w-full bg-zinc-900 border rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none min-h-[44px] ${
+                    formErrors.name ? 'border-rose-500' : 'border-zinc-800 focus:border-[#FFD60A]'
+                  }`}
+                />
+                {formErrors.name && (
+                  <p className="text-[11px] text-rose-400 mt-1">{formErrors.name}</p>
+                )}
               </div>
 
-              <div>
+              {/* Line 2: Mobile Number directly below Full Name */}
+              <div className="w-full">
                 <label className="block text-[11px] font-semibold text-zinc-400 mb-1">
-                  Design Notes / Tattoo Ideas / Special Requirements
+                  WhatsApp Mobile Number *
+                </label>
+                <input
+                  type="tel"
+                  placeholder="Placeholder for WhatsApp Mobile Number"
+                  value={clientPhone}
+                  onChange={(e) => {
+                    setClientPhone(e.target.value);
+                    if (formErrors.phone) setFormErrors({ ...formErrors, phone: undefined });
+                  }}
+                  className={`w-full bg-zinc-900 border rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none min-h-[44px] ${
+                    formErrors.phone ? 'border-rose-500' : 'border-zinc-800 focus:border-[#FFD60A]'
+                  }`}
+                />
+                {formErrors.phone && (
+                  <p className="text-[11px] text-rose-400 mt-1">{formErrors.phone}</p>
+                )}
+              </div>
+
+              {/* Line 3: Design Notes or Tattoo Ideas */}
+              <div className="w-full">
+                <label className="block text-[11px] font-semibold text-zinc-400 mb-1">
+                  Design Notes / Tattoo Ideas / Special Instructions
                 </label>
                 <textarea
                   rows={2}
-                  placeholder="Placeholder for Tattoo Design Idea or Reference Notes"
+                  placeholder="Placeholder for Design Notes or Tattoo Ideas"
                   value={clientNotes}
                   onChange={(e) => setClientNotes(e.target.value)}
-                  className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-[#FFD60A] resize-none"
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#FFD60A] resize-none"
                 />
               </div>
+
+              {/* Line 4: Image Dropdown / Reference Style Selection */}
+              <div className="w-full">
+                <label className="block text-[11px] font-semibold text-zinc-400 mb-1 flex items-center justify-between">
+                  <span>Reference Style Selection</span>
+                  <span className="text-[10px] text-zinc-500">Choose reference genre</span>
+                </label>
+                <select
+                  value={referenceImageCategory}
+                  onChange={(e) => setReferenceImageCategory(e.target.value)}
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-[#FFD60A] min-h-[44px]"
+                >
+                  <option value="Commercial Tattoo (Minimalist / Script / Symbol)">Commercial Tattoo (Minimalist / Names / Couple Initials / Zodiac)</option>
+                  <option value="Cover-Up Tattoo (Old Ink / Scar Camouflage)">Cover-Up Tattoo (Old Ink Transformation / Scar Camouflage)</option>
+                  <option value="Custom Bespoke Tattoo (Original Concept)">Custom Bespoke Tattoo (Original Concept &amp; Design)</option>
+                  <option value="Realism / Portrait (Black & Grey)">Realism / Portrait (Hyper-Detailed Shading)</option>
+                  <option value="Spiritual / Devotional (Shiva, Trishul, Mandala)">Spiritual / Devotional (Shiva, Trishul, Mandala, Buddha)</option>
+                  <option value="Geometric & Dotwork">Geometric &amp; Dotwork (Sacred Geometry)</option>
+                  <option value="Fine-Line & Floral Elegance">Fine-Line &amp; Floral Elegance</option>
+                  <option value="Tattoo Training Academy Inquiry">Tattoo Training Academy Inquiry</option>
+                </select>
+              </div>
+
+              {/* Line 5: Image Description or Reference Link */}
+              <div className="w-full">
+                <label className="block text-[11px] font-semibold text-zinc-400 mb-1">
+                  Image Description / Reference Link (Optional)
+                </label>
+                <input
+                  type="text"
+                  placeholder="Placeholder for Image Description or Reference Link"
+                  value={imageDescription}
+                  onChange={(e) => setImageDescription(e.target.value)}
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#FFD60A] min-h-[44px]"
+                />
               </div>
             </div>
+          </div>
 
             {/* Pinned Bottom Action Dock (Always visible & comfortable on mobile and desktop) */}
             <div className="shrink-0 bg-[#161616]/98 backdrop-blur-md border-t border-zinc-800 px-4 sm:px-6 py-2.5 sm:py-3.5 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-4 shadow-[0_-8px_24px_rgba(0,0,0,0.6)] pb-[max(0.75rem,env(safe-area-inset-bottom))]">

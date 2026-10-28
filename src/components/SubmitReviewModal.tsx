@@ -288,7 +288,7 @@ export const SubmitReviewModal: React.FC<SubmitReviewModalProps> = ({ isOpen, on
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="e.g. Rahul Sharma"
+                  placeholder="Placeholder for Your Full Name"
                   className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-[#FFD60A]"
                 />
               </div>
@@ -302,7 +302,7 @@ export const SubmitReviewModal: React.FC<SubmitReviewModalProps> = ({ isOpen, on
                   type="text"
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
-                  placeholder="e.g. Hisar, Delhi, Rohtak"
+                  placeholder="Placeholder for Your City"
                   className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-[#FFD60A]"
                 />
               </div>
@@ -321,7 +321,8 @@ export const SubmitReviewModal: React.FC<SubmitReviewModalProps> = ({ isOpen, on
                   className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#FFD60A]"
                 >
                   <option value="Custom Tattooing">Custom Tattooing (Realism / Fine Line)</option>
-                  <option value="Cover-Up & Rework">Tattoo Cover-Up &amp; Rework</option>
+                  <option value="Commercial Tattoo">Commercial Tattoo</option>
+                  <option value="Cover-Up Tattoo">Tattoo Cover-Up &amp; Rework</option>
                   <option value="Cosmetic Tattooing">Cosmetic Tattooing (Microblading / Lip Blush)</option>
                   <option value="Body Piercing">Sterile Body Piercing</option>
                   <option value="Academy Course">Phoenix Tattoo Academy Certification</option>
@@ -355,7 +356,7 @@ export const SubmitReviewModal: React.FC<SubmitReviewModalProps> = ({ isOpen, on
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="e.g. Masterpiece lion realism on my arm!"
+                placeholder="Placeholder for Review Headline"
                 className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-[#FFD60A]"
               />
             </div>
@@ -371,7 +372,7 @@ export const SubmitReviewModal: React.FC<SubmitReviewModalProps> = ({ isOpen, on
                 rows={3}
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                placeholder="Tell us about the design process, studio hygiene, pain level, artist behavior, and how you feel about your new tattoo..."
+                placeholder="Placeholder for Your Detailed Studio Experience & Thoughts"
                 className="w-full bg-zinc-900 border border-zinc-800 rounded-xl p-3 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-[#FFD60A] resize-none leading-relaxed"
               />
             </div>
@@ -410,7 +411,7 @@ export const SubmitReviewModal: React.FC<SubmitReviewModalProps> = ({ isOpen, on
                       type="url"
                       value={imageUrlInput}
                       onChange={(e) => setImageUrlInput(e.target.value)}
-                      placeholder="Or paste photo URL..."
+                      placeholder="Placeholder for Photo URL..."
                       className="flex-1 bg-zinc-900 border border-zinc-800 rounded-lg px-2.5 py-1 text-[11px] text-white focus:outline-none focus:border-[#FFD60A]"
                     />
                     <button
@@ -461,7 +462,7 @@ export const SubmitReviewModal: React.FC<SubmitReviewModalProps> = ({ isOpen, on
                       type="url"
                       value={videoUrlInput}
                       onChange={(e) => setVideoUrlInput(e.target.value)}
-                      placeholder="Or video link (MP4/Reel/Shorts)..."
+                      placeholder="Placeholder for Video URL..."
                       className="flex-1 bg-zinc-900 border border-zinc-800 rounded-lg px-2.5 py-1 text-[11px] text-white focus:outline-none focus:border-[#FFD60A]"
                     />
                     <button

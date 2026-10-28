@@ -215,7 +215,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
                     </label>
                     <input
                       type="text"
-                      placeholder="e.g. Rahul Verma"
+                      placeholder="Placeholder for Full Name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className={`w-full bg-[#13151A] border rounded-lg px-3.5 py-2.5 text-sm text-zinc-200 focus:outline-none focus:border-[#FFD60A] ${
@@ -234,7 +234,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
                     </label>
                     <input
                       type="tel"
-                      placeholder="e.g. 09992969919"
+                      placeholder="Placeholder for Phone Number"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className={`w-full bg-[#13151A] border rounded-lg px-3.5 py-2.5 text-sm text-zinc-200 focus:outline-none focus:border-[#FFD60A] ${
@@ -255,7 +255,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
                     </label>
                     <input
                       type="email"
-                      placeholder="e.g. rahul@example.com"
+                      placeholder="Placeholder for Email Address"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full bg-[#13151A] border border-zinc-800 rounded-lg px-3.5 py-2.5 text-sm text-zinc-200 focus:outline-none focus:border-[#FFD60A]"
@@ -272,8 +272,9 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
                       className="w-full bg-[#13151A] border border-zinc-800 rounded-lg px-3.5 py-2.5 text-sm text-zinc-200 focus:outline-none focus:border-[#FFD60A]"
                     >
                       <option value="Custom Tattooing">Custom Tattooing</option>
+                      <option value="Commercial Tattoo">Commercial Tattoo</option>
+                      <option value="Cover-Up Tattoo">Cover-Up Tattoo</option>
                       <option value="Black & Grey Realism">Black &amp; Grey Realism</option>
-                      <option value="Cover-Up & Rework">Cover-Up &amp; Rework</option>
                       <option value="Cosmetic Tattooing">Cosmetic Tattooing (Brows/Lips)</option>
                       <option value="Laser Tattoo Removal">Laser Tattoo Removal</option>
                       <option value="Academy Apprenticeship">Tattoo Academy Course</option>
@@ -288,7 +289,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
                   </label>
                   <textarea
                     rows={4}
-                    placeholder="Describe your design, desired placement, approximate size, or any questions..."
+                    placeholder="Placeholder for Design Notes or Query Details"
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full bg-[#13151A] border border-zinc-800 rounded-lg px-3.5 py-2.5 text-sm text-zinc-200 focus:outline-none focus:border-[#FFD60A]"

@@ -15,6 +15,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
   const [galleryDropdownOpen, setGalleryDropdownOpen] = useState(false);
   const [memberDropdownOpen, setMemberDropdownOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const [hoveredNav, setHoveredNav] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const memberDropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
@@ -135,28 +136,36 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
         </Link>
 
         {/* Center: Desktop Navigation with shifting yellow capsule hover effect */}
-        <nav className="hidden lg:flex items-center gap-1.5 bg-[#121418]/90 border border-white/[0.08] rounded-full px-2.5 py-1.5 shadow-sm">
+        <nav 
+          className="hidden lg:flex items-center gap-1.5 bg-[#121418]/90 border border-white/[0.08] rounded-full px-2.5 py-1.5 shadow-sm"
+          onMouseLeave={() => setHoveredNav(null)}
+        >
           {navLinks.map((link) => {
+            const isCurrentRouteActive = isLinkActive(link);
+            const isHighlighted = hoveredNav !== null ? hoveredNav === link.name : isCurrentRouteActive;
+
             if (link.isDropdown) {
-              const active = isLinkActive(link);
               return (
                 <div
                   key={link.name}
                   ref={dropdownRef}
                   className="relative"
-                  onMouseEnter={() => setGalleryDropdownOpen(true)}
+                  onMouseEnter={() => {
+                    setGalleryDropdownOpen(true);
+                    setHoveredNav(link.name);
+                  }}
                   onMouseLeave={() => setGalleryDropdownOpen(false)}
                 >
                   <button
                     onClick={() => setGalleryDropdownOpen(!galleryDropdownOpen)}
-                    className={`nav-pill cursor-pointer ${
-                      active ? 'nav-pill-active' : ''
+                    className={`nav-pill cursor-pointer transition-all duration-200 ${
+                      isHighlighted ? 'nav-pill-active scale-[1.02]' : 'text-zinc-400 hover:text-white'
                     }`}
                   >
                     <span>{link.name}</span>
                     <ChevronDown
                       className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                        galleryDropdownOpen ? 'rotate-180 text-[#FFD60A]' : 'text-zinc-400'
+                        galleryDropdownOpen ? 'rotate-180 text-black' : isHighlighted ? 'text-black' : 'text-zinc-400'
                       }`}
                     />
                   </button>
@@ -209,13 +218,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
               );
             }
 
-            const active = isLinkActive(link);
             return (
               <Link
                 key={link.name}
                 to={link.pagePath}
+                onMouseEnter={() => setHoveredNav(link.name)}
                 onClick={(e) => handleNavClick(link, e)}
-                className={`nav-pill ${active ? 'nav-pill-active' : ''}`}
+                className={`nav-pill transition-all duration-200 ${
+                  isHighlighted ? 'nav-pill-active scale-[1.02]' : 'text-zinc-400 hover:text-white'
+                }`}
               >
                 {link.name}
               </Link>

@@ -53,15 +53,6 @@ export interface PiercingJewelryOption {
 // 1. Tattoo Sub-Services (Clean & Minimalist, No Prices Displayed)
 export const TATTOO_SUB_SERVICES: TattooServiceOption[] = [
   {
-    id: 'custom-tattoo',
-    name: 'Custom Tattoo',
-    subtitle: 'Original Concepts & Realism',
-    description: 'Bespoke designs tailored from your ideas including black & grey realism, portraiture, geometric, and fine line.',
-    iconName: 'Palette',
-    startingPrice: '',
-    recommendedFor: 'Forearm, Chest, Full Sleeve, Back'
-  },
-  {
     id: 'commercial-tattoo',
     name: 'Commercial Tattoo',
     subtitle: 'Minimalist, Lettering & Symbols',
@@ -71,15 +62,6 @@ export const TATTOO_SUB_SERVICES: TattooServiceOption[] = [
     recommendedFor: 'Wrist, Collarbone, Finger, Ankle'
   },
   {
-    id: 'cosmetic-tattoo',
-    name: 'Cosmetic Tattoo',
-    subtitle: 'Microblading & Lip Blushing',
-    description: 'Precision cosmetic pigmentation for eyebrow microblading, ombré powder shading, and natural lip blushing.',
-    iconName: 'Eye',
-    startingPrice: '',
-    recommendedFor: 'Eyebrows, Lips, Contours'
-  },
-  {
     id: 'coverup-tattoo',
     name: 'Cover-Up Tattoo',
     subtitle: 'Old Ink & Scar Camouflage',
@@ -87,6 +69,24 @@ export const TATTOO_SUB_SERVICES: TattooServiceOption[] = [
     iconName: 'Layers',
     startingPrice: '',
     recommendedFor: 'Prior tattoos or scar reworks'
+  },
+  {
+    id: 'custom-tattoo',
+    name: 'Custom Tattoo',
+    subtitle: 'Original Concepts & Realism',
+    description: 'Bespoke designs tailored from your ideas including black & grey realism, portraiture, geometric, and fine line.',
+    iconName: 'Palette',
+    startingPrice: '',
+    recommendedFor: 'Forearm, Chest, Full Sleeve, Back'
+  },
+  {
+    id: 'cosmetic-tattoo',
+    name: 'Cosmetic Tattoo',
+    subtitle: 'Microblading & Lip Blushing',
+    description: 'Precision cosmetic pigmentation for eyebrow microblading, ombré powder shading, and natural lip blushing.',
+    iconName: 'Eye',
+    startingPrice: '',
+    recommendedFor: 'Eyebrows, Lips, Contours'
   }
 ];
 

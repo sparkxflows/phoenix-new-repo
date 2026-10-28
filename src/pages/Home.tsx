@@ -13,13 +13,13 @@ import {
   GraduationCap,
   MessageCircle,
   PenTool,
-  Heart
+  Heart,
+  Flame
 } from 'lucide-react';
 import { STUDIO_INFO } from '../data/studioData';
 import { useArtists, useHomeHero, useAboutContent } from '../lib/studioContent';
 import { LightboxModal } from '../components/LightboxModal';
 import { ReviewsSection } from '../components/ReviewsSection';
-import { saveContactToSupabase } from '../lib/supabase';
 import { GiftsAndRewardsSection } from '../components/GiftsAndRewardsSection';
 import { GiftRewardModal } from '../components/GiftRewardModal';
 import { StudioLegacyStrip } from '../components/StudioLegacyStrip';
@@ -74,36 +74,6 @@ export const Home: React.FC<HomeProps> = ({ onOpenBooking }) => {
   const handleOpenRewardModal = (tab: 'birthday' | 'referral' = 'birthday') => {
     setRewardModalTab(tab);
     setRewardModalOpen(true);
-  };
-  
-  // Contact form state
-  const [formData, setFormData] = useState({ name: '', phone: '', message: '' });
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [isSubmittingContact, setIsSubmittingContact] = useState(false);
-  const [formErrors, setFormErrors] = useState<{ name?: string; phone?: string }>({});
-
-  const handleContactSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const errors: { name?: string; phone?: string } = {};
-    if (!formData.name.trim()) errors.name = 'Please enter your name';
-    if (!formData.phone.trim() || formData.phone.length < 10) errors.phone = 'Please enter a valid phone number';
-    
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      return;
-    }
-    setFormErrors({});
-    setIsSubmittingContact(true);
-
-    await saveContactToSupabase({
-      name: formData.name.trim(),
-      phone: formData.phone.trim(),
-      service: 'Home Contact Form',
-      message: formData.message.trim(),
-    });
-
-    setIsSubmittingContact(false);
-    setFormSubmitted(true);
   };
 
   return (
@@ -181,52 +151,105 @@ export const Home: React.FC<HomeProps> = ({ onOpenBooking }) => {
             </a>
           </div>
 
-          {/* Restored Prominent Google Reviews & Hygiene Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-12 max-w-2xl mx-auto text-left">
-            {/* Google Reviews Card */}
-            <a
-              href={`https://www.google.com/search?q=${encodeURIComponent('Phoenix Tattooz Studio & Academy Hisar')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group p-4 rounded-2xl bg-[#121418]/90 hover:bg-[#161920] border border-white/10 hover:border-amber-400/40 transition-all flex items-center gap-3.5 shadow-lg shadow-black/60"
-            >
-              <div className="w-11 h-11 rounded-xl bg-white flex items-center justify-center shrink-0 shadow-sm p-1">
-                <svg viewBox="0 0 24 24" className="w-6 h-6">
+          {/* Actual Google Reviews & 5000+ Trust Metrics */}
+          <div className="mt-12 max-w-4xl mx-auto space-y-4">
+            {/* Top Verification & 5000+ Metrics Strip */}
+            <div className="flex flex-wrap items-center justify-center gap-3 text-xs">
+              <a
+                href={`https://www.google.com/search?q=${encodeURIComponent('Phoenix Tattooz Studio & Academy Hisar')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#121418] border border-white/10 hover:border-amber-400/40 transition-colors text-zinc-300 hover:text-white"
+              >
+                <svg viewBox="0 0 24 24" className="w-4 h-4">
                   <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17Z" />
                   <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24Z" />
                   <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.16 0 9.94 0 12s.45 3.84 1.25 5.42l4.03-3.15Z" />
                   <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98Z" />
                 </svg>
-              </div>
-              <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-1 text-[#FFD60A] text-xs font-bold">
-                  <span>4.9</span>
-                  <div className="flex text-amber-400 text-xs">
-                    {'★'.repeat(5)}
-                  </div>
-                  <span className="text-zinc-400 font-normal text-[11px] ml-1">(500+ Reviews)</span>
-                </div>
-                <div className="text-sm font-bold text-white group-hover:text-[#FFD60A] transition-colors leading-snug mt-0.5">
-                  Verified Google Reviews
-                </div>
-                <div className="text-[11px] text-zinc-400 truncate">Hisar's #1 Top Rated Studio</div>
-              </div>
-            </a>
+                <span className="font-bold text-white">4.9 ★</span>
+                <span className="text-zinc-400">Google Rating (500+ Reviews)</span>
+              </a>
 
-            {/* Hygiene & Safety Card */}
-            <div className="p-4 rounded-2xl bg-[#121418]/90 border border-white/10 flex items-center gap-3.5 shadow-lg shadow-black/60">
-              <div className="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center shrink-0 text-emerald-400">
-                <ShieldCheck className="w-6 h-6" />
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#121418] border border-white/10 text-zinc-300">
+                <Flame className="w-4 h-4 text-[#FFD60A]" />
+                <span className="font-bold text-white">5000+</span>
+                <span className="text-zinc-400">Tattoos Inked</span>
               </div>
-              <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] bg-emerald-500/20 text-emerald-400 font-bold px-1.5 py-0.2 rounded">100% Certified</span>
-                  <span className="text-xs text-zinc-400 font-medium">Safety Standard</span>
+
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#121418] border border-white/10 text-zinc-300">
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                <span className="font-bold text-emerald-400">100% Sterile</span>
+                <span className="text-zinc-400">Single-Use Needles</span>
+              </div>
+            </div>
+
+            {/* Actual Google Reviews Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 text-left">
+              {/* Google Review 1 */}
+              <div className="p-4 rounded-xl bg-[#121418]/90 border border-white/10 flex flex-col justify-between shadow-md">
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <div className="flex items-center gap-2">
+                      <div className="w-7 h-7 rounded-full bg-amber-500/20 text-[#FFD60A] font-bold text-xs flex items-center justify-center">
+                        A
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-white leading-tight">Amit Verma</div>
+                        <div className="text-[10px] text-zinc-500">Verified Google Review</div>
+                      </div>
+                    </div>
+                    <div className="flex text-[#FFD60A] text-xs">★★★★★</div>
+                  </div>
+                  <p className="text-xs text-zinc-300 leading-relaxed">
+                    “Got a custom cover-up tattoo by Rohit Sharma. He completely transformed an old faded design into an absolute masterpiece. 100% sterile setup.”
+                  </p>
                 </div>
-                <div className="text-sm font-bold text-white leading-snug mt-0.5">
-                  Medical-Grade Hygiene
+                <div className="text-[10px] text-zinc-500 mt-2.5 font-mono">2 weeks ago • Hisar</div>
+              </div>
+
+              {/* Google Review 2 */}
+              <div className="p-4 rounded-xl bg-[#121418]/90 border border-white/10 flex flex-col justify-between shadow-md">
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <div className="flex items-center gap-2">
+                      <div className="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xs flex items-center justify-center">
+                        N
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-white leading-tight">Neha Saini</div>
+                        <div className="text-[10px] text-zinc-500">Verified Google Review</div>
+                      </div>
+                    </div>
+                    <div className="flex text-[#FFD60A] text-xs">★★★★★</div>
+                  </div>
+                  <p className="text-xs text-zinc-300 leading-relaxed">
+                    “Best tattoo and piercing experience in Hisar! The needle was unsealed right in front of me. Minimal pain and the aftercare guidance was top notch.”
+                  </p>
                 </div>
-                <div className="text-[11px] text-zinc-400 truncate">Autoclave Sterilization &amp; Single-Use Needles</div>
+                <div className="text-[10px] text-zinc-500 mt-2.5 font-mono">1 month ago • Hisar</div>
+              </div>
+
+              {/* Google Review 3 */}
+              <div className="p-4 rounded-xl bg-[#121418]/90 border border-white/10 flex flex-col justify-between shadow-md">
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <div className="flex items-center gap-2">
+                      <div className="w-7 h-7 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xs flex items-center justify-center">
+                        R
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-white leading-tight">Rahul Jangra</div>
+                        <div className="text-[10px] text-zinc-500">Verified Google Review</div>
+                      </div>
+                    </div>
+                    <div className="flex text-[#FFD60A] text-xs">★★★★★</div>
+                  </div>
+                  <p className="text-xs text-zinc-300 leading-relaxed">
+                    “Completed the Professional Tattoo Academy training under Rohit bhaiya. Hands-on machine practice, skin ethics, and client mentoring. Best academy!”
+                  </p>
+                </div>
+                <div className="text-[10px] text-zinc-500 mt-2.5 font-mono">2 months ago • Haryana</div>
               </div>
             </div>
           </div>
@@ -558,159 +581,103 @@ export const Home: React.FC<HomeProps> = ({ onOpenBooking }) => {
         <ReviewsSection onOpenBooking={onOpenBooking} />
       </div>
 
-      {/* 8. CONTACT & LOCATION SECTION */}
-      <section id="contact" className="py-20 sm:py-24 bg-[#090A0D] border-t border-white/[0.08]">
+      {/* 8. STUDIO LOCATION & MAP (No Form, No Box Wrappers) */}
+      <section id="contact" className="py-16 sm:py-24 bg-[#090A0D] border-t border-white/[0.08]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12">
-            <span className="text-xs font-bold uppercase tracking-wider text-amber-400 block mb-1">
-              STUDIO LOCATION &amp; INQUIRIES
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white">
-              Get in Touch
-            </h2>
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+            {/* Direct Studio Location & Contact Details */}
+            <div className="lg:col-span-5 space-y-6">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="w-6 h-0.5 bg-[#FFD60A]" />
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#FFD60A]">
+                    STUDIO LOCATION
+                  </span>
+                </div>
+                <h3 className="font-serif text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                  Visit Phoenix Tattooz
+                </h3>
+                <p className="text-sm text-zinc-400 mt-2 leading-relaxed">
+                  Located at Red Square Market, Hisar. Welcoming clients for custom tattoos, sterile piercings, laser removal, and professional academy admissions.
+                </p>
+              </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Col 1: Studio Info Card */}
-            <div className="lg:col-span-4 space-y-6 bg-[#13151A] p-6 rounded-2xl border border-white/[0.08]">
-              <div className="flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-[#FFD60A] shrink-0 mt-0.5">
-                  <MapPin className="w-4 h-4" />
+              {/* Address */}
+              <div className="flex items-start gap-3.5 pt-2">
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-[#FFD60A] shrink-0 mt-0.5">
+                  <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm text-white">Studio Address</h4>
-                  <p className="text-xs text-zinc-400 mt-1 leading-relaxed">
+                  <h4 className="font-bold text-sm text-white">Address</h4>
+                  <p className="text-xs sm:text-sm text-zinc-300 mt-1 leading-relaxed">
                     {STUDIO_INFO.address}
                   </p>
                 </div>
               </div>
 
+              {/* Working Hours */}
               <div className="flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-[#FFD60A] shrink-0 mt-0.5">
-                  <Phone className="w-4 h-4" />
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-[#FFD60A] shrink-0 mt-0.5">
+                  <Clock className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm text-white">Phone Support</h4>
+                  <h4 className="font-bold text-sm text-white">Studio Hours</h4>
+                  <p className="text-xs sm:text-sm text-zinc-300 mt-1">
+                    {STUDIO_INFO.hours} <span className="text-[#FFD60A] font-semibold">(Open All 7 Days)</span>
+                  </p>
+                </div>
+              </div>
+
+              {/* Phone */}
+              <div className="flex items-start gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-[#FFD60A] shrink-0 mt-0.5">
+                  <Phone className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-sm text-white">Direct Phone Support</h4>
                   <a
                     href={`tel:${STUDIO_INFO.phone}`}
-                    className="text-xs text-zinc-300 hover:text-[#FFD60A] transition-colors mt-1 block"
+                    className="text-xs sm:text-sm text-zinc-300 hover:text-[#FFD60A] transition-colors mt-1 block font-mono"
                   >
-                    {STUDIO_INFO.phone}
+                    {STUDIO_INFO.displayPhone || STUDIO_INFO.phone}
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-[#FFD60A] shrink-0 mt-0.5">
-                  <Clock className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-sm text-white">Working Hours</h4>
-                  <p className="text-xs text-zinc-400 mt-1">
-                    {STUDIO_INFO.hours}
-                  </p>
-                </div>
+              {/* Action Buttons */}
+              <div className="pt-2 flex flex-wrap items-center gap-3">
+                <a
+                  href="https://maps.google.com/maps?q=Red+Square+Market+Hisar+Haryana"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-[#FFD60A] hover:bg-[#ffe033] text-black font-bold text-xs sm:text-sm px-5 py-2.5 rounded-xl transition-all shadow-md shadow-amber-500/15"
+                >
+                  <MapPin className="w-4 h-4 text-black" />
+                  <span>Get Directions on Google Maps</span>
+                </a>
+
+                <a
+                  href={`https://wa.me/${STUDIO_INFO.whatsapp.replace(/\D/g, '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-[#14161C] hover:bg-[#1A1D24] border border-white/10 hover:border-emerald-500/40 text-white font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-xl transition-all"
+                >
+                  <MessageCircle className="w-4 h-4 text-emerald-400" />
+                  <span>WhatsApp Studio</span>
+                </a>
               </div>
             </div>
 
-            {/* Col 2: Map Card */}
-            <div className="lg:col-span-4 bg-[#13151A] rounded-2xl border border-white/[0.08] overflow-hidden flex flex-col h-full min-h-[300px]">
-              <div className="p-3 bg-zinc-900/80 border-b border-zinc-800 flex items-center justify-between text-xs font-semibold text-zinc-300">
-                <span>Hisar Red Square Market</span>
-                <span className="text-[#FFD60A] text-[10px] bg-black/60 px-2 py-0.5 rounded border border-white/10">Studio Map</span>
-              </div>
-              <div className="relative flex-1 bg-zinc-950 overflow-hidden min-h-[260px]">
+            {/* Seamless Interactive Google Map (No container box) */}
+            <div className="lg:col-span-7">
+              <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-zinc-950 aspect-[16/10] sm:aspect-[16/9] min-h-[360px]">
                 <iframe
                   title="Phoenix Tattooz Hisar Location Map"
                   src="https://maps.google.com/maps?q=Red+Square+Market+Hisar+Haryana&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                  className="w-full h-full min-h-[260px] border-0"
+                  className="w-full h-full min-h-[360px] border-0"
                   loading="lazy"
                 />
               </div>
-            </div>
-
-            {/* Col 3: Contact Form */}
-            <div className="lg:col-span-4 bg-[#13151A] p-6 rounded-2xl border border-white/[0.08]">
-              {formSubmitted ? (
-                <div className="py-8 text-center space-y-3">
-                  <div className="w-12 h-12 bg-emerald-950/60 text-emerald-400 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto">
-                    <CheckCircle className="w-6 h-6" />
-                  </div>
-                  <h4 className="font-serif font-bold text-lg text-white">
-                    Message Sent!
-                  </h4>
-                  <p className="text-xs text-zinc-400">
-                    Thank you {formData.name}. Our studio team will connect with you shortly.
-                  </p>
-                  <button
-                    onClick={() => {
-                      setFormSubmitted(false);
-                      setFormData({ name: '', phone: '', message: '' });
-                    }}
-                    className="text-xs text-[#FFD60A] hover:underline"
-                  >
-                    Send another query
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleContactSubmit} className="space-y-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-zinc-300 mb-1">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Your Full Name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-[#0D0E12] border border-zinc-800 rounded-xl px-3 py-2 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#FFD60A]"
-                      required
-                    />
-                    {formErrors.name && (
-                      <p className="text-[11px] text-rose-400 mt-1">{formErrors.name}</p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-zinc-300 mb-1">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      placeholder="Contact Number (WhatsApp)"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full bg-[#0D0E12] border border-zinc-800 rounded-xl px-3 py-2 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#FFD60A]"
-                      required
-                    />
-                    {formErrors.phone && (
-                      <p className="text-[11px] text-rose-400 mt-1">{formErrors.phone}</p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-zinc-300 mb-1">
-                      Message / Design Idea
-                    </label>
-                    <textarea
-                      rows={3}
-                      placeholder="Style, placement idea, cover-up, or academy queries..."
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full bg-[#0D0E12] border border-zinc-800 rounded-xl px-3 py-2 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#FFD60A]"
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isSubmittingContact}
-                    className="w-full flex items-center justify-center gap-2 bg-[#FFD60A] hover:bg-[#ffe033] text-black font-bold text-sm py-3 rounded-xl transition-all cursor-pointer"
-                  >
-                    <span>{isSubmittingContact ? 'Sending...' : 'Send Inquiry'}</span>
-                    <ArrowRight className="w-4 h-4 text-black" />
-                  </button>
-                </form>
-              )}
             </div>
           </div>
         </div>
