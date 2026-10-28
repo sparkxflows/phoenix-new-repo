@@ -133,7 +133,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenBooking }) => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mt-8 max-w-md mx-auto">
             <button
               onClick={() => onOpenBooking()}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#FFD60A] hover:bg-[#ffe033] active:scale-[0.98] text-black font-extrabold text-sm sm:text-base px-7 py-3.5 rounded-xl shadow-lg shadow-amber-500/20 transition-all cursor-pointer"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#FFD60A] hover:bg-[#ffe033] hover:scale-105 active:scale-95 text-black font-extrabold text-sm sm:text-base px-7 py-3.5 rounded-xl shadow-lg shadow-amber-500/20 hover:shadow-amber-500/35 transition-all duration-300 cursor-pointer"
             >
               <Calendar className="w-4 h-4 text-black stroke-[2.5]" />
               <span>Book Appointment</span>
@@ -143,7 +143,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenBooking }) => {
               href="https://wa.me/919992969919"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#121418]/90 hover:bg-[#1A1D24] border border-white/10 hover:border-emerald-500/50 text-white font-semibold text-sm sm:text-base px-6 py-3.5 rounded-xl transition-all"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#121418]/90 hover:bg-[#1A1D24] hover:scale-105 active:scale-95 border border-white/10 hover:border-emerald-500/50 text-white font-semibold text-sm sm:text-base px-6 py-3.5 rounded-xl transition-all duration-300 shadow-md hover:shadow-emerald-950/40"
             >
               <WhatsAppIcon className="w-4 h-4 text-emerald-400" />
               <span>WhatsApp Us</span>
@@ -157,7 +157,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenBooking }) => {
                 href={`https://www.google.com/search?q=${encodeURIComponent('Phoenix Tattooz Studio & Academy Hisar')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#121418] border border-white/10 hover:border-amber-400/40 transition-colors text-zinc-300 hover:text-white"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#121418] border border-white/10 hover:border-amber-400/40 hover:scale-105 transition-all duration-300 text-zinc-300 hover:text-white shadow-sm"
               >
                 <svg viewBox="0 0 24 24" className="w-4 h-4">
                   <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17Z" />
@@ -169,7 +169,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenBooking }) => {
                 <span className="text-zinc-400">Google Rating (500+ Reviews)</span>
               </a>
 
-              <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#121418] border border-white/10 text-zinc-300">
+              <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#121418] border border-white/10 hover:border-emerald-400/30 hover:scale-105 transition-all duration-300 text-zinc-300 shadow-sm">
                 <ShieldCheck className="w-4 h-4 text-emerald-400" />
                 <span className="font-bold text-emerald-400">100% Sterile</span>
                 <span className="text-zinc-400">Single-Use Needles</span>

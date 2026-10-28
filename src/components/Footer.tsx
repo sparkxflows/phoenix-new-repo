@@ -111,9 +111,21 @@ export const Footer: React.FC = () => {
             </ul>
 
             <div className="pt-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-xs text-zinc-300">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                <span>Walk-ins welcome &bull; Appointments prioritized</span>
+              <div className="p-3 rounded-xl bg-gradient-to-br from-emerald-950/40 via-[#111317] to-zinc-900/90 border border-emerald-500/35 hover:border-emerald-400/70 shadow-lg shadow-black/60 transition-all duration-300 hover:scale-[1.02] group">
+                <div className="flex items-center gap-2.5">
+                  <span className="relative flex h-2.5 w-2.5 shrink-0">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                  </span>
+                  <div>
+                    <span className="text-xs font-bold text-white block tracking-wide group-hover:text-emerald-300 transition-colors">
+                      Walk-ins Welcome
+                    </span>
+                    <span className="text-[11px] text-zinc-400 block font-medium">
+                      Appointments Prioritized &bull; Live Studio
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

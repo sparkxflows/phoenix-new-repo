@@ -215,7 +215,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
           {/* 1. Primary CTA: Book Appointment (Left) */}
           <button
             onClick={() => onOpenBooking()}
-            className="h-10 px-5 sm:px-6 rounded-xl bg-[#FFD60A] hover:bg-[#ffe033] active:scale-[0.98] text-black font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md shadow-amber-500/20 transition-all cursor-pointer shrink-0"
+            className="h-10 px-5 sm:px-6 rounded-xl bg-[#FFD60A] hover:bg-[#ffe033] hover:scale-105 active:scale-95 text-black font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md shadow-amber-500/20 hover:shadow-amber-500/35 transition-all duration-300 cursor-pointer shrink-0"
           >
             <Calendar className="w-4 h-4 text-black stroke-[2.5]" />
             <span>Book Appointment</span>
@@ -226,7 +226,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
             <div className="relative" ref={memberDropdownRef}>
               <button
                 onClick={() => setMemberDropdownOpen(!memberDropdownOpen)}
-                className="h-10 px-3.5 sm:px-4 rounded-xl bg-[#14161C] hover:bg-[#1A1D24] border border-white/10 hover:border-amber-400/40 text-white text-xs sm:text-sm font-medium flex items-center justify-center gap-2 transition-all cursor-pointer"
+                className="h-10 px-3.5 sm:px-4 rounded-xl bg-[#14161C] hover:bg-[#1A1D24] hover:scale-105 active:scale-95 border border-white/10 hover:border-amber-400/40 text-white text-xs sm:text-sm font-medium flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer"
               >
                 <div className="w-5 h-5 rounded-full bg-[#FFD60A] text-black font-bold flex items-center justify-center text-[10px]">
                   {user.name ? user.name.charAt(0).toUpperCase() : 'U'}
@@ -280,7 +280,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
 
               <button
                 onClick={() => triggerAuthModal({ mode: 'signin', title: 'Member Login', subtitle: 'Sign in to unlock your 15% instant reward voucher.' })}
-                className="h-10 px-4 sm:px-5 rounded-xl bg-[#14161C] hover:bg-[#1A1D24] border border-white/10 hover:border-amber-400/50 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer shrink-0"
+                className="h-10 px-4 sm:px-5 rounded-xl bg-[#14161C] hover:bg-[#1A1D24] hover:scale-105 active:scale-95 border border-white/10 hover:border-amber-400/50 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer shrink-0"
               >
                 <User className="w-4 h-4 text-[#FFD60A]" />
                 <span>Login</span>
@@ -294,7 +294,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
           {/* Quick Book Button */}
           <button
             onClick={() => onOpenBooking()}
-            className="h-9 px-3 rounded-lg bg-[#FFD60A] text-black font-extrabold text-xs flex items-center gap-1.5 shadow-sm active:scale-95"
+            className="h-9 px-3 rounded-lg bg-[#FFD60A] hover:bg-[#ffe033] hover:scale-105 text-black font-extrabold text-xs flex items-center gap-1.5 shadow-sm active:scale-95 transition-all duration-200"
           >
             <Calendar className="w-3.5 h-3.5 stroke-[2.5]" />
             <span>Book</span>

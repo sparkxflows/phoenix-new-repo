@@ -57,6 +57,21 @@ export async function loginAdmin(
 ): Promise<{ success: boolean; error?: string; session?: AdminSession }> {
   const cleanEmail = email.trim().toLowerCase();
 
+  // Master Studio Admin credentials requested by owner: username 'admin' or 'admin1admin', password 'admin123'
+  if (
+    (cleanEmail === 'admin' || cleanEmail === 'admin1admin' || cleanEmail === 'admin@phoenixtattooz.com') &&
+    password === 'admin123'
+  ) {
+    const session: AdminSession = {
+      token: `admin_master_session_${Date.now()}`,
+      email: 'admin@phoenixtattooz.com',
+      full_name: 'Master Studio Administrator',
+      loggedInAt: new Date().toISOString(),
+    };
+    localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(session));
+    return { success: true, session };
+  }
+
   // 1. PRIMARY: Authenticate directly against Supabase Auth (managed in Supabase Dashboard).
   // The local clone skips this call so it can go straight to its Express fallback.
   if (USE_REMOTE_SUPABASE) {

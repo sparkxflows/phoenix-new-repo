@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  ShieldCheck, 
-  Star, 
-  Sparkles, 
   ArrowRight,
   CheckCircle2,
   Calendar,
-  Search,
   Maximize2,
-  Eye,
-  Flame,
-  Award
+  Flame
 } from 'lucide-react';
-import { STUDIO_INFO, GALLERY_ITEMS } from '../data/studioData';
+import { GALLERY_ITEMS } from '../data/studioData';
 import { useGallery } from '../lib/studioContent';
 import { LightboxModal } from './LightboxModal';
 
@@ -49,130 +43,10 @@ export const StudioLegacyStrip: React.FC<StudioLegacyStripProps> = ({ onOpenBook
       <div className="absolute top-0 left-1/4 w-[300px] h-[200px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[300px] h-[200px] bg-yellow-500/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16 sm:space-y-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* ======================================================== */}
-        {/* PART 1: TOP HEADER ROW & 4 PILLARS OF TRUST              */}
-        {/* ======================================================== */}
+        {/* RECENT MASTERPIECES 3x3 RESPONSIVE GALLERY */}
         <div>
-          {/* Header Row: Kicker & Signature Motto */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between pb-8 sm:pb-10 border-b border-zinc-800/80 gap-6">
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <span className="w-6 h-0.5 bg-[#FFD60A]" />
-                <span className="text-[#FFD60A] text-xs font-extrabold tracking-[0.22em] uppercase">
-                  Studio Heritage &amp; Trust
-                </span>
-              </div>
-              <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
-                Crafted With Precision.{' '}
-                <span className="text-[#FFD60A] underline decoration-amber-500/40 underline-offset-4">
-                  Since 2019.
-                </span>
-              </h3>
-            </div>
-
-            {/* Signature Philosophy Lockup */}
-            <div className="flex items-center gap-4 bg-zinc-900/70 border border-zinc-800 px-5 py-3 rounded-2xl backdrop-blur-md">
-              <div>
-                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">
-                  Studio Philosophy
-                </span>
-                <span className="font-script text-xl sm:text-2xl text-[#FFD60A] block leading-tight">
-                  “Same Skin, Different Story”
-                </span>
-              </div>
-              <Link
-                to="/about"
-                className="p-2.5 rounded-xl bg-zinc-800 hover:bg-[#FFD60A] hover:text-black text-white transition-all group shrink-0"
-                title="Learn our backstory"
-              >
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
-            </div>
-          </div>
-
-          {/* 4 Pillars of Verified Trust Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 pt-8 sm:pt-10">
-            {/* Pillar 1: Years Established */}
-            <div className="p-5 sm:p-6 rounded-2xl bg-[#0D0F12]/80 border border-zinc-800/90 hover:border-amber-400/40 transition-all group">
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-[#FFD60A] group-hover:scale-105 transition-transform">
-                  <Award className="w-5 h-5 text-[#FFD60A]" />
-                </div>
-                <span className="text-[10px] font-extrabold uppercase tracking-widest text-zinc-500 bg-zinc-900 px-2 py-0.5 rounded">
-                  Estd. 2019
-                </span>
-              </div>
-              <div className="font-highlight text-3xl sm:text-4xl font-black text-white tracking-tight">
-                8+ <span className="text-sm font-sans font-medium text-amber-200/90">Years</span>
-              </div>
-              <p className="text-xs sm:text-sm text-zinc-400 mt-2 font-medium">
-                Of continuous tattoo mastery, mentoring &amp; creative growth in Hisar.
-              </p>
-            </div>
-
-            {/* Pillar 2: 5000+ Custom Tattoos Completed */}
-            <div className="p-5 sm:p-6 rounded-2xl bg-[#0D0F12]/80 border border-zinc-800/90 hover:border-amber-400/40 transition-all group">
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-[#FFD60A] group-hover:scale-105 transition-transform">
-                  <Flame className="w-5 h-5 text-[#FFD60A]" />
-                </div>
-                <span className="text-[10px] font-extrabold uppercase tracking-widest text-amber-400/90 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
-                  5000+ INKED
-                </span>
-              </div>
-              <div className="font-highlight text-3xl sm:text-4xl font-black text-white tracking-tight">
-                5000+
-              </div>
-              <p className="text-xs sm:text-sm text-zinc-400 mt-2 font-medium">
-                Custom masterpieces inked, from micro-fineline to full backpieces &amp; sleeves.
-              </p>
-            </div>
-
-            {/* Pillar 3: Google Rating */}
-            <div className="p-5 sm:p-6 rounded-2xl bg-[#0D0F12]/80 border border-zinc-800/90 hover:border-amber-400/40 transition-all group">
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-[#FFD60A] group-hover:scale-105 transition-transform">
-                  <Star className="w-5 h-5 fill-current" />
-                </div>
-                <div className="flex text-[#FFD60A] text-xs">
-                  {'★'.repeat(5)}
-                </div>
-              </div>
-              <div className="font-highlight text-3xl sm:text-4xl font-black text-white tracking-tight">
-                4.9★
-              </div>
-              <p className="text-xs sm:text-sm text-zinc-400 mt-2 font-medium">
-                Over 1,200+ verified client testimonials across Google &amp; Social.
-              </p>
-            </div>
-
-            {/* Pillar 4: Medical Grade Sterilization */}
-            <div className="p-5 sm:p-6 rounded-2xl bg-[#0D0F12]/80 border border-zinc-800/90 hover:border-amber-400/40 transition-all group">
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
-                  <ShieldCheck className="w-5 h-5" />
-                </div>
-                <span className="text-[10px] font-extrabold uppercase tracking-widest text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-                  100% Sterile
-                </span>
-              </div>
-              <div className="font-highlight text-3xl sm:text-4xl font-black text-white tracking-tight">
-                100%
-              </div>
-              <p className="text-xs sm:text-sm text-zinc-400 mt-2 font-medium">
-                Medical autoclave sterilization, single-use cartridges &amp; sealed grips.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* ======================================================== */}
-        {/* PART 2: 9-TATTOO RECENT WORKS 3x3 RESPONSIVE GALLERY     */}
-        {/* ======================================================== */}
-        <div className="pt-4 border-t border-zinc-800/80">
-          
           {/* Gallery Section Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-4">
             <div>
@@ -298,27 +172,6 @@ export const StudioLegacyStrip: React.FC<StudioLegacyStripProps> = ({ onOpenBook
             </div>
           </div>
 
-        </div>
-
-        {/* ======================================================== */}
-        {/* PART 3: MICRO BOTTOM HYGIENE & LOCATION FOOTER           */}
-        {/* ======================================================== */}
-        <div className="pt-6 border-t border-zinc-800/60 flex flex-wrap items-center justify-between gap-4 text-xs text-zinc-400">
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-[#FFD60A]" />
-            <span>Strict hygiene standards compliant with international tattoo guidelines</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="text-zinc-500">Location:</span>
-            <span className="text-zinc-300 font-semibold">{STUDIO_INFO.address.split(',')[0]}</span>
-            <span className="text-zinc-600">•</span>
-            <Link 
-              to="/about"
-              className="text-[#FFD60A] hover:underline font-semibold"
-            >
-              Meet Founder Rohit Sharma &rarr;
-            </Link>
-          </div>
         </div>
 
       </div>

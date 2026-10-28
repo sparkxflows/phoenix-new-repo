@@ -296,13 +296,13 @@ export const AdminPanel: React.FC = () => {
             <form onSubmit={handleLogin} className="space-y-4">
               <div>
                 <label className="block text-xs font-semibold text-zinc-400 mb-1">
-                  Admin Email Address
+                  Admin Username / Email
                 </label>
                 <input
-                  type="email"
+                  type="text"
                   value={loginEmail}
                   onChange={(e) => setLoginEmail(e.target.value)}
-                  placeholder="admin@phoenixtattooz.com"
+                  placeholder="admin or admin@phoenixtattooz.com"
                   required
                   className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-[#FFD60A]"
                 />
@@ -316,7 +316,7 @@ export const AdminPanel: React.FC = () => {
                   type="password"
                   value={loginPassword}
                   onChange={(e) => setLoginPassword(e.target.value)}
-                  placeholder="••••••••"
+                  placeholder="admin123"
                   required
                   className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-[#FFD60A]"
                 />

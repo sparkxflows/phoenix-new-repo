@@ -95,19 +95,11 @@ export const GiftsAndRewardsSection: React.FC<GiftsAndRewardsSectionProps> = ({
               <div className="pt-2 flex flex-wrap items-center gap-4">
                 <Link
                   to="/gallery"
-                  className="group inline-flex items-center gap-3 bg-[#FFD60A] hover:bg-[#ffe033] active:scale-[0.98] text-[#0B0B0B] font-extrabold text-sm sm:text-base px-7 py-3.5 rounded-lg shadow-lg shadow-yellow-500/20 transition-all cursor-pointer"
+                  className="group inline-flex items-center gap-3 bg-[#FFD60A] hover:bg-[#ffe033] hover:scale-105 active:scale-95 text-[#0B0B0B] font-extrabold text-sm sm:text-base px-7 py-3.5 rounded-lg shadow-lg shadow-yellow-500/20 transition-all duration-300 cursor-pointer"
                 >
                   <span>Explore Our Work</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform stroke-[2.5]" />
                 </Link>
-
-                <button
-                  onClick={() => handleRewardAction('birthday')}
-                  className="inline-flex items-center gap-2 bg-zinc-900/90 hover:bg-zinc-800 text-amber-200 border border-amber-500/30 hover:border-amber-400 px-5 py-3.5 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer shadow-md"
-                >
-                  <Gift className="w-4 h-4 text-[#FFD60A]" />
-                  <span>View 15% Rewards</span>
-                </button>
               </div>
             </div>
 
