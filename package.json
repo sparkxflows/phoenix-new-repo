@@ -8,7 +8,7 @@
     "start": "node ./node_modules/tsx/dist/cli.mjs server.ts",
     "build": "vite build",
     "preview": "vite preview",
-    "clean": "rm -rf dist server.js",
+    "clean": "node -e \"['dist','server.js'].forEach(p => fs.rmSync(p, { recursive: true, force: true }))\"",
     "lint": "node ./node_modules/typescript/bin/tsc --noEmit",
     "smoke": "node scripts/api-smoke.mjs",
     "ui:smoke": "node scripts/ui-smoke.mjs",
@@ -42,6 +42,6 @@
     "typescript": "^7.0.2"
   },
   "engines": {
-    "node": "22.x"
+    "node": ">=20.0.0"
   }
 }

@@ -194,7 +194,7 @@ These are presentation-only changes. No API, booking, CMS, rewards or admin beha
 
 ## 11. Supabase SQL for deployment
 
-Everything needed for the SQL Editor is in [`supabase-schema.sql`](./supabase-schema.sql), with a step-by-step guide in [`SUPABASE-SETUP.md`](./SUPABASE-SETUP.md).
+Everything needed for the SQL Editor is in [`supabase-schema.sql`](../supabase-schema.sql), with a step-by-step guide in [`SUPABASE-SETUP.md`](./SUPABASE-SETUP.md).
 
 Tables created: `appointments`, `contact_inquiries`, `site_settings`, `admin_users`, `member_users`, `member_activity_log` (+ optional `studio-uploads` storage bucket), with RLS policies, indexes, an `updated_at` trigger and realtime publication.
 

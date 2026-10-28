@@ -2,140 +2,136 @@
 
 Full-stack website + studio management platform for **Phoenix Tattooz Studio & Academy**, Hisar (Haryana).
 
-React 19 · TypeScript · Tailwind v4 · Vite · Supabase · Vercel Serverless Functions
+React 19 · TypeScript · Tailwind CSS v4 · Vite · Supabase · Express · Vercel Serverless Functions
 
 ---
 
 ## What's inside
 
-**Public site**
-- Home with animated hero (video/image background), artists, gallery, video wall, philosophy, reviews, contact and booking
-- Multi-step **Book Appointment** flow with service, artist, placement, size, date/time slot and WhatsApp confirmation
-- Contact form, Google Maps embed, call/WhatsApp links, mobile bottom bar
-- "Phoenix AI" chatbot widget
-- Studio Club: member signup/signin, birthday & referral rewards with one-time voucher codes
-- Review wall
+### Public Site
+- **Home**: Dynamic hero with video/image backgrounds, studio overview, featured tattoos, artist showcase, video wall, philosophy, and real-time customer reviews.
+- **Appointment Booking Flow**: Multi-step booking engine (service, artist, placement, dimensions, preferred date/time slot, and instant WhatsApp confirmation).
+- **Studio Club & Member Portal**: Member signup/signin, birthday perks, and referral rewards system with auto-generated single-use voucher codes.
+- **AI Studio Chatbot**: Built-in intelligent chatbot equipped with studio knowledge base and optional Google Gemini API integration.
+- **Review Wall & Submission**: Interactive customer review showcase with client submission modal and admin moderation.
+- **Contact & Location**: Interactive Google Maps integration, one-tap calling, and direct WhatsApp chat.
 
-**Admin (`/admin`)**
-- Dashboard with bookings, inquiries, members and activity log
-- CMS managers: hero (text + video upload), logo, artists, gallery, video gallery, reviews, philosophy, gifts & rewards
-- Live refresh via Supabase Realtime
+### Admin Dashboard (`/admin`)
+- **Bookings & Inquiries**: Real-time management of client appointment bookings and contact inquiries.
+- **Member Management**: Track studio club members, reward vouchers, and member activity log.
+- **Full CMS Suite**: Live visual customization of Hero banner, Studio Logo, Artists, Tattoo Gallery, Video Showcase, Customer Reviews, and Philosophy section.
+- **Realtime Sync**: Live refresh via Supabase Realtime when connected to remote database.
 
 ---
 
-## Quick start (local)
+## Quick Start (Local Run)
+
+The repository comes pre-configured for **instant local execution** with a file-backed store (`data/studio_store.json`), meaning **no database setup is required to run and test locally**.
 
 ```bash
-npm install            # .npmrc already sets legacy-peer-deps=true
-cp .env.example .env   # then fill in your values (optional for local mode)
+# 1. Install dependencies
+npm install
 
-npm run dev            # http://localhost:3000  (Vite + Express API)
+# 2. Start the development server (Vite frontend + Express API)
+npm run dev
 ```
 
-Out of the box the app runs in **local mode** — bookings, members, CMS and uploads are stored in
-`data/studio_store.json` and `data/uploads/`, so you can explore everything without a Supabase
-project.
+Open your browser at:
+- **Public Site**: [http://localhost:3000](http://localhost:3000)
+- **Admin Panel**: [http://localhost:3000/admin](http://localhost:3000/admin)
 
-Default local admin: `/admin` → `admin@phoenixtattooz.local` / `PhoenixClone2026!`
-
----
-
-## Connect Supabase
-
-1. Create a project → **SQL Editor** → paste and run [`supabase-schema.sql`](./supabase-schema.sql)
-   (creates 6 tables, indexes, RLS policies, realtime publication and the `studio-uploads` bucket).
-2. Create your admin under **Authentication → Users → Add user** (tick *Auto Confirm*).
-3. Copy the project URL, **publishable** key and **service role** key into `.env`.
-
-Full walkthrough, including Vercel: **[`DEPLOY-VERCEL.md`](./DEPLOY-VERCEL.md)**
+> **Default Local Admin Credentials:**
+> - Email: `admin@phoenixtattooz.local`
+> - Password: `PhoenixClone2026!`
 
 ---
 
-## Environment variables
+## Project Structure
 
-| Variable | Scope | Purpose |
+```text
+phoenix/
+├── api/                       # Vercel Serverless Function entry point
+│   └── [...all].ts            # Single catch-all router for /api/* requests
+├── backend/                   # Backend API logic & handlers
+│   ├── routes/                # Endpoint handlers (auth, rewards, admin, content, reviews, chat)
+│   └── lib/                   # Auth helpers, Supabase REST client, HTTP utilities, AI brain
+├── docs/                      # Comprehensive guides and documentation
+│   ├── DEPLOY-VERCEL.md       # Step-by-step Vercel deployment guide
+│   ├── FEATURE-AUDIT.md       # Parity audit and full feature matrix
+│   ├── HANDOFF.md             # Quick handoff checklist & deployment notes
+│   ├── README-CLONE.md        # Architecture & rebuild notes
+│   └── SUPABASE-SETUP.md      # Database schema, tables, and RLS policies
+├── data/                      # Local JSON store & fallback content
+│   └── studio_store.json      # File-backed local database
+├── public/                    # Static assets, logos, and studio video files
+├── scripts/                   # Test runners, mock emulator, and utility scripts
+├── src/                       # React frontend application
+│   ├── components/            # UI components and Admin CMS managers
+│   ├── data/                  # Static studio seed data
+│   ├── lib/                   # Client auth, Supabase integration, and state management
+│   ├── pages/                 # Application page views
+│   ├── App.tsx                # Application routes and main layout
+│   └── main.tsx               # Client entry point
+├── .env                       # Local environment variables
+├── .env.example               # Environment variables template
+├── package.json               # NPM scripts and dependencies
+├── server.ts                  # Local Express development server
+├── supabase-schema.sql        # Supabase PostgreSQL schema & RLS setup
+└── vite.config.ts             # Vite build configuration
+```
+
+---
+
+## Connect Supabase & Deploy
+
+When you are ready to transition from local file-store mode to a live Supabase database:
+
+1. Create a Supabase project at [supabase.com](https://supabase.com).
+2. Go to **SQL Editor** -> Paste and execute [`supabase-schema.sql`](./supabase-schema.sql).
+3. Under **Authentication -> Users**, create your admin user (select *Auto Confirm*).
+4. Update your `.env` (or Vercel environment variables):
+
+```env
+VITE_USE_REMOTE_SUPABASE="true"
+VITE_SUPABASE_URL="https://YOUR-PROJECT.supabase.co"
+VITE_SUPABASE_ANON_KEY="your-anon-publishable-key"
+SUPABASE_URL="https://YOUR-PROJECT.supabase.co"
+SUPABASE_SERVICE_ROLE_KEY="your-service-role-secret-key"
+```
+
+For complete step-by-step instructions, see:
+- [`docs/DEPLOY-VERCEL.md`](./docs/DEPLOY-VERCEL.md) - Full deployment guide for Vercel + Supabase
+- [`docs/SUPABASE-SETUP.md`](./docs/SUPABASE-SETUP.md) - Database configuration details
+
+---
+
+## Available Scripts
+
+| Script | Command | Description |
 |---|---|---|
-| `VITE_USE_REMOTE_SUPABASE` | browser | `true` = use Supabase, `false` = local file store |
-| `VITE_SUPABASE_URL` | browser | project URL |
-| `VITE_SUPABASE_ANON_KEY` | browser | **publishable** key only |
-| `SUPABASE_URL` | server | project URL for the API layer |
-| `SUPABASE_SERVICE_ROLE_KEY` | server | full DB access — never expose |
-| `GEMINI_API_KEY` | server | optional, enables real AI chatbot answers |
-| `AUTH_TOKEN_SECRET` | server | optional, signs member sessions |
-
-`VERCEL`'s Supabase integration may inject `SUPABASE_*`, `NEXT_PUBLIC_*` and `POSTGRES_*` names.
-The server layer accepts those, but **Vite only reads `VITE_*`**, so the three browser variables are
-always required.
+| `npm run dev` | `node ./node_modules/tsx/dist/cli.mjs server.ts` | Start Vite & Express on `http://localhost:3000` |
+| `npm run build` | `vite build` | Build production bundle into `dist/` |
+| `npm start` | `node ./node_modules/tsx/dist/cli.mjs server.ts` | Serve production build via Express |
+| `npm run lint` | `tsc --noEmit` | Check TypeScript type validity |
+| `npm run clean` | Cross-platform cleanup | Remove `dist` and generated artifacts |
+| `npm run api:smoke` | `node scripts/api-functions-smoke.mjs` | Run 23 automated offline API & auth tests |
+| `npm run smoke` | `node scripts/api-smoke.mjs` | 14 full-application functional checks |
+| `npm run ui:smoke` | `node scripts/ui-smoke.mjs` | Mobile and responsive UI validation |
 
 ---
 
-## Project structure
+## Documentation Index
 
-```
-api/
-└── [...all].ts          single Vercel Serverless Function (catch-all router)
+All extended documentation is organized under the [`docs/`](./docs) directory:
 
-backend/
-├── routes/              one file per endpoint (see the ROUTES table in api/[...all].ts)
-│   ├── auth/            signup · signin · me · signout
-│   ├── rewards/         claim · my-claims
-│   ├── admin/           login · status · register · members
-│   ├── content/         CMS read/write (site_settings)
-│   ├── reviews · chat · health · app-info
-│   └── upload-image · upload-video · upload-sign
-└── lib/                 env · supabase REST client · HMAC tokens · http helpers · AI brain
-
-src/
-├── components/          UI + admin managers
-├── pages/               route pages
-├── lib/                 supabase client, content stores, auth, direct upload
-└── data/                seed artists, gallery, reviews
-
-server.ts                Express server for local development (same /api contract)
-supabase-schema.sql      complete, idempotent database schema
-```
-
-> **Why one API function?** Vercel's Hobby plan allows at most 12 Serverless Functions per
-> deployment. A single catch-all router keeps the whole backend in one function. Adding a new
-> endpoint = one file in `backend/routes/` + one line in `api/[...all].ts`.
+- 📖 [**Handoff Guide**](./docs/HANDOFF.md) — Quick summary and release notes.
+- 🚀 [**Vercel Deployment Guide**](./docs/DEPLOY-VERCEL.md) — Production deployment instructions.
+- 🗄️ [**Supabase Setup Guide**](./docs/SUPABASE-SETUP.md) — Database schema, tables, and settings.
+- 📋 [**Feature Parity Audit**](./docs/FEATURE-AUDIT.md) — Detailed feature checklist and audit report.
+- 🛠️ [**Clone Architecture Notes**](./docs/README-CLONE.md) — Rebuild architecture and design decisions.
 
 ---
 
-## Scripts
+## License
 
-| Command | What it does |
-|---|---|
-| `npm run dev` | Vite + Express on :3000 |
-| `npm run build` | production bundle → `dist/` |
-| `npm start` | serve the built app via Express |
-| `npm run lint` | TypeScript check (`tsc --noEmit`) |
-| `npm run api:dev` | run only the Vercel API layer on :4000 |
-| `npm run api:smoke` | 23 end-to-end API checks against a mock Supabase |
-| `npm run smoke` | 14 full-app checks (Express + storage + auth + rewards) |
-| `npm run ui:smoke` | 16 mobile/tablet UI checks (Playwright) |
-
-`api:smoke` never touches a real project — it boots `scripts/mock-supabase.mjs`, so the whole flow
-is verifiable offline.
-
----
-
-## Security notes
-
-- Only the **publishable** Supabase key is bundled into the browser build.
-- `SUPABASE_SERVICE_ROLE_KEY` lives only in server environment variables.
-- `admin_users`, `member_users` and `member_activity_log` have no anonymous RLS policies — they are
-  reachable only through `/api/*` with the service role.
-- Admin passwords are verified server-side (Supabase Auth first, then the
-  `admin_users` hash: `sha256(password + 'phoenix_tattooz_secure_2019_hisar')`).
-- Member sessions are HMAC-signed tokens, so they survive serverless cold starts.
-- Large uploads go **browser → Supabase Storage** through a signed URL, avoiding the ~4.5 MB
-  serverless request-body limit.
-
----
-
-## Docs
-
-- [`DEPLOY-VERCEL.md`](./DEPLOY-VERCEL.md) — deploy checklist, verification steps, troubleshooting
-- [`SUPABASE-SETUP.md`](./SUPABASE-SETUP.md) — database, `site_settings` keys, env reference
-- [`README-CLONE.md`](./README-CLONE.md) — how this project was rebuilt from the original site
-- [`FEATURE-AUDIT.md`](./FEATURE-AUDIT.md) — feature-by-feature parity audit
+This project is open-source under the Apache-2.0 License.
