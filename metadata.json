@@ -1,0 +1,8 @@
+{
+  "name": "Phoenix Tattooz Studio & Academy",
+  "description": "Hisar's Best Tattoos: Wear Your Story, Leave the Rest Behind. Premier custom tattoo studio and professional academy in Hisar, Haryana.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
