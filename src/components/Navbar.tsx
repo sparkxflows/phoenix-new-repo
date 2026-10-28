@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Calendar, Menu, X, Phone, ChevronDown, Image as ImageIcon, Film, User, LogOut, Gift } from 'lucide-react';
+import { Calendar, Menu, X, Phone, ChevronDown, Image as ImageIcon, Film, User, LogOut, Gift, Sparkles } from 'lucide-react';
 import { PhoenixLogo } from './PhoenixLogo';
 import { useMemberAuth, triggerAuthModal } from '../lib/memberAuth';
 
@@ -23,14 +23,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
 
   const isHome = location.pathname === '/';
 
-  // Scroll listener for sticky header styling & scroll-spy on Home page
+  // Scroll listener for sticky header & scroll-spy on Home page
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 15);
 
       if (isHome) {
-        const sections = ['hero', 'about', 'artists', 'gallery', 'reviews', 'rewards', 'contact'];
-        const scrollPosition = window.scrollY + 200;
+        const sections = ['hero', 'experience', 'rewards', 'about', 'artists', 'reviews', 'contact'];
+        const scrollPosition = window.scrollY + 220;
 
         for (let i = sections.length - 1; i >= 0; i--) {
           const el = document.getElementById(sections[i]);
@@ -96,7 +96,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
         setActiveSection('hero');
       }
     } else {
-      // If we are on another page and want to go to a section
       if (link.pagePath.startsWith('/#')) {
         navigate(link.pagePath);
       }
@@ -115,16 +114,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
 
   return (
     <header
-      className={`sticky top-0 z-40 transition-colors duration-200 ${
+      className={`sticky top-0 left-0 right-0 z-50 w-full transition-all duration-200 ${
         scrolled
-          ? 'bg-[#090A0D]/95 backdrop-blur-md border-b border-white/[0.08] shadow-lg shadow-black/50'
-          : 'bg-[#090A0D]/85 backdrop-blur-sm border-b border-white/[0.04]'
+          ? 'bg-[#090A0D]/95 backdrop-blur-md border-b border-white/[0.08] shadow-xl shadow-black/60'
+          : 'bg-[#090A0D]/90 backdrop-blur-sm border-b border-white/[0.05]'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         {/* Left: Phoenix Studio Logo */}
         <Link to="/" className="flex items-center gap-3 shrink-0 group">
-          <PhoenixLogo size={40} className="transition-transform duration-200 group-hover:scale-105" />
+          <PhoenixLogo size={42} className="transition-transform duration-200 group-hover:scale-105" />
           <div className="flex flex-col">
             <span className="font-serif font-bold text-white tracking-wider text-base sm:text-lg group-hover:text-[#FFD60A] transition-colors leading-tight">
               Phoenix Tattooz
@@ -135,8 +134,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
           </div>
         </Link>
 
-        {/* Center: Desktop Clean Navigation */}
-        <nav className="hidden lg:flex items-center gap-1 bg-[#121418]/80 border border-white/[0.08] rounded-full px-2 py-1.5 shadow-sm">
+        {/* Center: Desktop Navigation with shifting yellow capsule hover effect */}
+        <nav className="hidden lg:flex items-center gap-1.5 bg-[#121418]/90 border border-white/[0.08] rounded-full px-2.5 py-1.5 shadow-sm">
           {navLinks.map((link) => {
             if (link.isDropdown) {
               const active = isLinkActive(link);
@@ -150,14 +149,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
                 >
                   <button
                     onClick={() => setGalleryDropdownOpen(!galleryDropdownOpen)}
-                    className={`nav-pill flex items-center gap-1 cursor-pointer ${
+                    className={`nav-pill cursor-pointer ${
                       active ? 'nav-pill-active' : ''
                     }`}
                   >
                     <span>{link.name}</span>
                     <ChevronDown
-                      className={`w-3.5 h-3.5 text-zinc-400 transition-transform duration-200 ${
-                        galleryDropdownOpen ? 'rotate-180 text-[#FFD60A]' : ''
+                      className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                        galleryDropdownOpen ? 'rotate-180 text-[#FFD60A]' : 'text-zinc-400'
                       }`}
                     />
                   </button>
@@ -165,7 +164,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
                   {/* Dropdown Menu */}
                   {galleryDropdownOpen && (
                     <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
-                      <div className="w-64 bg-[#121418] border border-zinc-800 rounded-xl p-2 shadow-xl shadow-black/80">
+                      <div className="w-64 bg-[#121418] border border-zinc-800 rounded-xl p-2 shadow-2xl shadow-black/90">
                         <Link
                           to="/gallery?tab=photos"
                           onClick={() => setGalleryDropdownOpen(false)}
@@ -224,18 +223,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
           })}
         </nav>
 
-        {/* Right: Member Club & Book Appointment */}
+        {/* Right: Both CTAs exactly same size, with Primary having higher visual hierarchy */}
         <div className="hidden sm:flex items-center gap-3 shrink-0">
+          {/* Secondary CTA: Studio Club (Identical Height & Padding) */}
           {isAuthenticated && user ? (
             <div className="relative" ref={memberDropdownRef}>
               <button
                 onClick={() => setMemberDropdownOpen(!memberDropdownOpen)}
-                className="flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 border border-zinc-700/80 text-white px-3 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer"
+                className="h-10 px-4 rounded-xl bg-[#14161C] hover:bg-[#1A1D24] border border-white/10 hover:border-amber-400/40 text-white text-xs sm:text-sm font-medium flex items-center justify-center gap-2 transition-all cursor-pointer"
               >
-                <div className="w-6 h-6 rounded-full bg-[#FFD60A] text-black font-bold flex items-center justify-center text-[11px]">
+                <div className="w-5 h-5 rounded-full bg-[#FFD60A] text-black font-bold flex items-center justify-center text-[10px]">
                   {user.name ? user.name.charAt(0).toUpperCase() : 'M'}
                 </div>
-                <span className="truncate max-w-[100px]">{user.name}</span>
+                <span className="truncate max-w-[90px]">{user.name}</span>
                 <ChevronDown className="w-3.5 h-3.5 text-zinc-400" />
               </button>
 
@@ -277,27 +277,28 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
           ) : (
             <button
               onClick={() => triggerAuthModal({ mode: 'signin', title: 'Member Sign In', subtitle: 'Access your studio perks and discount vouchers.' })}
-              className="hidden lg:flex items-center gap-1.5 text-xs text-zinc-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 px-3.5 py-2 rounded-xl font-medium transition-colors cursor-pointer"
+              className="h-10 px-4 sm:px-5 rounded-xl bg-[#14161C] hover:bg-[#1A1D24] border border-white/10 hover:border-amber-400/40 text-zinc-200 hover:text-white text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
             >
-              <User className="w-3.5 h-3.5 text-[#FFD60A]" />
+              <User className="w-4 h-4 text-[#FFD60A]" />
               <span>Studio Club</span>
             </button>
           )}
 
+          {/* Primary CTA: Book Appointment (Identical Height & Padding, High Visual Hierarchy) */}
           <button
             onClick={() => onOpenBooking()}
-            className="flex items-center gap-2 bg-[#FFD60A] hover:bg-[#ffe033] active:scale-[0.98] text-black font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-xl transition-all cursor-pointer shadow-sm shrink-0"
+            className="h-10 px-5 sm:px-6 rounded-xl bg-[#FFD60A] hover:bg-[#ffe033] active:scale-[0.98] text-black font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md shadow-amber-500/20 transition-all cursor-pointer shrink-0"
           >
             <Calendar className="w-4 h-4 text-black" />
             <span>Book Appointment</span>
           </button>
         </div>
 
-        {/* Mobile Hamburger Button */}
+        {/* Mobile Header Controls */}
         <div className="flex items-center gap-2 lg:hidden">
           <button
             onClick={() => onOpenBooking()}
-            className="sm:hidden flex items-center gap-1.5 bg-[#FFD60A] text-black font-bold text-xs px-3 py-2 rounded-lg"
+            className="h-9 px-3.5 rounded-lg bg-[#FFD60A] text-black font-bold text-xs flex items-center gap-1.5"
           >
             <Calendar className="w-3.5 h-3.5" />
             <span>Book</span>
@@ -357,7 +358,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenRewards }) 
                   }}
                   className={`px-3 py-2.5 rounded-lg text-sm font-medium transition-colors flex items-center justify-between ${
                     active
-                      ? 'bg-zinc-800 text-[#FFD60A] font-semibold'
+                      ? 'bg-[#FFD60A] text-black font-bold'
                       : 'text-zinc-300 hover:text-white hover:bg-zinc-900'
                   }`}
                 >

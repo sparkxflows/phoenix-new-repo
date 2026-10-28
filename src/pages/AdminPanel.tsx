@@ -36,7 +36,8 @@ import {
   ArrowLeft,
   Globe,
   Gift,
-  Video
+  Video,
+  Key
 } from 'lucide-react';
 import { 
   loginAdmin, 
@@ -46,7 +47,8 @@ import {
   updateAppointmentStatusInSupabase,
   deleteAppointmentFromSupabase,
   getContactInquiriesFromSupabase,
-  ADMIN_SETUP_SQL
+  ADMIN_SETUP_SQL,
+  updateAdminPassword
 } from '../lib/adminAuth';
 import { getAppointmentsFromSupabase, getSupabaseProjectRef, supabaseDashboardUrl, SUPABASE_SQL_SCHEMA, SUPABASE_URL } from '../lib/supabase';
 import { PhoenixLogo } from '../components/PhoenixLogo';
@@ -73,7 +75,7 @@ export const AdminPanel: React.FC = () => {
   const [authSubmitting, setAuthSubmitting] = useState(false);
 
   // Dashboard Data State
-  const [activeTab, setActiveTab] = useState<'appointments' | 'inquiries' | 'members' | 'hero' | 'about' | 'reviews' | 'artists' | 'gallery' | 'videos' | 'rewards' | 'database'>('appointments');
+  const [activeTab, setActiveTab] = useState<'appointments' | 'inquiries' | 'members' | 'hero' | 'about' | 'reviews' | 'artists' | 'gallery' | 'videos' | 'rewards' | 'database' | 'security'>('appointments');
   const [statusFilter, setStatusFilter] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [appointments, setAppointments] = useState<any[]>([]);
@@ -84,6 +86,42 @@ export const AdminPanel: React.FC = () => {
   const [mobileMoreDrawerOpen, setMobileMoreDrawerOpen] = useState(false);
   // Responsive layout mode: 'auto' (automatically adjusts by screen), 'mobile' (touch phone layout), 'laptop' (wide desktop layout)
   const [deviceMode, setDeviceMode] = useState<'auto' | 'mobile' | 'laptop'>('auto');
+  // Security & Password Change State
+  const [currentPwd, setCurrentPwd] = useState('');
+  const [newPwd, setNewPwd] = useState('');
+  const [confirmPwd, setConfirmPwd] = useState('');
+  const [pwdSuccess, setPwdSuccess] = useState('');
+  const [pwdError, setPwdError] = useState('');
+  const [isChangingPwd, setIsChangingPwd] = useState(false);
+
+  const handlePasswordChange = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPwdError('');
+    setPwdSuccess('');
+
+    if (newPwd.length < 6) {
+      setPwdError('New password must be at least 6 characters.');
+      return;
+    }
+    if (newPwd !== confirmPwd) {
+      setPwdError('New password and confirm password do not match.');
+      return;
+    }
+
+    setIsChangingPwd(true);
+    const res = await updateAdminPassword(currentPwd, newPwd);
+    setIsChangingPwd(false);
+
+    if (res.success) {
+      setPwdSuccess('Admin master password successfully updated!');
+      setCurrentPwd('');
+      setNewPwd('');
+      setConfirmPwd('');
+    } else {
+      setPwdError(res.error || 'Failed to update password.');
+    }
+  };
+
 
   // Check auth session on load
   const verifyAuth = async () => {
@@ -325,7 +363,7 @@ export const AdminPanel: React.FC = () => {
   // VIEW B: LOGGED IN (FULL ADMIN DASHBOARD)
   // ==========================================
   interface AdminTabItem {
-    id: 'appointments' | 'inquiries' | 'members' | 'hero' | 'about' | 'reviews' | 'artists' | 'gallery' | 'videos' | 'rewards' | 'database';
+    id: 'appointments' | 'inquiries' | 'members' | 'hero' | 'about' | 'reviews' | 'artists' | 'gallery' | 'videos' | 'rewards' | 'database' | 'security';
     label: string;
     short: string;
     icon: any;
@@ -344,6 +382,7 @@ export const AdminPanel: React.FC = () => {
     { id: 'hero', label: 'Home Loop Video & Hero', short: 'Hero Video', icon: Video },
     { id: 'about', label: 'About Section & Story', short: 'About Story', icon: FileText },
     { id: 'database', label: 'Supabase Backend Config', short: 'Database', icon: Database },
+    { id: 'security', label: 'Admin Security & Password', short: 'Password', icon: Key },
   ];
 
   return (
@@ -985,6 +1024,91 @@ export const AdminPanel: React.FC = () => {
                 </pre>
               </div>
             </div>
+          </div>
+        )}
+        {/* ============================================================== */}
+        {/* TAB 12: ADMIN SECURITY & PASSWORD */}
+        {/* ============================================================== */}
+        {activeTab === 'security' && (
+          <div className="max-w-xl mx-auto bg-[#161616] border border-zinc-800 rounded-2xl p-6 sm:p-8 space-y-6">
+            <div>
+              <h3 className="font-serif font-bold text-xl text-white flex items-center gap-2">
+                <Key className="w-5 h-5 text-[#FFD60A]" />
+                <span>Change Admin Password</span>
+              </h3>
+              <p className="text-xs text-zinc-400 mt-1">
+                Update your administrative master password for Phoenix Tattooz.
+              </p>
+            </div>
+
+            {pwdSuccess && (
+              <div className="p-3.5 bg-emerald-950/60 border border-emerald-500/30 rounded-xl text-xs text-emerald-300 flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>{pwdSuccess}</span>
+              </div>
+            )}
+
+            {pwdError && (
+              <div className="p-3.5 bg-rose-950/60 border border-rose-500/30 rounded-xl text-xs text-rose-300 flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0" />
+                <span>{pwdError}</span>
+              </div>
+            )}
+
+            <form onSubmit={handlePasswordChange} className="space-y-4">
+              <div>
+                <label className="block text-xs font-semibold text-zinc-300 mb-1.5">
+                  Current Password *
+                </label>
+                <input
+                  type="password"
+                  placeholder="Placeholder for Current Password"
+                  value={currentPwd}
+                  onChange={(e) => setCurrentPwd(e.target.value)}
+                  className="w-full bg-[#0D0E12] border border-zinc-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-[#FFD60A]"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-zinc-300 mb-1.5">
+                  New Password (minimum 6 characters) *
+                </label>
+                <input
+                  type="password"
+                  placeholder="Placeholder for New Password"
+                  value={newPwd}
+                  onChange={(e) => setNewPwd(e.target.value)}
+                  className="w-full bg-[#0D0E12] border border-zinc-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-[#FFD60A]"
+                  required
+                  minLength={6}
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-zinc-300 mb-1.5">
+                  Confirm New Password *
+                </label>
+                <input
+                  type="password"
+                  placeholder="Placeholder for Confirming New Password"
+                  value={confirmPwd}
+                  onChange={(e) => setConfirmPwd(e.target.value)}
+                  className="w-full bg-[#0D0E12] border border-zinc-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-[#FFD60A]"
+                  required
+                  minLength={6}
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={isChangingPwd}
+                className="w-full py-3 rounded-xl bg-[#FFD60A] hover:bg-[#ffe033] text-black font-bold text-sm transition-all cursor-pointer flex items-center justify-center gap-2 shadow-md shadow-amber-500/20"
+              >
+                <Key className="w-4 h-4" />
+                <span>{isChangingPwd ? 'Updating Password...' : 'Update Admin Password'}</span>
+              </button>
+            </form>
           </div>
         )}
       </main>

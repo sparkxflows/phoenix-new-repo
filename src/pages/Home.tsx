@@ -145,14 +145,6 @@ export const Home: React.FC<HomeProps> = ({ onOpenBooking }) => {
 
         {/* Main Hero Container */}
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10 w-full text-center">
-          {/* Studio Kicker Pill */}
-          <div className="inline-flex items-center gap-2 bg-[#121418]/90 border border-amber-500/30 px-3.5 py-1.5 rounded-full mb-6 shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-[#FFD60A]" />
-            <span className="text-xs font-semibold text-[#FFD60A] tracking-wider uppercase">
-              Hisar's Premier Tattoo Studio &amp; Academy
-            </span>
-          </div>
-
           {/* Stately Headline */}
           <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight uppercase leading-[1.08] drop-shadow-md max-w-4xl mx-auto">
             INK YOUR STORY
@@ -189,38 +181,53 @@ export const Home: React.FC<HomeProps> = ({ onOpenBooking }) => {
             </a>
           </div>
 
-          {/* Trust Strip */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-14 pt-8 border-t border-white/[0.08] text-center max-w-4xl mx-auto">
-            <div className="p-2">
-              <div className="flex items-center justify-center gap-1 text-[#FFD60A] text-sm mb-1">
-                {'★'.repeat(5)}
+          {/* Restored Prominent Google Reviews & Hygiene Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-12 max-w-2xl mx-auto text-left">
+            {/* Google Reviews Card */}
+            <a
+              href={`https://www.google.com/search?q=${encodeURIComponent('Phoenix Tattooz Studio & Academy Hisar')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group p-4 rounded-2xl bg-[#121418]/90 hover:bg-[#161920] border border-white/10 hover:border-amber-400/40 transition-all flex items-center gap-3.5 shadow-lg shadow-black/60"
+            >
+              <div className="w-11 h-11 rounded-xl bg-white flex items-center justify-center shrink-0 shadow-sm p-1">
+                <svg viewBox="0 0 24 24" className="w-6 h-6">
+                  <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17Z" />
+                  <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24Z" />
+                  <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.16 0 9.94 0 12s.45 3.84 1.25 5.42l4.03-3.15Z" />
+                  <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98Z" />
+                </svg>
               </div>
-              <div className="text-xs font-bold text-white">4.9 Google Rating</div>
-              <div className="text-[11px] text-zinc-400">500+ Verified Reviews</div>
-            </div>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-1 text-[#FFD60A] text-xs font-bold">
+                  <span>4.9</span>
+                  <div className="flex text-amber-400 text-xs">
+                    {'★'.repeat(5)}
+                  </div>
+                  <span className="text-zinc-400 font-normal text-[11px] ml-1">(500+ Reviews)</span>
+                </div>
+                <div className="text-sm font-bold text-white group-hover:text-[#FFD60A] transition-colors leading-snug mt-0.5">
+                  Verified Google Reviews
+                </div>
+                <div className="text-[11px] text-zinc-400 truncate">Hisar's #1 Top Rated Studio</div>
+              </div>
+            </a>
 
-            <div className="p-2">
-              <div className="flex items-center justify-center gap-1 text-emerald-400 text-sm mb-1">
-                <ShieldCheck className="w-4 h-4" />
+            {/* Hygiene & Safety Card */}
+            <div className="p-4 rounded-2xl bg-[#121418]/90 border border-white/10 flex items-center gap-3.5 shadow-lg shadow-black/60">
+              <div className="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center shrink-0 text-emerald-400">
+                <ShieldCheck className="w-6 h-6" />
               </div>
-              <div className="text-xs font-bold text-white">100% Sterile</div>
-              <div className="text-[11px] text-zinc-400">Medical-Grade Needles</div>
-            </div>
-
-            <div className="p-2">
-              <div className="flex items-center justify-center gap-1 text-amber-400 text-sm mb-1">
-                <PenTool className="w-4 h-4" />
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[10px] bg-emerald-500/20 text-emerald-400 font-bold px-1.5 py-0.2 rounded">100% Certified</span>
+                  <span className="text-xs text-zinc-400 font-medium">Safety Standard</span>
+                </div>
+                <div className="text-sm font-bold text-white leading-snug mt-0.5">
+                  Medical-Grade Hygiene
+                </div>
+                <div className="text-[11px] text-zinc-400 truncate">Autoclave Sterilization &amp; Single-Use Needles</div>
               </div>
-              <div className="text-xs font-bold text-white">Custom Flash Art</div>
-              <div className="text-[11px] text-zinc-400">Bespoke Design Process</div>
-            </div>
-
-            <div className="p-2">
-              <div className="flex items-center justify-center gap-1 text-[#FFD60A] text-sm mb-1">
-                <GraduationCap className="w-4 h-4" />
-              </div>
-              <div className="text-xs font-bold text-white">Tattoo Academy</div>
-              <div className="text-[11px] text-zinc-400">Professional Training</div>
             </div>
           </div>
         </div>

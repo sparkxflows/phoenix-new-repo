@@ -61,7 +61,7 @@ export const StudioLegacyStrip: React.FC<StudioLegacyStripProps> = ({ onOpenBook
               <div className="flex items-center gap-2">
                 <span className="w-6 h-0.5 bg-[#FFD60A]" />
                 <span className="text-[#FFD60A] text-xs font-extrabold tracking-[0.22em] uppercase">
-                  STUDIO HERITAGE &amp; TRUST
+                  Studio Heritage &amp; Trust
                 </span>
               </div>
               <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
@@ -101,7 +101,7 @@ export const StudioLegacyStrip: React.FC<StudioLegacyStripProps> = ({ onOpenBook
                   <Calendar className="w-5 h-5" />
                 </div>
                 <span className="text-[10px] font-extrabold uppercase tracking-widest text-zinc-500 bg-zinc-900 px-2 py-0.5 rounded">
-                  ESTD. 2019
+                  Estd. 2019
                 </span>
               </div>
               <div className="font-highlight text-3xl sm:text-4xl font-black text-white tracking-tight">
@@ -155,7 +155,7 @@ export const StudioLegacyStrip: React.FC<StudioLegacyStripProps> = ({ onOpenBook
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <span className="text-[10px] font-extrabold uppercase tracking-widest text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-                  100% STERILE
+                  100% Sterile
                 </span>
               </div>
               <div className="font-highlight text-3xl sm:text-4xl font-black text-white tracking-tight">
@@ -179,11 +179,11 @@ export const StudioLegacyStrip: React.FC<StudioLegacyStripProps> = ({ onOpenBook
               <div className="flex items-center gap-2 mb-2">
                 <Flame className="w-4 h-4 text-[#FFD60A]" />
                 <span className="text-[#FFD60A] text-xs font-extrabold tracking-[0.22em] uppercase">
-                  RECENT WORKS &amp; MASTERPIECES
+                  Recent Masterpieces &amp; Works
                 </span>
               </div>
               <h4 className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
-                Recent Tattoos Inked in Hisar
+                Recent Masterpieces Inked In Hisar
               </h4>
               <p className="text-sm text-zinc-400 mt-2 max-w-2xl font-light">
                 Explore authentic client works freshly crafted by Phoenix Tattooz artists across Black &amp; Grey Realism, Sacred Geometry, Fine Line, and Neo-Traditional.
@@ -213,7 +213,7 @@ export const StudioLegacyStrip: React.FC<StudioLegacyStripProps> = ({ onOpenBook
                 <div className="relative aspect-[4/5] bg-zinc-950 overflow-hidden">
                   <img
                     src={item.image}
-                    alt={item.title}
+                    alt={item.title} loading="eager"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover filter contrast-[1.05] brightness-[0.95] group-hover:scale-105 group-hover:brightness-100 transition-all duration-500"
                   />
@@ -274,7 +274,7 @@ export const StudioLegacyStrip: React.FC<StudioLegacyStripProps> = ({ onOpenBook
           <div className="mt-10 pt-6 border-t border-zinc-800/60 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2 text-xs text-zinc-400">
               <CheckCircle2 className="w-4 h-4 text-[#FFD60A] shrink-0" />
-              <span>Looking for custom artwork? Bring your references or let our artists draft a unique sketch.</span>
+              <span>Looking for Custom Artwork? Bring your references or let our artists draft a unique sketch.</span>
             </div>
 
             <div className="flex items-center gap-3 shrink-0">

@@ -796,7 +796,7 @@ export const BookAppointmentModal: React.FC<BookAppointmentModalProps> = ({
                     </label>
                     <input
                       type="text"
-                      placeholder="e.g. Right Forearm, Neck, Ankle"
+                      placeholder="Placeholder for Placement Area (e.g. Forearm, Neck, Ankle)"
                       value={removalPlacement}
                       onChange={(e) => setRemovalPlacement(e.target.value)}
                       className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#FFD60A]"
@@ -1228,7 +1228,7 @@ export const BookAppointmentModal: React.FC<BookAppointmentModalProps> = ({
                   </label>
                   <input
                     type="text"
-                    placeholder="e.g. Balmukund Sharma"
+                    placeholder="Placeholder for Your Full Name"
                     value={clientName}
                     onChange={(e) => {
                       setClientName(e.target.value);
@@ -1249,7 +1249,7 @@ export const BookAppointmentModal: React.FC<BookAppointmentModalProps> = ({
                   </label>
                   <input
                     type="tel"
-                    placeholder="e.g. 99929 69919"
+                    placeholder="Placeholder for WhatsApp Mobile Number"
                     value={clientPhone}
                     onChange={(e) => {
                       setClientPhone(e.target.value);
@@ -1271,7 +1271,7 @@ export const BookAppointmentModal: React.FC<BookAppointmentModalProps> = ({
                 </label>
                 <textarea
                   rows={2}
-                  placeholder="Tell us any specific ideas, reference links, skin concerns, or placement details..."
+                  placeholder="Placeholder for Tattoo Design Idea or Reference Notes"
                   value={clientNotes}
                   onChange={(e) => setClientNotes(e.target.value)}
                   className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-[#FFD60A] resize-none"

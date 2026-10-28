@@ -61,8 +61,8 @@ export const GiftsAndRewardsSection: React.FC<GiftsAndRewardsSectionProps> = ({
         />
 
         {/* Ambient Golden Backlights */}
-        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-amber-600/20 via-yellow-500/10 to-transparent rounded-full blur-[130px] pointer-events-none" />
-        <div className="absolute -bottom-20 left-10 w-[380px] h-[380px] bg-amber-500/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-amber-600/20 via-yellow-500/10 to-transparent rounded-full blur-2xl pointer-events-none" />
+        <div className="absolute -bottom-20 left-10 w-[380px] h-[380px] bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
@@ -150,8 +150,8 @@ export const GiftsAndRewardsSection: React.FC<GiftsAndRewardsSectionProps> = ({
                   <div className="absolute inset-0 bg-gradient-to-t from-[#090A0D] via-transparent to-black/30 pointer-events-none" />
 
                   {/* Glowing Golden Phoenix Medallion Coin held by sculpted hand */}
-                  <div className="absolute top-[38%] left-[28%] -translate-x-1/2 -translate-y-1/2 z-10 animate-pulse">
-                    <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-tr from-amber-600 via-[#FFD60A] to-amber-200 p-1 shadow-[0_0_40px_14px_rgba(255,214,10,0.65)] flex items-center justify-center border-2 border-[#FFD60A]">
+                  <div className="absolute top-[38%] left-[28%] -translate-x-1/2 -translate-y-1/2 z-10 ">
+                    <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-tr from-amber-600 via-[#FFD60A] to-amber-200 p-1 shadow-md border border-amber-400/60 flex items-center justify-center border-2 border-[#FFD60A]">
                       <div className="w-full h-full rounded-full bg-[#111317]/90 border border-amber-400/80 p-2 flex flex-col items-center justify-center text-center">
                         <span className="text-[7px] font-bold text-amber-300 uppercase tracking-widest leading-none">
                           ★ PHOENIX TATTOOZ ★
@@ -236,7 +236,7 @@ export const GiftsAndRewardsSection: React.FC<GiftsAndRewardsSectionProps> = ({
                   />
 
                   {/* Overlaid Gold & Black Birthday Gift Card held in hand */}
-                  <div className="absolute top-[42%] left-[48%] -translate-x-1/2 -translate-y-1/2 w-48 sm:w-56 bg-gradient-to-br from-[#1A1C20] via-black to-[#131518] border-2 border-[#FFD60A] rounded-xl p-3 shadow-[0_10px_35px_rgba(0,0,0,0.9),0_0_20px_rgba(255,214,10,0.5)] transform -rotate-6 hover:rotate-0 transition-transform duration-300">
+                  <div className="absolute top-[42%] left-[48%] -translate-x-1/2 -translate-y-1/2 w-48 sm:w-56 bg-gradient-to-br from-[#1A1C20] via-black to-[#131518] border-2 border-[#FFD60A] rounded-xl p-3 shadow-xl border border-amber-400/40 transform -rotate-6 hover:rotate-0 transition-transform duration-300">
                     <div className="flex items-center justify-between border-b border-amber-500/40 pb-1.5 mb-1.5">
                       <div className="flex items-center gap-1.5">
                         <span className="w-4 h-4 rounded-full bg-[#FFD60A] text-black text-[9px] font-black flex items-center justify-center">
@@ -366,8 +366,8 @@ export const GiftsAndRewardsSection: React.FC<GiftsAndRewardsSectionProps> = ({
       <div className="relative bg-[#0A0C0F] text-white py-16 sm:py-24 lg:py-28 overflow-hidden">
         
         {/* Ambient Warm Studio Lighting & Bokeh Effect */}
-        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute bottom-10 right-1/4 w-[400px] h-[400px] bg-yellow-500/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
+        <div className="absolute bottom-10 right-1/4 w-[400px] h-[400px] bg-yellow-500/10 rounded-full blur-2xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">

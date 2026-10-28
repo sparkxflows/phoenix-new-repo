@@ -315,3 +315,40 @@ CREATE POLICY "Allow public update appointments" ON public.appointments FOR UPDA
 CREATE POLICY "Allow public insert inquiries" ON public.contact_inquiries FOR INSERT WITH CHECK (true);
 CREATE POLICY "Allow public read inquiries" ON public.contact_inquiries FOR SELECT USING (true);
 `;
+
+/**
+ * Updates admin password across Supabase Auth and local Express store.
+ */
+export async function updateAdminPassword(currentPassword: string, newPassword: string): Promise<{ success: boolean; error?: string }> {
+  try {
+    if (USE_REMOTE_SUPABASE) {
+      const { error } = await supabase.auth.updateUser({ password: newPassword });
+      if (error) {
+        return { success: false, error: error.message };
+      }
+    }
+    const res = await fetch('/api/admin/change-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ currentPassword, newPassword }),
+    });
+    const data = await res.json();
+    if (!res.ok || !data.success) {
+      if (!USE_REMOTE_SUPABASE) {
+        return { success: false, error: data.error || 'Failed to update password' };
+      }
+    }
+    const local = localStorage.getItem(ADMIN_STORAGE_KEY);
+    if (local) {
+      try {
+        const parsed = JSON.parse(local);
+        parsed.password = newPassword;
+        parsed.password_hash = await hashPassword(newPassword);
+        localStorage.setItem(ADMIN_STORAGE_KEY, JSON.stringify(parsed));
+      } catch {}
+    }
+    return { success: true };
+  } catch (err: any) {
+    return { success: false, error: err?.message || 'Password update failed' };
+  }
+}

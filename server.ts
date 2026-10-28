@@ -810,6 +810,29 @@ app.post('/api/admin/login', (req: Request, res: Response) => {
   });
 });
 
+app.post('/api/admin/change-password', (req: Request, res: Response) => {
+  const admin = studioStorage.getAdminUser();
+  if (!admin) {
+    res.status(401).json({ success: false, error: 'No administrator registered.' });
+    return;
+  }
+  const { currentPassword, newPassword } = req.body;
+  if (!newPassword || newPassword.length < 6) {
+    res.status(400).json({ success: false, error: 'New password must be at least 6 characters.' });
+    return;
+  }
+  const salt = 'phoenix_tattooz_secure_2019_hisar';
+  const currentHash = crypto.createHash('sha256').update(currentPassword + salt).digest('hex');
+  if (currentHash !== admin.password_hash) {
+    res.status(401).json({ success: false, error: 'Current password is incorrect.' });
+    return;
+  }
+  const newHash = crypto.createHash('sha256').update(newPassword + salt).digest('hex');
+  admin.password_hash = newHash;
+  studioStorage.setAdminUser(admin);
+  res.json({ success: true, message: 'Admin password updated successfully.' });
+});
+
 // ==========================================
 // CLIENT MEMBER AUTHENTICATION & REWARDS API
 // ==========================================
