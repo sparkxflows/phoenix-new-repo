@@ -4,12 +4,43 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(({ command }) => {
+  // Determine base path:
+  // - GitHub Pages needs '/phoenix-tattoz-github/'
+  // - Vercel and local dev need '/'
+  const isGitHubPages = Boolean(
+    (process.env.GITHUB_ACTIONS === 'true' && !process.env.VERCEL) ||
+    process.env.BUILD_FOR_GH === 'true' ||
+    process.env.VITE_BASE_GH === 'true'
+  );
+  const base = isGitHubPages ? '/phoenix-tattoz-github/' : '/';
+
   return {
-    base: command === 'build' ? './' : '/',
+    base,
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
         '@': path.resolve(import.meta.dirname, '.'),
+      },
+    },
+    build: {
+      cssCodeSplit: true,
+      chunkSizeWarningLimit: 600,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
+                return 'vendor-react';
+              }
+              if (id.includes('@supabase')) {
+                return 'vendor-supabase';
+              }
+              if (id.includes('lucide-react')) {
+                return 'vendor-icons';
+              }
+            }
+          },
+        },
       },
     },
     server: {
